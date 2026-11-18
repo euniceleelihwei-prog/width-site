@@ -1,0 +1,100 @@
+# 界面文字（按钮、标签、页脚等）。页面正文写在各页面文件里。
+en:
+  htmlLang: en
+  langName: English
+  switchTo: 中文
+  skip: Skip to content
+  menu: Menu
+  signIn: Sign in
+  ctaPrimary: Get free access
+  ctaDemo: Book a demo
+  ctaDocs: Read the docs
+  readMore: Read more
+  learnMore: Learn more
+  allPosts: All articles
+  latest: Latest from the blog
+  minRead: min read
+  by: By
+  category: Category
+  related: Related articles
+  share: Share
+  backToBlog: Back to blog
+  page: Page
+  prev: Newer
+  next: Older
+  breadcrumbHome: Home
+  sampleData: Sample data · replace before launch
+  comingSoon: Coming soon
+  footerTagline: Onchain intelligence for stablecoin compliance. DART screens USDT and USDC flows in time order, so good customers get through and bad funds don't.
+  footerFree: Free until 31 Dec 2028
+  contactTitle: Contact
+  rights: WIDTH Pte. Ltd. All rights reserved.
+  privacy: Privacy
+  security: Security
+  postCtaTitle: Screen your next address with DART
+  postCtaText: Free until 31 December 2028. Console, API and MCP included.
+  categories:
+    research: Research
+    product: Product
+    regulation: Regulation
+    incidents: Incident reviews
+    guides: Guides
+  form:
+    name: Your name
+    email: Work email
+    company: Company
+    type: Company type
+    message: What would you like to solve?
+    submit: Send
+    note: We reply within one working day.
+    types: [Exchange, Wallet, Payments / card issuer, Custody / WaaS, OTC / merchant, Law enforcement, University / research, Other]
+
+zh:
+  htmlLang: zh-CN
+  langName: 中文
+  switchTo: English
+  skip: 跳到正文
+  menu: 菜单
+  signIn: 登录
+  ctaPrimary: 免费接入
+  ctaDemo: 预约演示
+  ctaDocs: 看产品手册
+  readMore: 阅读全文
+  learnMore: 了解更多
+  allPosts: 全部文章
+  latest: 最新文章
+  minRead: 分钟阅读
+  by: 作者
+  category: 分类
+  related: 相关文章
+  share: 分享
+  backToBlog: 返回文章列表
+  page: 第
+  prev: 较新
+  next: 较早
+  breadcrumbHome: 首页
+  sampleData: 示例数据 · 上线前替换
+  comingSoon: 即将上线
+  footerTagline: 以稳定币为核心的链上情报与合规。DART 按资金的时间顺序筛查 USDT / USDC，正常用户顺利通过，问题资金挡在门外。
+  footerFree: 接入即免费用到 2028 年 12 月 31 日
+  contactTitle: 联系方式
+  rights: WIDTH Pte. Ltd. 版权所有
+  privacy: 隐私政策
+  security: 安全
+  postCtaTitle: 用 DART 查一下你的下一个地址
+  postCtaText: 接入即免费用到 2028 年 12 月 31 日，控制台、API、MCP 全部可用。
+  categories:
+    research: 研究
+    product: 产品
+    regulation: 监管动态
+    incidents: 事件复盘
+    guides: 指南
+  form:
+    name: 姓名
+    email: 工作邮箱
+    company: 公司
+    type: 公司类型
+    message: 想解决什么问题？
+    submit: 提交
+    note: 我们会在一个工作日内回复。
+    types: [交易所, 钱包, 支付 / U 卡, 托管 / WaaS, OTC / 商户, 执法机构, 高校 / 研究机构, 其他]

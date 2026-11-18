@@ -1,0 +1,10 @@
+<article class="post-card">
+  <a href="{{ post.url }}">
+    {%- if post.data.cover %}<img class="post-cover" src="{{ post.data.cover }}" alt="{{ post.data.coverAlt or '' }}" loading="lazy">{% else %}<div class="post-cover placeholder" aria-hidden="true"><span>{{ i18n[lang].categories[post.data.category] }}</span></div>{% endif %}
+    <div class="post-body">
+      <p class="post-meta"><span class="chip">{{ i18n[lang].categories[post.data.category] }}</span><time datetime="{{ post.date | isoDate }}">{{ post.date | date(lang) }}</time></p>
+      <h3>{{ post.data.title }}</h3>
+      <p>{{ post.data.description }}</p>
+    </div>
+  </a>
+</article>

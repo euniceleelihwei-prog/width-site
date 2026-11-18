@@ -1,0 +1,15 @@
+{
+  "name": "width-site",
+  "scripts": {
+    "dev": "eleventy --serve --port 8080",
+    "build": "eleventy"
+  },
+  "description": "Width 官网（width.info）静态站",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.8",
+    "js-yaml": "^5.5.0",
+    "markdown-it": "^15.0.3"
+  },
+  "private": true,
+  "type": "module"
+}

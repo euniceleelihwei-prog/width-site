@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: i18n.zh.categories
+  size: 1
+  alias: activeCategory
+eleventyComputed:
+  title: "{{ i18n.zh.categories[activeCategory] }} · 文章"
+  heading: "{{ i18n.zh.categories[activeCategory] }}"
+  description: "Width DART 关于{{ i18n.zh.categories[activeCategory] }}的文章：稳定币反洗钱、KYT、链上风险。"
+  intro: "「{{ i18n.zh.categories[activeCategory] }}」分类下的全部文章。"
+permalink: "/zh/blog/category/{{ activeCategory }}/"
+---
+{%- set posts = collections.posts_zh | where("category", activeCategory) %}
+{% include "partials/blog-list.njk" %}

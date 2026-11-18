@@ -1,0 +1,47 @@
+{%- set t = i18n[lang] -%}
+<header class="site-header" data-header>
+  <div class="bar">
+    <a class="brand" href="{{ '/' | locale(lang) }}" aria-label="Width DART">
+      <img src="/assets/img/width-logo-white.svg" alt="WIDTH" width="96" height="20">
+      <span class="brand-product">DART</span>
+    </a>
+
+    <nav class="nav" aria-label="Main" data-nav>
+      <ul class="nav-list">
+        {%- for item in nav.main %}
+        {%- if item.groups %}
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle>{{ item.label | tr(lang) }}<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-{{ item.groups | length }}">
+              {%- for g in item.groups %}
+              <div class="menu-group">
+                <p class="menu-title">{{ g.title | tr(lang) }}</p>
+                <ul>
+                  {%- for l in g.items %}
+                  <li><a href="{{ l.href | locale(lang) }}"{% if 'http' in l.href %} target="_blank" rel="noopener"{% endif %}>
+                    <span class="menu-label">{{ l.label | tr(lang) }}</span>
+                    {%- if l.desc %}<span class="menu-desc">{{ l.desc | tr(lang) }}</span>{% endif %}
+                  </a></li>
+                  {%- endfor %}
+                </ul>
+              </div>
+              {%- endfor %}
+            </div>
+          </div>
+        </li>
+        {%- else %}
+        <li class="nav-item"><a class="nav-link" href="{{ item.href | locale(lang) }}">{{ item.label | tr(lang) }}</a></li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="{{ page.url | altUrl(lang, collections.all) }}" hreflang="{{ 'en' if lang == 'zh' else 'zh-CN' }}">{{ t.switchTo }}</a>
+        <a class="nav-signin" href="{{ site.links.console }}">{{ t.signIn }}</a>
+        <a class="btn btn-primary btn-sm" href="{{ '/contact/' | locale(lang) }}">{{ t.ctaPrimary }}</a>
+      </div>
+    </nav>
+
+    <button class="nav-burger" aria-label="{{ t.menu }}" aria-expanded="false" data-burger><span></span><span></span><span></span></button>
+  </div>
+</header>

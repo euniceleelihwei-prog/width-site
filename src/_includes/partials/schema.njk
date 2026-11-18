@@ -1,0 +1,54 @@
+{#- 结构化数据（JSON-LD），帮助搜索引擎理解页面：公司信息、面包屑、文章、FAQ -#}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#org",
+      "name": "WIDTH Pte. Ltd.",
+      "alternateName": ["Width", "Width DART"],
+      "url": "{{ site.url }}/",
+      "logo": "{{ '/assets/img/width-logo.svg' | absolute(site.url) }}",
+      "email": "{{ site.contact.sales }}",
+      "telephone": "{{ site.contact.phone }}",
+      "sameAs": ["{{ site.social.x }}", "{{ site.social.linkedin }}", "{{ site.social.youtube }}"]
+    }
+    {%- if breadcrumb %},
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": {{ i18n[lang].breadcrumbHome | dump | safe }}, "item": "{{ ('/' | locale(lang)) | absolute(site.url) }}" }
+        {%- for b in breadcrumb %},
+        { "@type": "ListItem", "position": {{ loop.index + 1 }}, "name": {{ b.label | dump | safe }}{% if b.href %}, "item": "{{ (b.href | locale(lang)) | absolute(site.url) }}"{% endif %} }
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+    {%- if isPost %},
+    {
+      "@type": "BlogPosting",
+      "headline": {{ title | dump | safe }},
+      "description": {{ description | dump | safe }},
+      "datePublished": "{{ page.date | isoDate }}",
+      "dateModified": "{{ (updated or page.date) | isoDate }}",
+      "inLanguage": "{{ i18n[lang].htmlLang }}",
+      "author": { "@type": "Organization", "name": {{ (author or "Width") | dump | safe }} },
+      "publisher": { "@id": "{{ site.url }}/#org" },
+      "image": "{{ (cover or site.ogImage) | absolute(site.url) }}",
+      "mainEntityOfPage": "{{ page.url | absolute(site.url) }}"
+    }
+    {%- endif %}
+    {%- for s in sections %}{% if s.type == "faq" %},
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for f in s.items %}
+        { "@type": "Question", "name": {{ f.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | striptags | dump | safe }} } }{% if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}{% endfor %}
+  ]
+}
+</script>

@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+title: 文章与研究
+description: Width DART 团队关于稳定币反洗钱、KYT、链上风险筛查的研究、监管动态、安全事件复盘和操作指南。
+heading: 文章与研究
+intro: 我们怎么追资金、新规对合规团队意味着什么、最近的安全事件到底发生了什么。
+pagination:
+  data: collections.posts_zh
+  size: 9
+  alias: posts
+permalink: "/zh/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+{% include "partials/blog-list.njk" %}

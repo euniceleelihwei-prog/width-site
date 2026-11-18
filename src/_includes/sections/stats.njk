@@ -1,0 +1,11 @@
+{#- stats：title?, items[{value, unit, label}] -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container">
+    {% include "partials/section-head.njk" %}
+    <div class="stat-strip">
+      {%- for st in s.items %}
+      <div class="stat"><div class="stat-value">{{ st.value }}{% if st.unit %}<small>{{ st.unit }}</small>{% endif %}</div><div class="stat-label">{{ st.label }}</div></div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

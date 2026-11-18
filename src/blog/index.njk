@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+title: Blog & research
+description: Research, regulation updates, incident reviews and guides on stablecoin AML, KYT and onchain risk screening from the Width DART team.
+heading: Blog & research
+intro: How we trace funds, what new rules mean for your compliance desk, and what really happened in the latest incidents.
+pagination:
+  data: collections.posts_en
+  size: 9
+  alias: posts
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+{% include "partials/blog-list.njk" %}

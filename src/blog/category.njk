@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: i18n.en.categories
+  size: 1
+  alias: activeCategory
+eleventyComputed:
+  title: "{{ i18n.en.categories[activeCategory] }} · Blog"
+  heading: "{{ i18n.en.categories[activeCategory] }}"
+  description: "Width DART articles on {{ i18n.en.categories[activeCategory] | lower }}: stablecoin AML, KYT and onchain risk."
+  intro: "Articles filed under {{ i18n.en.categories[activeCategory] }}."
+permalink: "/blog/category/{{ activeCategory }}/"
+---
+{%- set posts = collections.posts_en | where("category", activeCategory) %}
+{% include "partials/blog-list.njk" %}

@@ -1,0 +1,127 @@
+---
+layout: layouts/page.njk
+permalink: /zh/solutions/exchanges/
+title: 交易所 KYT 充提筛查
+description: 交易所充值、提现 KYT 筛查：按资金时间顺序追踪减少误报，交易所对手方默认豁免，新监管动作第一时间上线规则集，每一分都有依据、每次筛查留快照。
+breadcrumb:
+  - { label: 解决方案, href: /solutions/ }
+  - { label: 交易所 }
+sections:
+  - type: hero
+    compact: true
+    eyebrow: 解决方案 · 交易所
+    title: 充提都筛，<em>不误报，也不被别家牵连</em>
+    lead: 充值看资金从哪来，提现看要打到哪去。DART 按资金的时间顺序逐跳追踪，时间上流不过来的路径直接排除，合规团队只处理真正需要处理的单子。
+    ctas:
+      - { label: 免费接入, href: "/contact/?type=exchange" }
+      - { label: 看产品手册, href: "https://width.info/docs" }
+    note: 接入 DART，免费用到 2028 年 12 月 31 日
+    visual: result
+
+  - type: problems
+    eyebrow: 交易所的合规难题
+    title: 你可能正遇到这些问题
+    items:
+      - problem: 充值告警太多，复核团队忙不过来
+        detail: 只看「有没有连上」，正常用户的充值也会被追到几跳之外的风险地址，大量告警最后都是误报。
+        solution: |
+          - 每一跳必须**先到账、后转出**才算关联，时间上倒着流的路径直接排除
+          - **看风险资金占比**，跳数越远门槛越高，只碰过一点点问题资金的地址不会被一刀切
+          - 四档处置：通过、复核、加强尽调、拦截，复核团队只看中间两档
+        proof: 某支付公司实测：同一地址，另一款工具判「中低风险、需复核」，DART 判 0 分通过。逐笔拆开，那些风险资金在时间上根本流不过来。
+      - problem: 因为别家交易所的用户，自己被牵连
+        detail: 交易所热钱包每天和成千上万个地址往来，追到别家交易所再往外追，几乎一定能碰到风险地址。
+        solution: |
+          - **交易所对手方默认豁免**：路径追到其他交易所就停止，不会因为别家交易所的其他用户碰过风险地址牵连到你
+          - 制裁筛查等强合规场景，可以按需关闭豁免开关
+        proof: 中东某交易所接入后，充提筛查默认开启交易所豁免。
+      - problem: 新的监管动作下来，规则跟不上
+        detail: 官方名单和执法命令更新越来越快，自己维护规则既慢又容易漏。
+        solution: |
+          - 新的官方动作由我们做成**内置规则集**，在控制台或 API 里直接选用
+          - 规则全部公开可读，复制一份就能按你自己的口径改
+        proof: FinCEN 9714 命令 11 月 6 日发布，DART 当天就上线了内置规则集。
+      - problem: 牌照申请、监管检查时说不清依据
+        detail: 只有一个分数、没有过程，VASP 牌照审查和监管检查都要你解释「为什么拦、为什么放」。
+        solution: |
+          - **每一分对应一条规则**：命中路径、跳数、金额、占比、加分全部列出
+          - 每次筛查自动存为**不可篡改的快照**，规则集版本可追溯
+        proof: 快照可以从控制台或 API 随时调出，按任意时间段生成筛查记录和处置统计。
+
+  - type: steps
+    tone: alt
+    eyebrow: DART 在你的流程里
+    title: 充值、提现两个节点，各筛一次
+    lead: 充值看流入方向，提现看流出方向，两边用不同的规则集和跳数。
+    items:
+      - { label: 充值, title: 链上到账, text: 用户充值的交易上链，你的系统拿到交易哈希。 }
+      - { label: KYT-IN, title: 筛资金来源, text: 按时间顺序向上游追，匹配流入规则集，给出 0–100 分。 }
+      - { label: 处置, title: 入账或挂起, text: 通过直接入账；复核、加强尽调进人工队列；拦截则冻结并上报。 }
+      - { label: 提现, title: 筛收款地址, text: 用户提现前，对目标地址做 KYA 或 KYT-OUT 筛查，命中制裁等严重规则直接拦截。 }
+
+  - type: table
+    eyebrow: 推荐配置
+    title: 交易所常用接入方式
+    head: [节点, 接口, 规则集, 跳数, 交易所豁免]
+    rows:
+      - [充值入账前, "`POST /api/v3/screen/kyt`", 内置 KYT-IN + 默认评分规则集, 流入 3 跳（默认）, 开启]
+      - [提现放行前, "`POST /api/v3/screen/kyt` 或 `/screen/kya`", 内置 KYT-OUT / AML KYA Default, 流出 1 跳（默认）, 开启]
+      - [新用户首次充值、大额充值, "`POST /api/v3/screen/kya/multi`", AML KYA Default, 按需加深, 开启]
+      - [制裁名单专项筛查, "`POST /api/v3/screen/kya`", 制裁类规则集, 按需配置, 按需关闭]
+    note: "跳数、阈值、规则都可以按你的风险偏好调整。同步调用默认直接返回结果；交易非常活跃的地址可以用异步模式（`mode: async`），不阻塞业务。"
+
+  - type: cases
+    eyebrow: 案例
+    title: 已经在用的交易所
+    columns: 2
+    items:
+      - tag: 交易所 · 中东
+        title: 中东某交易所
+        text: 充值、提现自动筛查，交易所对手方默认豁免，不因其他交易所的用户被牵连。
+      - tag: 监管动态
+        metric: 当天
+        metricLabel: 新监管动作到内置规则集上线
+        title: FinCEN 9714 命令
+        text: 命令 11 月 6 日发布，DART 当天就上线了内置规则集，客户在控制台直接选用，充提中即可识别相关资金。
+    note: 案例均匿名展示。数据来自 DART 生产环境，截至 2026 年 11 月。
+
+  - type: cards
+    tone: alt
+    eyebrow: 相关产品
+    title: 交易所会用到的能力
+    columns: 3
+    items:
+      - { title: 交易筛查 KYT, text: 充值看来源，提现看去向，按方向分别配置规则。, href: /products/kyt/ }
+      - { title: 地址筛查 KYA, text: 新用户、大额、提现目标地址，一次筛完全部有流水的链和币种。, href: /products/kya/ }
+      - { title: 制裁筛查, text: 官方名单 1 秒内返回，适合放在提现放行前。, href: /products/sanctions/ }
+      - { title: 规则集与评分, text: 把你的风险偏好写成规则，复制内置规则集就能改。, href: /products/rulesets/ }
+      - { title: 资金追踪与调查, text: 可疑案件跨跳、跨链追资金去向，导出追踪报告。, href: /products/investigations/ }
+      - { title: AI 助手（MCP）, text: 合规人员用一句话让 AI 查地址、解释结果。, href: /products/agents/ }
+
+  - type: faq
+    eyebrow: 常见问题
+    title: 交易所常问的问题
+    items:
+      - q: 交易所对手方豁免会不会漏掉风险？
+        a: 豁免只针对「路径追到其他交易所就停止」，被筛地址本身命中风险标签、或在到达交易所之前的路径上命中规则，照样计入。制裁筛查等强合规场景可以关闭豁免。
+      - q: 充值和提现应该用同一套规则吗？
+        a: 不建议。充值看资金来源（流入），提现看资金去向（流出），DART 内置 KYT-IN 和 KYT-OUT 两套规则集，跳数默认流入 3 跳、流出 1 跳，都可以调整。
+      - q: 筛查会不会拖慢入账？
+        a: 制裁筛查 1 秒内返回。同步调用直接给结果；交易非常活跃的地址追得深时耗时更长，可以改用异步模式，先入账再按结果处置，或先挂起再放行。
+      - q: 新的监管名单出来，要我们自己加规则吗？
+        a: 不用。新的官方动作由我们做成内置规则集，例如 FinCEN 9714 命令发布当天即上线。你也可以复制规则集自己改。
+      - q: 监管检查时能提供什么材料？
+        a: 每次筛查都有不可篡改的快照，记录当时的请求参数和完整结果；可以通过 API 批量拉取，生成任意时间段的筛查记录和处置统计。产品手册写明了规则定义和评分公式，可作为内部制度附件。
+
+  - type: cta
+    eyebrow: 免费接入
+    title: 和你现在的工具<em>并行跑一次</em>
+    text: 不用停掉现有系统。给我们一批历史充提地址，脱敏也可以，差异逐条说明原因。
+    points:
+      - 我们逐条给出结果和命中路径，并附**与现有工具的差异对比**
+      - 稳定币交给 DART，其他资产照旧
+      - 接入 DART，免费用到 **2028 年 12 月 31 日**
+    ctas:
+      - { label: 免费接入, href: "/contact/?type=exchange" }
+      - { label: 预约演示, href: "/contact/?type=exchange" }
+---

@@ -1,0 +1,56 @@
+{%- set t = i18n[lang] -%}
+{%- set pageTitle = (fullTitle or (title + " · Width DART")) -%}
+{%- set canonical = (canonicalUrl or page.url) | absolute(site.url) -%}
+{%- set shareImage = (cover or ogImage or site.ogImage) | absolute(site.url) -%}
+{%- set altLang = "en" if lang == "zh" else "zh" -%}
+{%- set alt = page.url | altUrl(lang, collections.all) -%}
+<!doctype html>
+<html lang="{{ t.htmlLang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ description }}">
+  {%- if not site.allowIndex or noindex %}
+  <meta name="robots" content="noindex, nofollow">
+  {%- endif %}
+  <link rel="canonical" href="{{ canonical }}">
+  {%- if page.url | hasAlt(lang, collections.all) %}
+  <link rel="alternate" hreflang="{{ i18n[lang].htmlLang }}" href="{{ page.url | absolute(site.url) }}">
+  <link rel="alternate" hreflang="{{ i18n[altLang].htmlLang }}" href="{{ alt | absolute(site.url) }}">
+  <link rel="alternate" hreflang="x-default" href="{{ (alt if lang == 'zh' else page.url) | absolute(site.url) }}">
+  {%- endif %}
+
+  <meta property="og:type" content="{{ 'article' if isPost else 'website' }}">
+  <meta property="og:site_name" content="Width DART">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ shareImage }}">
+  <meta property="og:locale" content="{{ 'zh_CN' if lang == 'zh' else 'en_US' }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="{{ site.twitter }}">
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Width DART" href="{{ '/feed.xml' | locale(lang) }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/site.css">
+
+  {%- include "partials/schema.njk" %}
+  {%- if site.gaId %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gaId }}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","{{ site.gaId }}");</script>
+  {%- endif %}
+</head>
+<body class="lang-{{ lang }} {{ bodyClass }}">
+  <a class="skip" href="#main">{{ t.skip }}</a>
+  {% include "partials/header.njk" %}
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

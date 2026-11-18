@@ -1,0 +1,60 @@
+# 数据中心榜单。每个榜单：标题、说明、更新频率、来源、表头、数据行。
+# sample: true 时页面会显示「示例数据 · 上线前替换」；接入真实数据后改成 false。
+# 数字由数据团队定期更新（可以手改这个文件，也可以写脚本从 API 生成）。
+freeze:
+  sample: true
+  eyebrow: { en: "FREEZE TRACKER · DAILY", zh: "FREEZE TRACKER · 每日更新" }
+  title: { en: Stablecoin freeze tracker, zh: 稳定币冻结榜 }
+  desc:
+    en: Addresses frozen by stablecoin issuers and the amounts held at the time of freezing, by chain and by week.
+    zh: 稳定币发行方冻结的地址数和冻结时持有的金额，按链、按周统计。
+  cadence: { en: Daily, zh: 每日 }
+  source: { en: Issuer freeze events onchain, zh: 链上发行方冻结事件 }
+  head:
+    - { en: Week, zh: 周 }
+    - { en: Chain, zh: 链 }
+    - { en: Token, zh: 币种 }
+    - { en: Addresses frozen, zh: 冻结地址数 }
+    - { en: Amount frozen, zh: 冻结金额 }
+  rows:
+    - ["2026-W46", Tron, USDT, "000", "$0.00M"]
+    - ["2026-W46", Ethereum, USDT, "000", "$0.00M"]
+    - ["2026-W46", Ethereum, USDC, "000", "$0.00M"]
+
+incidents:
+  sample: true
+  eyebrow: { en: "SECURITY INCIDENTS · WEEKLY", zh: "SECURITY INCIDENTS · 每周更新" }
+  title: { en: Security incidents, zh: 安全事件榜 }
+  desc:
+    en: Hacks and exploits ranked by loss, with where the funds are now. Attribution is only stated when officially confirmed.
+    zh: 黑客和漏洞事件按损失排序，标注资金现在在哪。归因只写官方确认的说法。
+  cadence: { en: Weekly, zh: 每周 }
+  source: { en: Project and exchange announcements, public onchain transactions, zh: 项目方 / 交易所官方公告、链上公开交易 }
+  head:
+    - { en: Date, zh: 日期 }
+    - { en: Incident, zh: 事件 }
+    - { en: Loss, zh: 损失 }
+    - { en: Where the funds are, zh: 资金去向 }
+  rows:
+    - ["2026-11-00", { en: Sample incident A, zh: 示例事件 A }, "$0.0M", { en: "Bridged to another chain", zh: 已跨链 }]
+    - ["2026-11-00", { en: Sample incident B, zh: 示例事件 B }, "$0.0M", { en: "Partly frozen by issuer", zh: 部分被发行方冻结 }]
+    - ["2026-11-00", { en: Sample incident C, zh: 示例事件 C }, "$0.0M", { en: Not moved yet, zh: 未动 }]
+
+sanctions:
+  sample: true
+  eyebrow: { en: "SANCTIONS & ENFORCEMENT · ON EVERY NEW ACTION", zh: "SANCTIONS & ENFORCEMENT · 有新动作即更新" }
+  title: { en: Sanctions & enforcement actions, zh: 制裁与执法动作 }
+  desc:
+    en: New listings and orders from OFAC, FinCEN, the UN and other authorities, with the onchain addresses they involve and when DART added them.
+    zh: OFAC、FinCEN、联合国等机构的新增名单和命令，涉及的链上地址数，以及 DART 什么时候收录。
+  cadence: { en: On every new action, zh: 有新动作即更新 }
+  source: { en: Official publications, zh: 官方发布 }
+  head:
+    - { en: Published, zh: 发布日期 }
+    - { en: Authority, zh: 机构 }
+    - { en: Action, zh: 动作 }
+    - { en: Addresses involved, zh: 涉及地址数 }
+    - { en: In DART, zh: DART 收录 }
+  rows:
+    - ["2026-11-06", FinCEN, { en: "Section 9714 order", zh: 9714 命令 }, "—", "2026-11-06"]
+    - ["2026-00-00", OFAC, { en: SDN list update (sample), zh: SDN 名单更新（示例） }, "—", "—"]

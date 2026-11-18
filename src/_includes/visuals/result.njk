@@ -1,0 +1,27 @@
+{#- 筛查结果示意卡：分数、处置、命中明细、快照。地址为示意。 -#}
+{%- set zh = (lang == 'zh') -%}
+<figure class="viz viz-result-card">
+  <header>
+    <div>
+      <p class="mini-label">KYA · Tron · USDT</p>
+      <p class="mono">TZCL2K…3ULr</p>
+    </div>
+    <span class="chip chip-review">{{ '复核' if zh else 'Review' }}</span>
+  </header>
+  <div class="result-score">
+    <div class="score-dial" style="--score: 36"><span>36</span><small>/100</small></div>
+    <ol class="bands" aria-label="{{ '处置档位' if zh else 'Disposition bands' }}">
+      <li class="pass">0–19</li><li class="review is-on">20–49</li><li class="edd">50–79</li><li class="block">80–100</li>
+    </ol>
+  </div>
+  <table class="hits">
+    <thead><tr><th>{{ '命中' if zh else 'Hit' }}</th><th>{{ '跳数' if zh else 'Hop' }}</th><th>{{ '占比' if zh else 'Share' }}</th><th>{{ '加分' if zh else 'Points' }}</th></tr></thead>
+    <tbody>
+      <tr><td><span class="dot risk"></span>{{ '制裁实体 · 流入' if zh else 'Sanctions · inbound' }}</td><td>2</td><td>18%</td><td>+30</td></tr>
+      <tr><td><span class="dot edd"></span>{{ '混币器 · 流入' if zh else 'Mixer · inbound' }}</td><td>1</td><td>6%</td><td>+6</td></tr>
+      <tr class="excluded"><td><span class="dot mute"></span>{{ '黑客 · 时间倒流' if zh else 'Hacker · backwards in time' }}</td><td>2</td><td>—</td><td>{{ '排除' if zh else 'excluded' }}</td></tr>
+      <tr class="excluded"><td><span class="dot ex"></span>{{ '交易所对手方' if zh else 'Exchange counterparty' }}</td><td>1</td><td>—</td><td>{{ '豁免' if zh else 'exempt' }}</td></tr>
+    </tbody>
+  </table>
+  <footer class="mono">{{ '快照已保存 · 不可篡改' if zh else 'Snapshot saved · immutable' }}</footer>
+</figure>

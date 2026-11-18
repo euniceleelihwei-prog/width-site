@@ -1,0 +1,126 @@
+---
+layout: layouts/page.njk
+permalink: /zh/solutions/payments/
+title: 支付公司与 U 卡资金来源筛查
+description: 支付公司、U 卡发行方、OTC 和商户的稳定币资金来源筛查：充卡、入金、出金前先查 USDT / USDC 从哪来，四档处置不一刀切，规则按合作银行要求配置，快照留存备审计。
+breadcrumb:
+  - { label: 解决方案, href: /solutions/ }
+  - { label: 支付与 U 卡 }
+sections:
+  - type: hero
+    compact: true
+    eyebrow: 解决方案 · 支付与 U 卡
+    title: 不让问题资金<em>进入卡组织和法币通道</em>
+    lead: 充卡、入金、商户收款、法币出金之前，先查这笔 U 从哪来。合作银行和卡组织问起来，每一笔都拿得出依据。
+    ctas:
+      - { label: 免费接入, href: "/contact/?type=payments" }
+      - { label: 看产品手册, href: "https://width.info/docs" }
+    note: 接入 DART，免费用到 2028 年 12 月 31 日
+    visual: scores
+
+  - type: problems
+    eyebrow: 支付业务的难题
+    title: 支付公司和 U 卡发行方常见的问题
+    items:
+      - problem: 一笔问题资金，可能连累整条通道
+        detail: U 一旦进了卡组织和银行通道，问题资金会让合作银行、卡组织重新审视你的整个业务。
+        solution: |
+          - **充卡、入金前筛资金来源**：涉及制裁、发行方冻结、黑客、诈骗资金时分档处置
+          - 按时间顺序向上游追，只计算转出前已经到账的钱
+        proof: 中东某 U 卡发行方在充卡前筛查资金来源，不让问题资金进入卡组织和法币通道。
+      - problem: 要么全拦、要么全放，业务和合规两头为难
+        detail: 只有「通过 / 拒绝」两种结果，拦多了丢客户，放多了担风险。
+        solution: |
+          - **四档处置**：0–19 通过、20–49 复核、50–79 加强尽调、80–100 拦截
+          - 加强尽调档请用户补充资金来源说明，而不是直接拒绝
+          - 阈值和每条规则的分值都按你的风险偏好调
+        proof: 处置档位和规则分值都写在产品手册里，可以直接作为内部制度附件。
+      - problem: 别的工具报了风险，却说不清为什么
+        detail: 一个「中低风险」的结论，让你既不敢放、也说不出拦的理由。
+        solution: |
+          - 每一跳必须**先到账、后转出**才算关联，倒着流的路径直接排除
+          - 结果列明命中路径、跳数、金额、占比和加分
+        proof: 某支付公司实测：同一地址，另一款工具判「中低风险、需复核」，DART 判 0 分通过。逐笔拆开，那些风险资金在时间上根本流不过来。
+      - problem: 不同的合作银行，要求不一样
+        detail: 每家合作银行、卡组织对风险类别和阈值的要求都不同。
+        solution: |
+          - **规则集可以按合作方单独配置**：复制内置规则集，改条件和分值，各自独立保存
+          - 每次筛查记录用的是哪一套规则集，对账和审计都清楚
+        proof: 每次筛查存为不可篡改的快照，可通过 API 批量拉取。
+
+  - type: steps
+    tone: alt
+    eyebrow: DART 在你的流程里
+    title: 钱进法币通道之前，先过一遍
+    items:
+      - { label: 入金, title: 用户充卡或入金, text: 稳定币到账，拿到交易哈希。 }
+      - { label: KYT-IN, title: 筛资金来源, text: 按时间顺序向上游追，匹配规则集，给出 0–100 分和处置建议。 }
+      - { label: 处置, title: 按档位分流, text: 通过直接充卡；复核、加强尽调进人工队列；拦截则退回或冻结。 }
+      - { label: 出金, title: 法币出金前复查, text: 出金或商户结算前，对目标地址和资金做一次筛查，结果存快照。 }
+
+  - type: table
+    eyebrow: 推荐配置
+    title: 支付和 U 卡业务常用接入方式
+    head: [节点, 接口, 规则集, 跳数, 说明]
+    rows:
+      - [充卡、入金前, "`POST /api/v3/screen/kyt`", 内置 KYT-IN + 默认评分规则集, 流入 3 跳（默认）, 资金来源分档处置]
+      - [OTC 收款、商户收款, "`POST /api/v3/screen/kya/multi`", AML KYA Default, 默认, 一次筛完对方地址的全部链和币种]
+      - [出金、结算前, "`POST /api/v3/screen/kyt`", 内置 KYT-OUT, 流出 1 跳（默认）, 命中严重规则直接拦截]
+      - [按合作银行定制, 同上, 复制后的自定义规则集, 按要求配置, 每家合作方一套规则集]
+    note: 交易所对手方默认豁免；跳数、阈值和规则都可以调整。每次筛查自动生成快照。
+
+  - type: cases
+    eyebrow: 案例
+    title: 支付行业的实际用法
+    columns: 2
+    items:
+      - tag: U 卡 · 中东
+        title: 中东某 U 卡发行方
+        text: 充卡前筛查资金来源，不让问题资金进入卡组织和法币通道。
+      - tag: 支付公司
+        metric: 0 分
+        metricLabel: 另一款工具判「需复核」的同一地址
+        title: 某支付公司的一次对比
+        text: 逐笔拆开后发现，那些风险路径上的资金在时间上是倒着流的，客户的资金不可能来自风险地址。
+    note: 案例均匿名展示。
+
+  - type: cards
+    tone: alt
+    eyebrow: 相关产品
+    title: 支付业务会用到的能力
+    columns: 3
+    items:
+      - { title: 交易筛查 KYT, text: 入金看来源，出金看去向。, href: /products/kyt/ }
+      - { title: 地址筛查 KYA, text: OTC 和商户收款前查对方地址。, href: /products/kya/ }
+      - { title: 制裁筛查, text: 官方名单 1 秒内返回。, href: /products/sanctions/ }
+      - { title: 规则集与评分, text: 每家合作银行一套规则集，阈值按要求配置。, href: /products/rulesets/ }
+      - { title: 资金追踪与调查, text: 出了问题，跨跳、跨链追资金去向。, href: /products/investigations/ }
+      - { title: AI 助手（MCP）, text: 合规人员让 AI 直接查地址、解释结果。, href: /products/agents/ }
+
+  - type: faq
+    eyebrow: 常见问题
+    title: 支付公司常问的问题
+    items:
+      - q: 合作银行要求「零容忍」，DART 怎么配？
+        a: 可以把制裁、恐怖融资等类别的规则设为拦截，并调低评分阈值。规则集独立保存，可以清楚说明某个时点用的是哪套规则。
+      - q: 加强尽调档具体怎么处理？
+        a: 建议请用户补充资金来源说明，再由合规人员结合结果里列出的命中路径、金额和占比判断，而不是直接拒绝。
+      - q: 审计时能拿出什么？
+        a: 每次筛查都有不可篡改的快照，记录当时的请求参数和完整结果。可以通过 API 批量拉取，生成任意时间段的筛查记录和处置统计。
+      - q: 我们同时接了多家合作银行，规则能分开吗？
+        a: 能。复制内置规则集，为每家合作方配置一套，筛查时传入对应的规则集即可。
+      - q: 只有稳定币业务，DART 够用吗？
+        a: DART 专做 USDT / USDC，覆盖 11 条链。如果你的业务以稳定币为主，可以单独使用；还有其他资产时，可以和现有工具并用，各管各的资产。
+
+  - type: cta
+    eyebrow: 免费接入
+    title: 和你现在的工具<em>并行跑一次</em>
+    text: 不用停掉现有系统。给我们一批历史入金地址，脱敏也可以，差异逐条说明原因。
+    points:
+      - 我们逐条给出结果和命中路径，并附**与现有工具的差异对比**
+      - 稳定币交给 DART，其他资产照旧
+      - 接入 DART，免费用到 **2028 年 12 月 31 日**
+    ctas:
+      - { label: 免费接入, href: "/contact/?type=payments" }
+      - { label: 预约演示, href: "/contact/?type=payments" }
+---

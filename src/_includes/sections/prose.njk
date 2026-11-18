@@ -1,0 +1,7 @@
+{#- prose：一段 Markdown 正文。title?, body -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container narrow">
+    {% include "partials/section-head.njk" %}
+    <div class="prose">{{ s.body | md | safe }}</div>
+  </div>
+</section>

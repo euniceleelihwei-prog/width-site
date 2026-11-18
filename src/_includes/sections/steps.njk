@@ -1,0 +1,15 @@
+{#- steps：编号流程。items[{label?, title, text}] -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container">
+    {% include "partials/section-head.njk" %}
+    <ol class="steps cols-{{ s.items | length }}">
+      {%- for st in s.items %}
+      <li class="step">
+        <span class="step-label">{{ st.label or ("STEP " + (loop.index | pad)) }}</span>
+        <h3>{{ st.title }}</h3>
+        <p>{{ st.text | mdi | safe }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>

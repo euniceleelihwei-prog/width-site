@@ -1,0 +1,24 @@
+{#- problems：客户的问题 → DART 怎么解决 → 证据。labels{problem, solution, proof}?, items[{icon?, problem, detail?, solution, proof}] -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container">
+    {% include "partials/section-head.njk" %}
+    <div class="problems">
+      {%- for p in s.items %}
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">{{ loop.index | pad }}</span>
+          <h3>{{ p.problem }}</h3>
+          {%- if p.detail %}<p>{{ p.detail | mdi | safe }}</p>{% endif %}
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">{{ (s.labels and s.labels.solution) or ('DART 怎么解决' if lang == 'zh' else 'How DART solves it') }}</p>
+          <div>{{ p.solution | md | safe }}</div>
+          {%- if p.proof %}
+          <p class="problem-proof"><span class="mini-label">{{ (s.labels and s.labels.proof) or ('证据' if lang == 'zh' else 'Proof') }}</span>{{ p.proof | mdi | safe }}</p>
+          {%- endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

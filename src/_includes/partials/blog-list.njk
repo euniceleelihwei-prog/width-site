@@ -1,0 +1,32 @@
+{#- 文章列表（分页 + 分类筛选）。需要 posts（当前页文章）和 activeCategory -#}
+{%- set t = i18n[lang] -%}
+<section class="hero compact">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container">
+    <p class="eyebrow">{{ 'BLOG · 文章与研究' if lang == 'zh' else 'BLOG · RESEARCH' }}</p>
+    <h1>{{ heading }}</h1>
+    <div class="hero-lead"><p>{{ intro }}</p></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <nav class="filter-bar" aria-label="{{ t.category }}">
+      <a href="{{ '/blog/' | locale(lang) }}"{% if not activeCategory %} aria-current="page"{% endif %}>{{ t.allPosts }}</a>
+      {%- for key, label in t.categories %}
+      <a href="{{ ('/blog/category/' + key + '/') | locale(lang) }}"{% if activeCategory == key %} aria-current="page"{% endif %}>{{ label }}</a>
+      {%- endfor %}
+    </nav>
+    {%- if posts | length %}
+    <div class="post-grid">{% for post in posts %}{% include "partials/post-card.njk" %}{% endfor %}</div>
+    {%- else %}
+    <p class="empty">{{ '这个分类还没有文章。' if lang == 'zh' else 'No articles in this category yet.' }}</p>
+    {%- endif %}
+    {%- if pagination and pagination.pages.length > 1 %}
+    <nav class="pager" aria-label="Pagination">
+      {%- if pagination.href.previous %}<a href="{{ pagination.href.previous }}">← {{ t.prev }}</a>{% endif %}
+      <span>{{ pagination.pageNumber + 1 }} / {{ pagination.pages.length }}</span>
+      {%- if pagination.href.next %}<a href="{{ pagination.href.next }}">{{ t.next }} →</a>{% endif %}
+    </nav>
+    {%- endif %}
+  </div>
+</section>

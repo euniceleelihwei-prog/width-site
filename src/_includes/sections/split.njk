@@ -1,0 +1,17 @@
+{#- split：左文右图。eyebrow, title, text(md), points[], ctas, visual(flow|result|scores|code|image), image, imageAlt, code{lang, body}, reverse -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container split{% if s.reverse %} reverse{% endif %}{% if not s.visual %} no-visual{% endif %}">
+    <div class="split-copy">
+      {%- if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+      {%- if s.title %}<h2>{{ s.title | safe }}</h2>{% endif %}
+      {%- if s.text %}<div class="split-text">{{ s.text | md | safe }}</div>{% endif %}
+      {%- if s.points %}
+      <ul class="checklist">{% for p in s.points %}<li>{{ p | mdi | safe }}</li>{% endfor %}</ul>
+      {%- endif %}
+      {%- set ctas = s.ctas %}{% include "partials/ctas.njk" %}
+    </div>
+    {%- if s.visual %}
+    <div class="split-visual">{% set v = s %}{% include "visuals/" + s.visual + ".njk" %}</div>
+    {%- endif %}
+  </div>
+</section>

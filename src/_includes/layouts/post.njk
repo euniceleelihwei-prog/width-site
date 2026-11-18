@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+isPost: true
+---
+{%- set t = i18n[lang] -%}
+{%- set list = collections.posts_zh if lang == 'zh' else collections.posts_en -%}
+<article class="post">
+  <header class="post-hero">
+    <div class="container narrow">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="{{ '/' | locale(lang) }}">{{ t.breadcrumbHome }}</a><span aria-hidden="true">/</span>
+        <a href="{{ '/blog/' | locale(lang) }}">{{ '文章' if lang == 'zh' else 'Blog' }}</a><span aria-hidden="true">/</span>
+        <a href="{{ ('/blog/category/' + category + '/') | locale(lang) }}">{{ t.categories[category] }}</a>
+      </nav>
+      <h1>{{ title }}</h1>
+      <p class="post-lead">{{ description }}</p>
+      <p class="post-meta">
+        <span>{{ t.by }} {{ author or "Width" }}</span>
+        <time datetime="{{ page.date | isoDate }}">{{ page.date | date(lang) }}</time>
+        <span>{{ content | readingTime(lang) }} {{ t.minRead }}</span>
+      </p>
+    </div>
+  </header>
+  {%- if cover %}
+  <div class="container narrow"><img class="post-cover-lg" src="{{ cover }}" alt="{{ coverAlt or title }}"></div>
+  {%- endif %}
+  <div class="container narrow prose post-content">
+    {{ content | safe }}
+  </div>
+  <div class="container narrow">
+    {%- if tags %}<p class="post-tags">{% for tg in tags %}<span class="chip">#{{ tg }}</span>{% endfor %}</p>{% endif %}
+    <div class="post-cta">
+      <div><h2>{{ t.postCtaTitle }}</h2><p>{{ t.postCtaText }}</p></div>
+      <div class="ctas"><a class="btn btn-primary" href="{{ '/contact/' | locale(lang) }}">{{ t.ctaPrimary }}</a><a class="btn btn-ghost" href="{{ site.links.docs }}">{{ t.ctaDocs }}</a></div>
+    </div>
+  </div>
+</article>
+{%- set related = (list | where("category", category) | exclude(page.url) | limit(3)) %}
+{%- if not (related | length) %}{% set related = list | exclude(page.url) | limit(3) %}{% endif %}
+{%- if related | length %}
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>{{ t.related }}</h2></div>
+    <div class="post-grid">{% for post in related %}{% include "partials/post-card.njk" %}{% endfor %}</div>
+  </div>
+</section>
+{%- endif %}

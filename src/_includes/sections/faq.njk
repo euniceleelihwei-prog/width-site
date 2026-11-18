@@ -1,0 +1,14 @@
+{#- faq：items[{q, a}]，同时输出 FAQPage 结构化数据（见 partials/schema.njk） -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container faq-wrap">
+    {% include "partials/section-head.njk" %}
+    <div class="faq">
+      {%- for f in s.items %}
+      <details{% if loop.first %} open{% endif %}>
+        <summary>{{ f.q }}</summary>
+        <div class="faq-a">{{ f.a | md | safe }}</div>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

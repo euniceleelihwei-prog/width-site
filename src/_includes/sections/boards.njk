@@ -1,0 +1,33 @@
+{#- boards：数据榜单。数据在 src/_data/boards.yml；items 列出要显示的榜单 key -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container">
+    {% include "partials/section-head.njk" %}
+    {%- for key in s.items %}
+    {%- set b = boards[key] %}
+    <article class="board" id="{{ key }}">
+      <header class="board-head">
+        <div>
+          <p class="eyebrow">{{ b.eyebrow | tr(lang) }}</p>
+          <h3>{{ b.title | tr(lang) }}</h3>
+          <p>{{ b.desc | tr(lang) }}</p>
+        </div>
+        <dl class="board-meta">
+          <div><dt>{{ '更新频率' if lang == 'zh' else 'Updated' }}</dt><dd>{{ b.cadence | tr(lang) }}</dd></div>
+          <div><dt>{{ '数据来源' if lang == 'zh' else 'Source' }}</dt><dd>{{ b.source | tr(lang) }}</dd></div>
+        </dl>
+      </header>
+      {%- if b.sample %}<p class="sample-flag">{{ i18n[lang].sampleData }}</p>{% endif %}
+      <div class="table-wrap">
+        <table>
+          <thead><tr>{% for h in b.head %}<th scope="col">{{ h | tr(lang) }}</th>{% endfor %}</tr></thead>
+          <tbody>
+            {%- for r in b.rows %}
+            <tr>{% for cell in r %}<td>{{ cell | tr(lang) }}</td>{% endfor %}</tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</section>

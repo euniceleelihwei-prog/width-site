@@ -1,0 +1,14 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+{%- if site.allowIndex %}
+User-agent: *
+Allow: /
+Disallow: /admin/
+Sitemap: {{ site.url }}/sitemap.xml
+{%- else %}
+# 预览环境，不收录。正式上线时把 ALLOW_INDEX 设为 true。
+User-agent: *
+Disallow: /
+{%- endif %}

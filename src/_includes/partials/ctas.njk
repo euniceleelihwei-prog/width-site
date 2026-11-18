@@ -1,0 +1,7 @@
+{%- if ctas %}
+<div class="ctas">
+  {%- for c in ctas %}
+  <a class="btn btn-{{ c.style or ('primary' if loop.first else 'ghost') }}" href="{{ c.href | locale(lang) }}"{% if 'http' in c.href %} target="_blank" rel="noopener"{% endif %}>{{ c.label }}</a>
+  {%- endfor %}
+</div>
+{%- endif %}

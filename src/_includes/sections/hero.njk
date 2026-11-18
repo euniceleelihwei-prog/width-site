@@ -1,0 +1,23 @@
+{#- hero：eyebrow, title（可用 <em> 高亮）, lead, ctas, note, visual(flow|result|scores|code|image|none), image, imageAlt, stats -#}
+<section class="hero{% if s.visual and s.visual != 'none' %} has-visual{% endif %}{% if s.compact %} compact{% endif %}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      {%- if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+      <h1>{{ s.title | safe }}</h1>
+      {%- if s.lead %}<div class="hero-lead">{{ s.lead | md | safe }}</div>{% endif %}
+      {%- set ctas = s.ctas %}{% include "partials/ctas.njk" %}
+      {%- if s.note %}<p class="hero-note">{{ s.note | mdi | safe }}</p>{% endif %}
+    </div>
+    {%- if s.visual and s.visual != 'none' %}
+    <div class="hero-visual">{% set v = s %}{% include "visuals/" + s.visual + ".njk" %}</div>
+    {%- endif %}
+  </div>
+  {%- if s.stats %}
+  <div class="container"><div class="stat-strip">
+    {%- for st in s.stats %}
+    <div class="stat"><div class="stat-value">{{ st.value }}{% if st.unit %}<small>{{ st.unit }}</small>{% endif %}</div><div class="stat-label">{{ st.label }}</div></div>
+    {%- endfor %}
+  </div></div>
+  {%- endif %}
+</section>

@@ -1,0 +1,19 @@
+{#- cards：卡片网格。columns(2|3|4), items[{tag, title, text, points[], href, link}] -#}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container">
+    {% include "partials/section-head.njk" %}
+    <div class="cards cols-{{ s.columns or 3 }}">
+      {%- for c in s.items %}
+      {%- set tag = "a" if c.href else "div" %}
+      <{{ tag }} class="card{% if c.href %} card-link{% endif %}"{% if c.href %} href="{{ c.href | locale(lang) }}"{% if 'http' in c.href %} target="_blank" rel="noopener"{% endif %}{% endif %}>
+        {%- if c.tag %}<span class="chip">{{ c.tag }}</span>{% endif %}
+        <h3>{{ c.title }}</h3>
+        {%- if c.text %}<p>{{ c.text | mdi | safe }}</p>{% endif %}
+        {%- if c.points %}<ul class="card-points">{% for p in c.points %}<li>{{ p | mdi | safe }}</li>{% endfor %}</ul>{% endif %}
+        {%- if c.href %}<span class="link-arrow">{{ c.link or i18n[lang].learnMore }}</span>{% endif %}
+      </{{ tag }}>
+      {%- endfor %}
+    </div>
+    {%- set ctas = s.ctas %}{% include "partials/ctas.njk" %}
+  </div>
+</section>

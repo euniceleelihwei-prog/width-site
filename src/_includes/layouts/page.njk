@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+---
+{#-
+  通用页面版式：按 front matter 里的 sections 从上到下渲染。
+  每个 section 的 type 对应 src/_includes/sections/<type>.njk，字段说明见 README「版块字段」。
+-#}
+{%- if breadcrumb %}
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <a href="{{ '/' | locale(lang) }}">{{ i18n[lang].breadcrumbHome }}</a>
+  {%- for b in breadcrumb %}
+  <span aria-hidden="true">/</span>
+  {%- if b.href and not loop.last %}<a href="{{ b.href | locale(lang) }}">{{ b.label }}</a>{% else %}<span aria-current="page">{{ b.label }}</span>{% endif %}
+  {%- endfor %}
+</nav>
+{%- endif %}
+{%- for s in sections %}
+{% include "sections/" + s.type + ".njk" %}
+{%- endfor %}
+{%- if content | striptags | trim %}
+<section class="section">
+  <div class="container prose">{{ content | safe }}</div>
+</section>
+{%- endif %}

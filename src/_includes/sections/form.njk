@@ -1,0 +1,24 @@
+{#- form：联系表单。title, text, points[]。提交地址见 src/_data/site.js formEndpoint -#}
+{%- set f = i18n[lang].form -%}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container split">
+    <div class="split-copy">
+      {%- if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+      <h2>{{ s.title }}</h2>
+      {%- if s.text %}<div class="split-text">{{ s.text | md | safe }}</div>{% endif %}
+      {%- if s.points %}<ul class="checklist">{% for p in s.points %}<li>{{ p | mdi | safe }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+    <form class="form" method="post" action="{{ site.formEndpoint or ('mailto:' + site.contact.sales) }}"{% if not site.formEndpoint %} enctype="text/plain"{% endif %} data-form>
+      <label><span>{{ f.name }}</span><input name="name" autocomplete="name" required></label>
+      <label><span>{{ f.email }}</span><input name="email" type="email" autocomplete="email" required></label>
+      <label><span>{{ f.company }}</span><input name="company" autocomplete="organization"></label>
+      <label><span>{{ f.type }}</span>
+        <select name="type">{% for o in f.types %}<option>{{ o }}</option>{% endfor %}</select>
+      </label>
+      <label class="full"><span>{{ f.message }}</span><textarea name="message" rows="4"></textarea></label>
+      <input type="hidden" name="page" value="{{ page.url }}">
+      <button class="btn btn-primary" type="submit">{{ f.submit }}</button>
+      <p class="form-note">{{ f.note }}</p>
+    </form>
+  </div>
+</section>

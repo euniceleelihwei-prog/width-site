@@ -1,0 +1,21 @@
+{#- posts：最新文章。limit(默认 3), category? -#}
+{%- set list = collections.posts_zh if lang == 'zh' else collections.posts_en -%}
+{%- if s.category %}{% set list = list | where("category", s.category) %}{% endif -%}
+{%- if list | length %}
+<section class="section {{ s.tone }}"{% if s.id %} id="{{ s.id }}"{% endif %}>
+  <div class="container">
+    <div class="section-head row">
+      <div>
+        {%- if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+        <h2>{{ s.title or i18n[lang].latest }}</h2>
+      </div>
+      <a class="link-arrow" href="{{ '/blog/' | locale(lang) }}">{{ i18n[lang].allPosts }}</a>
+    </div>
+    <div class="post-grid">
+      {%- for post in list | limit(s.limit or 3) %}
+      {% include "partials/post-card.njk" %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}

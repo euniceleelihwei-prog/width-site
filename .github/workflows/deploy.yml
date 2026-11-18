@@ -1,0 +1,54 @@
+# 推送到 main 后自动构建并发布到 GitHub Pages。
+# 仓库 Settings → Pages → Source 选「GitHub Actions」。
+# 可选的仓库变量（Settings → Secrets and variables → Actions → Variables）：
+#   SITE_URL      正式域名，例如 https://width.info；不填则用 GitHub Pages 地址
+#   PATH_PREFIX   用自定义域名时填 /；不填则按 /<仓库名>/ 发布（github.io 项目页）
+#   ALLOW_INDEX   正式上线时填 true，允许搜索引擎收录
+#   FORM_ENDPOINT 联系表单提交地址（Formspree 等）；不填则用邮件
+#   GA_ID         Google Analytics 4 测量 ID
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build
+        env:
+          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+          ALLOW_INDEX: ${{ vars.ALLOW_INDEX }}
+          FORM_ENDPOINT: ${{ vars.FORM_ENDPOINT }}
+          GA_ID: ${{ vars.GA_ID }}
+        run: npx @11ty/eleventy --pathprefix="${{ vars.PATH_PREFIX || format('/{0}/', github.event.repository.name) }}"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
