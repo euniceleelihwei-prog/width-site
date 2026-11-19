@@ -92,6 +92,9 @@ code, pre, .mono { font-family: var(--mono); }
   font-size: 14px; font-weight: 700; letter-spacing: .01em;
   color: var(--accent); margin-bottom: 14px;
 }
+/* 与 width.com 一致：标题上方不放小标签。页面文件里的 eyebrow 字段保留，只是不显示；页脚的栏目标题照常显示。 */
+.eyebrow { display: none; }
+.site-footer .eyebrow { display: block; }
 .mini-label { font-size: 13px; font-weight: 600; color: var(--text-3); margin: 0 0 6px; }
 .chip {
   display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600;
@@ -234,7 +237,7 @@ h1, h2 { text-wrap: balance; }
 .problems { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .problem { display: grid; grid-row: span 2; grid-template-rows: subgrid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
 .problem-q { padding: 28px 28px 24px; border-bottom: 1px solid var(--line); position: relative; }
-.problem-q::before { content: ""; position: absolute; left: 0; top: 28px; bottom: 24px; width: 3px; border-radius: 0 3px 3px 0; background: var(--block); opacity: .85; }
+.problem-q::before { content: ""; position: absolute; left: 0; top: 28px; bottom: 24px; width: 3px; background: var(--accent); }
 .problem-index { font-size: 14px; font-weight: 600; color: var(--text-3); display: block; margin-bottom: 10px; }
 .problem-q h3 { font-size: 20px; line-height: 1.35; }
 .problem-q p { color: var(--text-2); font-size: 15.5px; }
