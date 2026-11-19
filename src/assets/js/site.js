@@ -98,11 +98,12 @@
 })();
 
 // 流动的点：首页 hero 背景和底部深蓝带。一群小点沿着几条弯曲的路线，从左边汇向右侧的一个节点，
-// 表示资金一跳一跳流向被筛地址。只在 bodyClass 为 home-v2 的页面出现；系统设置了「减少动态效果」时不播放。
+// 表示资金一跳一跳流向被筛地址。系统设置了「减少动态效果」时不播放。
 (function () {
-  if (!document.body.classList.contains("home-v2")) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var hosts = [].slice.call(document.querySelectorAll(".hero-bg, .cta-section"));
+  // 底部深蓝带每页都有；hero 背景的点只放在首页（bodyClass: home-v2）
+  var isHome = document.body.classList.contains("home-v2");
+  var hosts = [].slice.call(document.querySelectorAll(isHome ? ".hero-bg, .cta-section" : ".cta-section"));
   hosts.forEach(function (host) {
     var onBlue = host.classList.contains("cta-section");
     var c = document.createElement("canvas");

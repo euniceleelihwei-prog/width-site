@@ -72,7 +72,7 @@ src/
 | `form` | 联系表单 | title, text, points |
 | `prose` | 一段正文 | body |
 
-首页用的是新版式：页面文件顶部写 `bodyClass: home-v2`（大标题在左、说明在右，细线代替卡片边框，底部一整条深蓝，背景有流动的点）。去掉这一行就回到普通版式。
+全站版式：大标题在左、说明在右，细线代替卡片边框，底部行动号召是一整条深蓝（带流动的点）。首页另外写了 `bodyClass: home-v2`：字更大、hero 的资金图不加外框、hero 背景也有流动的点。
 
 所有版块都支持 `id`（锚点）和 `tone: alt`（换底色）。`visual` 可选 `flow`、`result`、`scores`、`code`、`image`。
 

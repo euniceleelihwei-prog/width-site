@@ -241,9 +241,6 @@ main > .section:nth-child(even of .section:not(.cta-section)) {
 .section.tight { padding: calc(var(--section-y) * .6) 0; }
 .section-head { max-width: 880px; margin-bottom: 48px; }
 .section-head .lead { max-width: 680px; }
-.container:not(.faq-wrap) > .section-head:not(.row) .lead { margin-left: auto; margin-right: auto; }
-/* 与 width.com 一致：版块标题居中（左右分栏的 FAQ、split 和带右侧链接的 row 除外） */
-.container:not(.faq-wrap) > .section-head:not(.row) { margin-left: auto; margin-right: auto; text-align: center; margin-bottom: 56px; }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
 .section-head.row { max-width: none; display: flex; align-items: end; justify-content: space-between; gap: 24px; }
 .section-head .lead { font-size: 18px; color: var(--text-2); }
@@ -643,56 +640,66 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 .points3 h3 { font-size: clamp(22px, 2.1vw, 28px); line-height: 1.3; letter-spacing: -0.02em; margin: 10px 0 12px; }
 .points3 p { font-size: 16px; line-height: 1.7; color: var(--text-2); max-width: 34ch; }
 
-/* == 首页新版式（页面 front matter 里写 bodyClass: home-v2）=====================
-   每屏只讲一件事：大标题在左、说明在右，用细线代替卡片边框，一张大产品图，底部一整条深蓝。
-   颜色、字体、按钮和全站一致。去掉 bodyClass 就回到普通版式。 */
-.home-v2 .container { max-width: 1280px; }
-.home-v2 main h2 { font-size: clamp(34px, 4.4vw, 60px); line-height: 1.14; letter-spacing: -0.03em; margin: 0; }
+/* == 全站新版式 =============================================================
+   每屏只讲一件事：大标题在左、说明在右，用细线代替卡片边框，底部一整条深蓝。
+   颜色、字体、按钮不变。首页另有几条只属于它的规则（见下面的 .home-v2）。 */
+.container { max-width: 1280px; }
+main h2 { font-size: clamp(32px, 3.8vw, 52px); line-height: 1.14; letter-spacing: -0.03em; }
+.lang-en main h2 { font-size: clamp(30px, 3.3vw, 46px); }
+.container:not(.faq-wrap) > .section-head:not(.row):not(.center) { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px 64px; align-items: end; max-width: none; text-align: left; margin: 0 0 clamp(40px, 5vw, 64px); }
+.container:not(.faq-wrap) > .section-head:not(.row):not(.center) h2 { margin: 0; }
+.container:not(.faq-wrap) > .section-head:not(.row):not(.center) .lead { font-size: 18px; line-height: 1.7; max-width: 440px; margin: 0; justify-self: end; }
+/* hero：说明文字上方一条细线 */
+.hero-lead { margin-top: clamp(24px, 2.6vw, 36px); padding-top: 22px; border-top: 1px solid rgba(4, 16, 43, .22); max-width: 520px; line-height: 1.7; }
+/* 数字：细线分隔，不加外框 */
+.stat-strip { margin-top: clamp(48px, 6vw, 88px); padding-bottom: clamp(40px, 5vw, 72px); gap: 0 32px; background: none; box-shadow: none; border-radius: 0; }
+.stat { text-align: left; padding: 18px 0 0; border-top: 1px solid rgba(4, 16, 43, .22); }
+.stat-value { font-size: clamp(34px, 3.6vw, 52px); letter-spacing: -0.03em; }
+.stat-value small { font-size: .42em; color: var(--text); margin-left: 6px; }
+.stat-label { margin: 8px 0 0; max-width: 22ch; font-size: 15px; }
+/* 客户案例：大卡片，第一张深蓝 */
+.cases { gap: 20px; }
+.case { border: 0; padding: 36px 34px 40px; min-height: 320px; display: flex; flex-direction: column; box-shadow: 0 0 0 1px rgba(13, 79, 211, .08), 0 20px 48px -30px rgba(7, 34, 89, .3); }
+.case .chip { align-self: flex-start; margin-bottom: auto; }
+.case-metric { font-size: clamp(38px, 3.8vw, 56px); letter-spacing: -0.03em; margin: 40px 0 14px; }
+.case h3 { font-size: 21px; }
+.case:first-child { background: linear-gradient(150deg, var(--accent), var(--dark)); color: #fff; }
+.case:first-child :is(h3, .case-metric) { color: #fff; }
+.case:first-child :is(p, small) { color: rgba(255, 255, 255, .82); }
+.case:first-child .chip { background: rgba(255, 255, 255, .16); color: #fff; }
+/* 标签页：下划线式，不加外框 */
+.tabs { box-shadow: none; border-radius: 0; background: none; overflow: visible; }
+.tab-list { padding: 0; gap: 8px; border-bottom: 1px solid var(--text); }
+.tab-list button { height: 46px; padding: 0 18px; border-radius: 0; font-size: 15.5px; border: 1px solid transparent; border-bottom: 0; margin-bottom: -1px; }
+.tab-list button[aria-selected="true"] { background: #fff; color: var(--accent); border-color: var(--text); }
+.tab-panel { padding: 48px 0 0; gap: 64px; }
+.tab-points li { background: #f4f7fd; }
+/* 底部行动号召：整条深蓝，左边一句大标题，右边要点和按钮 */
+.cta-section { position: relative; overflow: hidden; padding: 0; background: linear-gradient(135deg, var(--accent) 0%, var(--dark) 78%); }
+.cta-section .container { position: relative; padding-top: clamp(72px, 9vw, 128px); padding-bottom: clamp(72px, 9vw, 128px); }
+.cta-band { padding: 0; background: none; align-items: end; gap: 48px 64px; }
+main .cta-band h2 { font-size: clamp(34px, 4.2vw, 58px); line-height: 1.12; }
+.cta-band .lead { margin-top: 24px; max-width: 520px; font-size: 18px; line-height: 1.7; }
+.site-footer { border-top: 0; }
+
+/* == 只属于首页的规则（页面 front matter 里写 bodyClass: home-v2）============== */
+.home-v2 main h2 { font-size: clamp(34px, 4.4vw, 60px); }
+.lang-en.home-v2 main h2 { font-size: clamp(32px, 3.7vw, 52px); }
 .home-v2 .section { padding: clamp(80px, 10vw, 148px) 0; }
-.home-v2 .container:not(.faq-wrap) > .section-head:not(.row) { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px 64px; align-items: end; max-width: none; text-align: left; margin: 0 0 clamp(40px, 5vw, 72px); }
-.home-v2 .container:not(.faq-wrap) > .section-head:not(.row) .lead { font-size: 18px; line-height: 1.7; max-width: 440px; margin: 0; justify-self: end; }
-/* hero */
 .home-v2 .hero { padding: clamp(56px, 7vw, 104px) 0 0; }
 .home-v2 .hero.has-visual .hero-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); }
 .home-v2 .hero.has-visual h1 { font-size: clamp(38px, 4.5vw, 64px); line-height: 1.16; margin: 0; }
 .lang-en.home-v2 .hero.has-visual h1 { font-size: clamp(34px, 3.6vw, 50px); }
-.lang-en.home-v2 main h2 { font-size: clamp(32px, 3.7vw, 52px); }
-.home-v2 .hero-lead { margin-top: clamp(28px, 3vw, 44px); padding-top: 24px; border-top: 1px solid rgba(4, 16, 43, .22); max-width: 500px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.7; }
+.home-v2 .hero-lead { margin-top: clamp(28px, 3vw, 44px); font-size: clamp(17px, 1.4vw, 20px); max-width: 500px; }
 .home-v2 .hero-visual .viz { background: none; box-shadow: none; border-radius: 0; padding: 0; }
 .home-v2 .hero-visual .viz-result { display: none; }
 .home-v2 .hero-visual svg { overflow: visible; }
-.home-v2 .stat-strip { margin-top: clamp(48px, 6vw, 88px); padding-bottom: clamp(48px, 6vw, 80px); gap: 0 32px; background: none; box-shadow: none; border-radius: 0; }
-.home-v2 .stat { text-align: left; padding: 18px 0 0; border-top: 1px solid rgba(4, 16, 43, .22); }
-.home-v2 .stat-value { font-size: clamp(34px, 3.6vw, 52px); letter-spacing: -0.03em; }
-.home-v2 .stat-value small { font-size: .42em; color: var(--text); margin-left: 6px; }
-.home-v2 .stat-label { margin: 8px 0 0; max-width: 22ch; font-size: 15px; }
-/* customers */
-.home-v2 .cases { gap: 20px; }
-.home-v2 .case { border: 0; padding: 36px 34px 40px; min-height: 340px; display: flex; flex-direction: column; box-shadow: 0 0 0 1px rgba(13, 79, 211, .08), 0 20px 48px -30px rgba(7, 34, 89, .3); }
-.home-v2 .case .chip { align-self: flex-start; margin-bottom: auto; }
-.home-v2 .case-metric { font-size: clamp(40px, 4vw, 60px); letter-spacing: -0.03em; margin: 40px 0 14px; }
-.home-v2 .case h3 { font-size: 21px; }
-.home-v2 .case:first-child { background: linear-gradient(150deg, var(--accent), var(--dark)); color: #fff; }
-.home-v2 .case:first-child :is(h3, .case-metric) { color: #fff; }
-.home-v2 .case:first-child :is(p, small) { color: rgba(255, 255, 255, .82); }
-.home-v2 .case:first-child .chip { background: rgba(255, 255, 255, .16); color: #fff; }
-/* audience tabs: underlined, not boxed */
-.home-v2 .tabs { box-shadow: none; border-radius: 0; background: none; overflow: visible; }
-.home-v2 .tab-list { padding: 0; gap: 8px; border-bottom: 1px solid var(--text); }
-.home-v2 .tab-list button { height: 46px; padding: 0 18px; border-radius: 0; font-size: 15.5px; border: 1px solid transparent; border-bottom: 0; margin-bottom: -1px; }
-.home-v2 .tab-list button[aria-selected="true"] { background: #fff; color: var(--accent); border-color: var(--text); }
-.home-v2 .tab-panel { padding: 48px 0 0; gap: 64px; }
-.home-v2 .tab-points li { background: #f4f7fd; }
-/* closing band: full width, one big line, one row of buttons */
-.home-v2 .cta-section { position: relative; overflow: hidden; padding: 0; background: linear-gradient(135deg, var(--accent) 0%, var(--dark) 78%); }
-.home-v2 .cta-section .container { position: relative; padding-top: clamp(88px, 11vw, 168px); padding-bottom: clamp(88px, 11vw, 168px); }
-.home-v2 .cta-band { display: block; padding: 0; background: none; }
-.home-v2 .cta-band h2 { font-size: clamp(40px, 6.4vw, 96px); line-height: 1.1; }
+.home-v2 .cta-section .container { padding-top: clamp(88px, 11vw, 168px); padding-bottom: clamp(88px, 11vw, 168px); }
+.home-v2 .cta-band { display: block; }
+.home-v2 main .cta-band h2 { font-size: clamp(40px, 6.4vw, 96px); }
 .lang-en.home-v2 main .cta-band h2 { font-size: clamp(38px, 5.4vw, 80px); }
-.home-v2 .cta-band .lead { margin-top: 28px; max-width: 520px; font-size: 18px; line-height: 1.7; }
 .home-v2 .cta-points { display: none; }
 .home-v2 .cta-band .ctas { margin-top: 36px; }
-.home-v2 .site-footer { border-top: 0; }
 /* 流动的点（site.js 生成的 canvas）：hero 背景和底部深蓝带 */
 canvas.dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .home-v2 .hero-bg { z-index: 0; }
@@ -702,8 +709,9 @@ canvas.dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-e
   .console-side { border-right: 0; border-bottom: 1px solid var(--line); }
   .console-bar i { display: none; }
   .points3 { grid-template-columns: 1fr; gap: 32px; }
-  .home-v2 .hero.has-visual .hero-grid, .home-v2 .container:not(.faq-wrap) > .section-head:not(.row) { grid-template-columns: 1fr; }
-  .home-v2 .container:not(.faq-wrap) > .section-head:not(.row) .lead { justify-self: start; }
-  .home-v2 .stat-strip { gap: 28px 24px; }
-  .home-v2 .stat:nth-child(n+3) { border-top: 1px solid rgba(4, 16, 43, .22); }
+  .home-v2 .hero.has-visual .hero-grid, .container:not(.faq-wrap) > .section-head:not(.row):not(.center) { grid-template-columns: 1fr; }
+  .container:not(.faq-wrap) > .section-head:not(.row):not(.center) .lead { justify-self: start; }
+  .stat-strip { gap: 28px 24px; }
+  .stat:nth-child(n+3) { border-top: 1px solid rgba(4, 16, 43, .22); }
+  .cta-band { align-items: start; }
 }
