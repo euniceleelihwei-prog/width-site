@@ -1,5 +1,6 @@
 ---
 layout: layouts/page.njk
+bodyClass: home-v2
 title: Stablecoin AML screening for USDT and USDC
 fullTitle: Width DART | Stablecoin AML screening, KYT and address risk for USDT & USDC
 description: DART screens USDT and USDC flows in time order, so exchanges, wallets and payment companies keep tainted funds out without false alarms. Sanctions checks in under a second. Free until 31 December 2028.
@@ -7,10 +8,9 @@ sections:
   - type: hero
     eyebrow: WIDTH DART · Stablecoin risk screening
     title: Know Where the Money Came from <em>Before You Accept It</em>
-    lead: DART is onchain risk screening built for USDT and USDC. It follows funds hop by hop in time order, so only money that actually arrived before it moved on counts as exposure. Exchanges, wallets and payment companies use it to keep bad funds out without blocking good customers.
+    lead: "DART screens USDT and USDC flows hop by hop, in time order. Bad funds stay out, and good customers get through."
     ctas:
       - { label: Get Free Access, href: /contact/ }
-      - { label: See How It Works, href: "#how" }
     note: Free until 31 December 2028 · Console, API and MCP included
     visual: flow
     stats:
@@ -18,6 +18,37 @@ sections:
       - { value: "< 1", unit: s, label: sanctions screening response }
       - { value: 200M, label: "labeled addresses, with sanctions, freeze and hack labels kept current" }
       - { value: Same day, label: "FinCEN 9714 order published, ruleset live" }
+
+  - type: showcase
+    id: how
+    title: Every Point <em>Has a Reason</em>
+    lead: "The path-matching ruleset decides what counts as a violation. The scoring ruleset decides how serious it is and what to do. You can change both."
+    items:
+      - { tag: Time Order, title: "Count Only Funds That Arrived First", text: "Every hop is checked for timing. Paths that run backwards in time are dropped, so false alarms fall at the source." }
+      - { tag: Share of Funds, title: "The Further Away, the Higher the Bar", text: "By default risky funds must reach 5% / 10% / 15% / 20% of the total at hops 2 / 3 / 4 / 5 before they count." }
+      - { tag: Evidence, title: "When the Regulator Asks Why, Show Them", text: "Every point maps to a rule, with the path, hop, amount and share listed, and saved as an immutable snapshot." }
+
+  - type: cases
+    tone: alt
+    eyebrow: In production
+    title: Teams Already Running on DART
+    items:
+      - tag: Wallet
+        metric: 70,000+
+        metricLabel: screenings a day, within a week of going live
+        title: A Leading Self-Custody Wallet
+        text: On the day the FinCEN 9714 order was published, it could flag related funds in deposits and withdrawals. Hop depth and other settings are tuned to its own risk policy.
+      - tag: Social · payments
+        metric: Paid tier
+        metricLabel: safety turned into revenue
+        title: A Web3 Social Platform
+        text: Bundled DART into its paid membership. Every incoming and outgoing transfer is fully checked, so members don't send USDT to terrorist-financing addresses.
+      - tag: Custody · WaaS
+        metric: 17–18K
+        metricLabel: screenings every working day
+        title: A Wallet and Custody Infrastructure Provider
+        text: Screens every deposit and withdrawal for its enterprise wallets. Its clients get KYA and KYT out of the box instead of buying their own.
+    note: Customer names withheld for confidentiality. Figures from DART production data, November 2026.
 
   - type: audiences
     id: who
@@ -84,67 +115,6 @@ sections:
           - We only report which public sources matched. We never label a person's address
         href: /check/
         link: About the Address Check
-
-  - type: problems
-    id: problems
-    tone: alt
-    eyebrow: Problems we solve
-    title: Three Problems Compliance Teams Run Into Every Day
-    lead: Each one maps to a specific design choice in DART, with evidence from production.
-    items:
-      - problem: Too Many False Alarms Burying Compliance and Support
-        detail: Ignore time and almost any address touches a risky one within a few hops.
-        solution: |
-          - Each hop only counts if the funds **arrived before they moved on**; paths that run backwards in time are dropped
-          - **Exposure is weighed by share of funds**, with a higher bar the further away it is: by default 5% / 10% / 15% / 20% at hops 2 / 3 / 4 / 5
-          - **Exchange counterparties are exempt by default**, so another exchange's users don't drag you in
-        proof: "A payment company's side-by-side test: for the same address another tool said \"medium-low risk, needs review\"; DART scored it 0 and passed it. Broken down transfer by transfer, the risky funds could never have reached it in time."
-      - problem: Accepting Tainted Funds and Getting Frozen with Them
-        detail: If incoming USDT came from frozen, hacked or scam funds, the freeze can land on you and your users.
-        solution: |
-          - Screen the source before you credit: **issuer freezes, sanctions, hacks and scams** are each identified and weighted
-          - Four dispositions: pass, review, enhanced due diligence, block; at EDD you ask the user for source of funds
-        proof: Stablecoin issuer-freeze labels are live in production.
-      - problem: The Regulator Asks Why You Blocked It, and You Can't Say
-        detail: A bare score with no reasoning leaves internal reviews and inspections on the back foot.
-        solution: |
-          - **Every point maps to a rule**: which path, which hop, how much, what share, how many points
-          - Every screening is saved as an **immutable snapshot**, with the ruleset version it ran on
-        proof: Pull the exact snapshot from the console or API whenever an auditor asks.
-
-  - type: steps
-    id: how
-    eyebrow: How it works
-    title: One Screening, Four Steps to a Decision
-    lead: The path-matching ruleset decides what counts as a violation. The scoring ruleset decides how serious it is and what to do. You can change both.
-    items:
-      - { label: Input, title: Submit an Address or Transaction, text: An address (KYA) or a transaction hash (KYT). Chain and token are detected for you. }
-      - { label: Step 1, title: Build the Fund-Flow Graph in Time Order, text: Expand upstream and downstream hop by hop with a label on every counterparty; keep only paths that work in time. }
-      - { label: Step 2, title: Match the Rules, text: 72 rules decide which fund-flow paths count as violations, and which rule each one breaks. }
-      - { label: Step 3, title: Score by Share of Funds, text: "Direction, hop distance, severity and share of funds become a 0–100 score." }
-      - { label: Output, title: A Disposition with Evidence, text: "Pass, review, EDD or block, with the hit list and a snapshot." }
-
-  - type: cases
-    tone: alt
-    eyebrow: In production
-    title: Teams Already Running on DART
-    items:
-      - tag: Wallet
-        metric: 70,000+
-        metricLabel: screenings a day, within a week of going live
-        title: A Leading Self-Custody Wallet
-        text: On the day the FinCEN 9714 order was published, it could flag related funds in deposits and withdrawals. Hop depth and other settings are tuned to its own risk policy.
-      - tag: Social · payments
-        metric: Paid tier
-        metricLabel: safety turned into revenue
-        title: A Web3 Social Platform
-        text: Bundled DART into its paid membership. Every incoming and outgoing transfer is fully checked, so members don't send USDT to terrorist-financing addresses.
-      - tag: Custody · WaaS
-        metric: 17–18K
-        metricLabel: screenings every working day
-        title: A Wallet and Custody Infrastructure Provider
-        text: Screens every deposit and withdrawal for its enterprise wallets. Its clients get KYA and KYT out of the box instead of buying their own.
-    note: Customer names withheld for confidentiality. Figures from DART production data, November 2026.
 
   - type: cta
     eyebrow: Free access

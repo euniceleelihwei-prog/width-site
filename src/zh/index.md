@@ -1,5 +1,6 @@
 ---
 layout: layouts/page.njk
+bodyClass: home-v2
 title: 稳定币链上风控与 KYT 筛查
 fullTitle: Width DART｜稳定币链上风控、KYT 交易筛查、地址风险筛查
 description: DART 专做 USDT / USDC 链上风控，按资金的时间顺序逐跳追踪，误报少、1 秒内返回、每一分都说得清。交易所、钱包、支付公司、托管机构都在用，接入即免费用到 2028 年 12 月 31 日。
@@ -7,10 +8,9 @@ sections:
   - type: hero
     eyebrow: WIDTH DART · 稳定币链上风控
     title: 收 U 之前，<br><em>先看清这笔钱从哪来</em>
-    lead: DART 专做 USDT / USDC 链上风控。按资金的时间顺序逐跳追踪，只有先到账、后转出的钱才算有关联。交易所、钱包、支付公司用它把问题资金挡在门外，正常用户不被误伤。
+    lead: "DART 专做 USDT / USDC 链上风控，按资金的时间顺序逐跳追踪。问题资金挡在门外，正常用户不被误伤。"
     ctas:
       - { label: 免费接入, href: /contact/ }
-      - { label: 看看怎么工作, href: "#how" }
     note: 接入即免费用到 2028 年 12 月 31 日 · 控制台、API、MCP 全部可用
     visual: flow
     stats:
@@ -18,6 +18,37 @@ sections:
       - { value: "< 1", unit: 秒, label: 制裁筛查返回 }
       - { value: "2", unit: 亿, label: 已标注地址，制裁、冻结、黑客等标签持续更新 }
       - { value: 当天, unit: 上线, label: FinCEN 9714 命令发布当天，规则集上线 }
+
+  - type: showcase
+    id: how
+    title: 每一分<em>都说得清</em>
+    lead: "路径匹配规则集回答「算不算违规」，评分规则集回答「有多严重、怎么处置」。两套规则集都可以按你的口径改。"
+    items:
+      - { tag: 时间顺序, title: "只算先到账、后转出的钱", text: "每一跳都看时间，时间上倒着流的路径直接排除，误报从源头减少。" }
+      - { tag: 资金占比, title: "跳得越远，门槛越高", text: "默认第 2 / 3 / 4 / 5 跳风险资金占比达 5% / 10% / 15% / 20% 才计入。" }
+      - { tag: 证据留存, title: "监管问为什么，直接调出", text: "每一分对应一条规则，命中路径、跳数、金额全部列出，快照不可篡改。" }
+
+  - type: cases
+    tone: alt
+    eyebrow: 在生产环境
+    title: 已经在用 DART 的机构
+    items:
+      - tag: 钱包
+        metric: 7 万次 +
+        metricLabel: 接入一周内的单日筛查量
+        title: 某头部自托管钱包
+        text: FinCEN 9714 命令发布当天，就能在充提中识别相关资金；跳数等参数按他们的风控要求单独配置。
+      - tag: 社交 · 支付
+        metric: 付费会员
+        metricLabel: 安全能力变成收入
+        title: 某 Web3 社交平台
+        text: 把 DART 打包进付费会员增值服务：用户每一笔收款、提款都做完整检测，避免把 U 打给恐怖融资地址。
+      - tag: 托管 · WaaS
+        metric: 1.7–1.8 万次
+        metricLabel: 工作日每天
+        title: 某钱包与托管基础设施服务商
+        text: 为旗下企业钱包的每笔充提做筛查，下游企业开箱即有 KYA / KYT，不用各自采购。
+    note: 案例均匿名展示。数据来自 DART 生产环境，截至 2026 年 11 月。
 
   - type: audiences
     id: who
@@ -84,67 +115,6 @@ sections:
           - 只说命中了哪些公开来源，不给个人地址下定性
         href: /check/
         link: 了解个人地址体检
-
-  - type: problems
-    id: problems
-    tone: alt
-    eyebrow: 我们解决的问题
-    title: 合规团队每天都在遇到的三个问题
-    lead: 每一个都对应 DART 里一个具体的设计，以及生产环境里的证据。
-    items:
-      - problem: 误报太多，合规和客服被淹没
-        detail: 不看时间顺序，几乎任何地址往外追几跳都能碰到风险地址。
-        solution: |
-          - 每一跳必须**先到账、后转出**才算关联，时间上倒着流的路径直接排除
-          - **看金额占比**，跳数越远门槛越高：默认第 2 / 3 / 4 / 5 跳风险资金占比达 5% / 10% / 15% / 20% 才计入
-          - **交易所对手方默认豁免**，不因别家交易所的用户被牵连
-        proof: 某支付公司实测：同一地址，另一款工具判「中低风险、需复核」，DART 判 0 分通过。逐笔拆开，那些风险资金在时间上根本流不过来。
-      - problem: 收了问题资金，自己被连带冻结
-        detail: 充进来的 U 如果来自被冻结、黑客或诈骗资金，冻结可能落到你和你的用户头上。
-        solution: |
-          - 充值、收款前先筛资金来源：**发行方冻结、制裁、黑客、诈骗**分层识别
-          - 四档处置：通过、复核、加强尽调、拦截；加强尽调档请用户说明资金来源
-        proof: 稳定币发行方冻结标签已在生产环境使用。
-      - problem: 监管问「为什么拦」，答不上来
-        detail: 只有一个分数、没有依据，内部复核和监管检查都很被动。
-        solution: |
-          - **每一分对应一条规则**：命中哪条路径、第几跳、多少金额、占比多少、加了几分，全部列出
-          - 每次筛查存为**不可篡改的快照**，规则集版本可追溯
-        proof: 合规和监管检查时，从控制台或 API 直接调出当时的快照。
-
-  - type: steps
-    id: how
-    eyebrow: 怎么工作
-    title: 一次筛查，四步给结论
-    lead: 路径匹配规则集回答「算不算违规」，评分规则集回答「有多严重、怎么处置」。两套规则集都可以按你的口径改。
-    items:
-      - { label: 输入, title: 提交地址或交易, text: 地址（KYA）或交易哈希（KYT），自动识别链和币种。 }
-      - { label: 第 1 步, title: 按时间顺序展开资金图, text: 逐跳展开上下游，每个对手方都带标签，只保留时间上流得过来的路径。 }
-      - { label: 第 2 步, title: 匹配规则, text: 72 条规则判断哪条资金链路算违规、违反了哪一条。 }
-      - { label: 第 3 步, title: 按资金占比评分, text: 按方向、跳数、严重度和资金占比算出 0–100 分。 }
-      - { label: 输出, title: 四档处置和证据, text: 通过、复核、加强尽调、拦截，附命中明细和快照。 }
-
-  - type: cases
-    tone: alt
-    eyebrow: 在生产环境
-    title: 已经在用 DART 的机构
-    items:
-      - tag: 钱包
-        metric: 7 万次 +
-        metricLabel: 接入一周内的单日筛查量
-        title: 某头部自托管钱包
-        text: FinCEN 9714 命令发布当天，就能在充提中识别相关资金；跳数等参数按他们的风控要求单独配置。
-      - tag: 社交 · 支付
-        metric: 付费会员
-        metricLabel: 安全能力变成收入
-        title: 某 Web3 社交平台
-        text: 把 DART 打包进付费会员增值服务：用户每一笔收款、提款都做完整检测，避免把 U 打给恐怖融资地址。
-      - tag: 托管 · WaaS
-        metric: 1.7–1.8 万次
-        metricLabel: 工作日每天
-        title: 某钱包与托管基础设施服务商
-        text: 为旗下企业钱包的每笔充提做筛查，下游企业开箱即有 KYA / KYT，不用各自采购。
-    note: 案例均匿名展示。数据来自 DART 生产环境，截至 2026 年 11 月。
 
   - type: cta
     eyebrow: 免费接入

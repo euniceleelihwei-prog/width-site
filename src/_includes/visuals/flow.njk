@@ -51,10 +51,14 @@
     <g class="callout ok"><rect x="122" y="104" width="134" height="24" rx="6"/><text x="189" y="120" text-anchor="middle">{{ '先到账后转出 · 占比 18%' if zh else 'in time order · 18% share' }}</text></g>
     <g class="callout bad"><rect x="112" y="258" width="150" height="24" rx="6"/><text x="187" y="274" text-anchor="middle">{{ '时间倒流 · 排除' if zh else 'runs backwards · excluded' }}</text></g>
     <g class="callout ex"><rect x="150" y="318" width="132" height="24" rx="6"/><text x="216" y="334" text-anchor="middle">{{ '交易所对手方 · 豁免' if zh else 'exchange · exempt' }}</text></g>
+    <!-- 沿着计分路径和豁免路径移动的点（动画）；时间倒流的那条路径没有点 -->
+    <circle class="flow-dot risk" r="4.500"><animateMotion dur="2.6s" begin="0.0s" repeatCount="indefinite" path="M92 92 C170 92 210 120 268 140"/></circle>
+    <circle class="flow-dot risk" r="4.500"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite" path="M318 150 C360 165 380 190 398 204"/></circle>
+    <circle class="flow-dot ex" r="4.500"><animateMotion dur="3.4s" begin="2.6s" repeatCount="indefinite" path="M92 360 C220 360 320 300 400 238"/></circle>
   </svg>
 
   <figcaption class="viz-result">
-    <div class="score-dial" style="--score: 36"><span>36</span><small>/100</small></div>
+    <div class="score-dial"><span class="dial-n"></span><small>/100</small></div>
     <div>
       <p class="mini-label">{{ '资金占比评分' if zh else 'Fund-attribution score' }}</p>
       <p class="verdict review">{{ '复核 · REVIEW' if zh else 'REVIEW' }}</p>

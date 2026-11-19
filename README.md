@@ -67,9 +67,12 @@ src/
 | `faq` | 常见问题（自动生成 FAQ 结构化数据） | items: q, a |
 | `cta` | 行动号召 | title, text, points, ctas |
 | `posts` | 最新文章 | limit, category |
+| `showcase` | 一张大的产品示意图 + 一行三个要点 | title, lead, items: tag, title, text |
 | `boards` | 数据榜单 | items: 榜单 key（见 boards.yml） |
 | `form` | 联系表单 | title, text, points |
 | `prose` | 一段正文 | body |
+
+首页用的是新版式：页面文件顶部写 `bodyClass: home-v2`（大标题在左、说明在右，细线代替卡片边框，底部一整条深蓝，背景有流动的点）。去掉这一行就回到普通版式。
 
 所有版块都支持 `id`（锚点）和 `tone: alt`（换底色）。`visual` 可选 `flow`、`result`、`scores`、`code`、`image`。
 
