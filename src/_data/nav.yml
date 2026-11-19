@@ -1,11 +1,12 @@
 # 顶部导航与页脚。href 写英文路径，中文页面会自动加 /zh 前缀；外链写完整地址。
+# 顶部菜单只放 DART 自己的五项：产品、解决方案、数据、合作、价格。文章、手册、关于、联系放在页脚。
 main:
-  - label: { en: Platform, zh: 平台 }
+  - label: { en: Products, zh: 产品 }
     groups:
-      - title: { en: DART Platform, zh: DART 平台 }
+      - title: { en: Screening, zh: 筛查 }
         items:
           - label: { en: Platform Overview, zh: 平台总览 }
-            desc: { en: Data, tracing, rules and scoring in one engine, zh: 数据、追踪、规则、评分一套引擎 }
+            desc: { en: "Data, tracing, rules and scoring in one engine", zh: 数据、追踪、规则、评分一套引擎 }
             href: /platform/
           - label: { en: Address Screening (KYA), zh: 地址筛查 KYA }
             desc: { en: Is this address safe to deal with?, zh: 这个地址能不能打交道 }
@@ -14,7 +15,7 @@ main:
             desc: { en: Where did this deposit come from?, zh: 这笔充值从哪来、提现到哪去 }
             href: /products/kyt/
           - label: { en: Sanctions Screening, zh: 制裁筛查 }
-            desc: { en: Official lists, answered in under a second, zh: 官方名单，1 秒内返回 }
+            desc: { en: "Official lists, answered in under a second", zh: 官方名单，1 秒内返回 }
             href: /products/sanctions/
       - title: { en: Go Deeper, zh: 进阶能力 }
         items:
@@ -22,11 +23,14 @@ main:
             desc: { en: Follow the money across hops and chains, zh: 跨跳、跨链追资金去向 }
             href: /products/investigations/
           - label: { en: Rulesets & Scoring, zh: 规则集与评分 }
-            desc: { en: Your risk appetite, written as rules, zh: 把你的风险偏好写成规则 }
+            desc: { en: "Your risk appetite, written as rules", zh: 把你的风险偏好写成规则 }
             href: /products/rulesets/
           - label: { en: AI Agents (MCP), zh: AI 助手（MCP） }
-            desc: { en: 19 tools for any AI agent, zh: 19 个工具，AI 直接调用 }
+            desc: { en: "19 tools for any AI agent", zh: "19 个工具，AI 直接调用" }
             href: /products/agents/
+          - label: { en: Developers & API, zh: 开发者与 API }
+            desc: { en: "API, MCP, OpenAPI and llms.txt", zh: API、MCP、OpenAPI、llms.txt }
+            href: /developers/
 
   - label: { en: Solutions, zh: 解决方案 }
     groups:
@@ -44,10 +48,16 @@ main:
           - label: { en: Custody & WaaS, zh: 托管与 WaaS }
             desc: { en: KYT built in for every client you serve, zh: 下游客户开箱即有 KYT }
             href: /solutions/custody/
-      - title: { en: Public Sector & Individuals, zh: 公共部门与个人 }
+
+  - label: { en: Data, zh: 数据 }
+    href: /data/
+
+  - label: { en: Partners, zh: 合作 }
+    groups:
+      - title: { en: Work with DART, zh: 合作通道 }
         items:
           - label: { en: Law Enforcement, zh: 执法机构 }
-            desc: { en: Tracing, case support and evidence packs, zh: 追踪、案件协助、证据包 }
+            desc: { en: "Tracing, case support and evidence packs", zh: 追踪、案件协助、证据包 }
             href: /partners/lea/
           - label: { en: Universities & Research, zh: 高校与研究 }
             desc: { en: Academic API access and datasets, zh: 学术 API 额度与数据集 }
@@ -56,61 +66,11 @@ main:
             desc: { en: Check an address before you receive USDT, zh: 收 U 前先查一下 }
             href: /check/
 
-  - label: { en: Data, zh: 数据 }
-    groups:
-      - title: { en: Width Data, zh: Width 数据 }
-        items:
-          - label: { en: Data Hub, zh: 数据中心 }
-            desc: { en: Public trackers built on our onchain data, zh: 基于链上数据的公开榜单 }
-            href: /data/
-          - label: { en: Stablecoin Freeze Tracker, zh: 稳定币冻结榜 }
-            desc: { en: Issuer freezes by chain and week, zh: 发行方冻结，按链、按周 }
-            href: /data/#freeze
-          - label: { en: Security Incidents, zh: 安全事件榜 }
-            desc: { en: Hacks ranked by loss, with where the funds went, zh: 按损失排序，标注资金去向 }
-            href: /data/#incidents
-          - label: { en: Sanctions & Enforcement Actions, zh: 制裁与执法动作 }
-            desc: { en: New listings and the addresses involved, zh: 新增名单与涉及地址 }
-            href: /data/#sanctions
-          - label: { en: Exchange Flows, zh: 交易所资金流向 }
-            desc: { en: Stablecoin flows in and out of exchanges, zh: 稳定币进出交易所 }
-            href: https://width.info/exchange-flows
-
-  - label: { en: Resources, zh: 资源 }
-    groups:
-      - title: { en: Learn, zh: 学习 }
-        items:
-          - label: { en: Blog & Research, zh: 文章与研究 }
-            desc: { en: Methods, regulation and incident reviews, zh: 方法、监管动态、事件复盘 }
-            href: /blog/
-          - label: { en: Product Manual, zh: 产品手册 }
-            desc: { en: Every rule, formula and screen explained, zh: 规则、公式、界面逐一讲清 }
-            href: https://width.info/docs
-      - title: { en: Build, zh: 开发 }
-        items:
-          - label: { en: Developers, zh: 开发者 }
-            desc: { en: API, MCP, OpenAPI and llms.txt, zh: API、MCP、OpenAPI、llms.txt }
-            href: /developers/
-          - label: { en: API Reference, zh: API 文档 }
-            desc: { en: Try every endpoint in the browser, zh: 浏览器里直接调用 }
-            href: https://width.info/api-reference
-
   - label: { en: Pricing, zh: 价格 }
     href: /pricing/
 
-  - label: { en: Company, zh: 公司 }
-    groups:
-      - title: { en: Width, zh: Width }
-        items:
-          - label: { en: About Us, zh: 关于我们 }
-            href: /about/
-          - label: { en: Partners, zh: 合作伙伴 }
-            href: /partners/
-          - label: { en: Contact, zh: 联系我们 }
-            href: /contact/
-
 footer:
-  - title: { en: Platform, zh: 平台 }
+  - title: { en: Products, zh: 产品 }
     items:
       - { label: { en: Overview, zh: 平台总览 }, href: /platform/ }
       - { label: { en: Address Screening (KYA), zh: 地址筛查 KYA }, href: /products/kya/ }

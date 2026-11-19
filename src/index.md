@@ -89,7 +89,7 @@ sections:
     id: problems
     tone: alt
     eyebrow: Problems we solve
-    title: Six Problems Compliance Teams Run Into Every Day
+    title: Three Problems Compliance Teams Run Into Every Day
     lead: Each one maps to a specific design choice in DART, with evidence from production.
     items:
       - problem: Too Many False Alarms Burying Compliance and Support
@@ -105,30 +105,12 @@ sections:
           - Screen the source before you credit: **issuer freezes, sanctions, hacks and scams** are each identified and weighted
           - Four dispositions: pass, review, enhanced due diligence, block; at EDD you ask the user for source of funds
         proof: Stablecoin issuer-freeze labels are live in production.
-      - problem: New Rules Land Faster Than You Can Update Yours
-        detail: Official lists and enforcement orders change constantly. Maintaining rules in-house can't keep up.
-        solution: |
-          - Every rule is readable; copy a built-in ruleset and change anything
-          - We turn new official actions into **built-in rulesets** you can switch on
-        proof: The FinCEN 9714 order was published on 6 November; DART shipped a built-in ruleset the same day.
       - problem: The Regulator Asks Why You Blocked It, and You Can't Say
         detail: A bare score with no reasoning leaves internal reviews and inspections on the back foot.
         solution: |
           - **Every point maps to a rule**: which path, which hop, how much, what share, how many points
           - Every screening is saved as an **immutable snapshot**, with the ruleset version it ran on
         proof: Pull the exact snapshot from the console or API whenever an auditor asks.
-      - problem: Slow Checks That Stall User Transfers
-        detail: A pre-send check that takes a few seconds too long costs you users.
-        solution: |
-          - **Sanctions screening returns in under a second**
-          - Sync calls return the result directly; deep traces on very active addresses can run async without blocking the flow
-        proof: 300,000–400,000 API calls a day in production.
-      - problem: Chain-Hopping and Multi-Chain Addresses Slip Through
-        detail: An EVM address is the same wallet on every EVM chain. Checking one chain proves nothing about the others.
-        solution: |
-          - **Paste and check**: DART finds every chain and token the address has stablecoin flow on, and screens USDT and USDC in one go
-          - USDC transfers are followed **across chains via CCTP**
-        proof: 11 chains covered; one address, every lane with flow, one call.
 
   - type: steps
     id: how
@@ -141,18 +123,6 @@ sections:
       - { label: Step 2, title: Match the Rules, text: 72 rules decide which fund-flow paths count as violations, and which rule each one breaks. }
       - { label: Step 3, title: Score by Share of Funds, text: "Direction, hop distance, severity and share of funds become a 0–100 score." }
       - { label: Output, title: A Disposition with Evidence, text: "Pass, review, EDD or block, with the hit list and a snapshot." }
-
-  - type: split
-    eyebrow: Explainable
-    title: Every Point Has a Reason
-    text: The result isn't a black-box number. Which path hit, at which hop, how much money, what share and how many points are all in the result, and excluded paths say why they were excluded.
-    points:
-      - "**Four dispositions**: 0–19 pass, 20–49 review, 50–79 EDD, 80–100 block, all adjustable"
-      - "**Rules you can change**: built-in rulesets are read-only; clone one and edit any condition or weight"
-      - "**Evidence on file**: every screening is stored as a snapshot you can pull back any time"
-    ctas:
-      - { label: Rulesets & Scoring, href: /products/rulesets/, style: ghost }
-    visual: result
 
   - type: cases
     tone: alt
@@ -175,47 +145,6 @@ sections:
         title: A Wallet and Custody Infrastructure Provider
         text: Screens every deposit and withdrawal for its enterprise wallets. Its clients get KYA and KYT out of the box instead of buying their own.
     note: Customer names withheld for confidentiality. Figures from DART production data, November 2026.
-
-  - type: split
-    reverse: true
-    eyebrow: For AI agents
-    title: Let Your AI Agent Check Addresses
-    text: DART runs an MCP server with 19 typed tools for screening, reading results and managing rulesets. Plug it into Claude, Cursor, Codex or any agent. Console, API and MCP share one account and the same snapshots.
-    points:
-      - Ask your agent to screen an address and explain the result
-      - Let it draft and edit rulesets for you
-      - llms.txt, OpenAPI 3.1 and a ready-made agent skill included
-    ctas:
-      - { label: Developer Docs, href: /developers/, style: ghost }
-    visual: code
-    code:
-      title: mcp.json
-      body: |
-        {
-          "mcpServers": {
-            "width-dart": {
-              "url": "https://api.width.live/mcp",
-              "headers": {
-                "Authorization": "Bearer <YOUR_API_KEY>"
-              }
-            }
-          }
-        }
-
-  - type: cards
-    eyebrow: Width Data
-    title: Public Data, Kept Current
-    lead: Public trackers built on the same onchain data. Each one ships with a methodology note and uses only public, traceable event-level data.
-    columns: 3
-    items:
-      - { tag: Daily, title: Stablecoin Freeze Tracker, text: Addresses and amounts frozen by issuers, by chain and by week., href: /data/#freeze, link: View Tracker }
-      - { tag: Weekly, title: Security Incidents, text: "Hacks and exploits ranked by loss, with where the funds went: unmoved, bridged, sent to exchanges, frozen.", href: /data/#incidents, link: View Tracker }
-      - { tag: On every new action, title: Sanctions & Enforcement Actions, text: "New OFAC, FinCEN and UN listings, and how many onchain addresses they involve.", href: /data/#sanctions, link: View Tracker }
-
-  - type: posts
-    eyebrow: Blog
-    title: Latest Articles
-    limit: 3
 
   - type: cta
     eyebrow: Free access

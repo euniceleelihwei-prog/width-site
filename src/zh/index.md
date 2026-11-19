@@ -89,7 +89,7 @@ sections:
     id: problems
     tone: alt
     eyebrow: 我们解决的问题
-    title: 合规团队每天都在遇到的六个问题
+    title: 合规团队每天都在遇到的三个问题
     lead: 每一个都对应 DART 里一个具体的设计，以及生产环境里的证据。
     items:
       - problem: 误报太多，合规和客服被淹没
@@ -105,30 +105,12 @@ sections:
           - 充值、收款前先筛资金来源：**发行方冻结、制裁、黑客、诈骗**分层识别
           - 四档处置：通过、复核、加强尽调、拦截；加强尽调档请用户说明资金来源
         proof: 稳定币发行方冻结标签已在生产环境使用。
-      - problem: 新规下来，规则跟不上
-        detail: 官方名单、执法命令更新得越来越快，自己维护规则来不及。
-        solution: |
-          - 规则全部公开可读，内置规则集复制一份就能改
-          - 新的官方动作由我们做成**内置规则集**，客户直接选用
-        proof: FinCEN 9714 命令 11 月 6 日发布，DART 当天就上线了内置规则集。
       - problem: 监管问「为什么拦」，答不上来
         detail: 只有一个分数、没有依据，内部复核和监管检查都很被动。
         solution: |
           - **每一分对应一条规则**：命中哪条路径、第几跳、多少金额、占比多少、加了几分，全部列出
           - 每次筛查存为**不可篡改的快照**，规则集版本可追溯
         proof: 合规和监管检查时，从控制台或 API 直接调出当时的快照。
-      - problem: 筛查太慢，卡住用户转账
-        detail: 转账前检查只要多等几秒，用户就会流失。
-        solution: |
-          - **制裁筛查 1 秒内返回**
-          - 同步调用直接给结果；交易非常活跃的地址追得深时，走异步模式，不阻塞业务
-        proof: 生产环境每天 30–40 万次 API 调用。
-      - problem: 换链转移、多链地址查不全
-        detail: 同一个 EVM 地址在每条链上都是同一个钱包，只查一条链说明不了问题。
-        solution: |
-          - **粘贴即查**：自动识别地址在哪些链、哪些币种上有流水，USDT、USDC 一次筛完
-          - USDC 支持 **CCTP 跨链续追**，换链转移也不漏
-        proof: 覆盖 11 条链，一个地址一次筛完全部有流水的链和币种。
 
   - type: steps
     id: how
@@ -141,18 +123,6 @@ sections:
       - { label: 第 2 步, title: 匹配规则, text: 72 条规则判断哪条资金链路算违规、违反了哪一条。 }
       - { label: 第 3 步, title: 按资金占比评分, text: 按方向、跳数、严重度和资金占比算出 0–100 分。 }
       - { label: 输出, title: 四档处置和证据, text: 通过、复核、加强尽调、拦截，附命中明细和快照。 }
-
-  - type: split
-    eyebrow: 可解释
-    title: 每一分都说得清
-    text: 结果不是一个黑盒分数。哪条路径命中、第几跳、多少金额、占资金多少、加了几分，都列在结果里；被排除的路径也写明原因。
-    points:
-      - "**四档处置**：0–19 通过、20–49 复核、50–79 加强尽调、80–100 拦截，阈值可调"
-      - "**规则可改**：内置规则集只读，复制一份后任意改条件和分值"
-      - "**证据留存**：每次筛查自动存为快照，随时调出"
-    ctas:
-      - { label: 了解规则集与评分, href: /products/rulesets/, style: ghost }
-    visual: result
 
   - type: cases
     tone: alt
@@ -175,47 +145,6 @@ sections:
         title: 某钱包与托管基础设施服务商
         text: 为旗下企业钱包的每笔充提做筛查，下游企业开箱即有 KYA / KYT，不用各自采购。
     note: 案例均匿名展示。数据来自 DART 生产环境，截至 2026 年 11 月。
-
-  - type: split
-    reverse: true
-    eyebrow: AI 助手
-    title: 让 AI 助手直接查地址
-    text: DART 开放 MCP，19 个工具覆盖筛查、读取结果、管理规则集。Claude、Cursor、Codex 等 AI 工具接上就能用；控制台、API、MCP 共用一个账号和同一批快照。
-    points:
-      - 一句话让 AI 筛查地址、解释结果
-      - 规则集和规则也能让 AI 帮你改
-      - 提供 llms.txt、OpenAPI 和现成的 Agent Skill
-    ctas:
-      - { label: 开发者文档, href: /developers/, style: ghost }
-    visual: code
-    code:
-      title: mcp.json
-      body: |
-        {
-          "mcpServers": {
-            "width-dart": {
-              "url": "https://api.width.live/mcp",
-              "headers": {
-                "Authorization": "Bearer <你的 API Key>"
-              }
-            }
-          }
-        }
-
-  - type: cards
-    eyebrow: WIDTH DATA · 数据
-    title: 公开数据，持续更新
-    lead: 用同一套链上数据做的公开榜单。每个榜单都附方法说明，只用公开、可溯源的事件级数据。
-    columns: 3
-    items:
-      - { tag: 每日更新, title: 稳定币冻结榜, text: 发行方冻结的地址数和金额，按链、按周统计。, href: /data/#freeze, link: 查看榜单 }
-      - { tag: 每周更新, title: 安全事件榜, text: 黑客和漏洞事件按损失排序，标注资金去向：未动、已跨链、进交易所、已冻结。, href: /data/#incidents, link: 查看榜单 }
-      - { tag: 有新动作即更新, title: 制裁与执法动作, text: OFAC、FinCEN、联合国等新增名单，以及涉及的链上地址数。, href: /data/#sanctions, link: 查看榜单 }
-
-  - type: posts
-    eyebrow: 文章
-    title: 最新文章
-    limit: 3
 
   - type: cta
     eyebrow: 免费接入

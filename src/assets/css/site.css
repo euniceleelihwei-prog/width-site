@@ -152,7 +152,7 @@ a:hover .link-arrow::after, .link-arrow:hover::after { transform: translateX(4px
   transition: opacity .18s, transform .18s, visibility .18s;
 }
 .nav-item.open > .menu { opacity: 1; visibility: visible; transform: none; }
-.menu-inner { display: grid; gap: 8px; background: rgba(255, 255, 255, .98); border: 1px solid var(--line); border-radius: 0; padding: 14px; box-shadow: 0 28px 64px -26px rgba(4, 16, 43, .38); }
+.menu-inner { display: grid; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 0; padding: 14px; box-shadow: 0 28px 64px -26px rgba(4, 16, 43, .38); }
 .menu-inner.cols-2 { grid-template-columns: repeat(2, 280px); }
 .menu-title { font-size: 12.5px; font-weight: 600; color: var(--text-3); margin: 6px 10px 6px; }
 .menu ul { list-style: none; margin: 0; padding: 0; }
