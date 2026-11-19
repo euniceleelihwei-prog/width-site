@@ -241,7 +241,10 @@ h1, h2 { text-wrap: balance; }
 .problem-index { font-size: 14px; font-weight: 600; color: var(--text-3); display: block; margin-bottom: 10px; }
 .problem-q h3 { font-size: 20px; line-height: 1.35; }
 .problem-q p { color: var(--text-2); font-size: 15.5px; }
-.problem-a { padding: 24px 28px 28px; background: #eaf0fc; font-size: 15.5px; }
+/* 下半块：白底版块里用浅蓝；浅蓝版块里整张卡片都是白色，避免和背景同色 */
+.problem-a { padding: 24px 28px 28px; background: #eef3fc; font-size: 15.5px; }
+.section.alt .problem-a { background: #fff; }
+.section.alt .problem { border-color: transparent; box-shadow: 0 0 0 1px rgba(13, 79, 211, .08), 0 20px 48px -30px rgba(7, 34, 89, .3); }
 .problem-a > div { color: var(--text); }
 .problem-a ul { padding-left: 18px; margin: 0; color: var(--text-2); }
 .problem-a li { margin-bottom: 6px; }
