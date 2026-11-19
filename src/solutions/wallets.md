@@ -41,12 +41,6 @@ sections:
           - Exchange counterparties are exempt by default, so ordinary transfers to and from exchanges aren't flagged
           - Four result levels, so the wallet can interrupt only on the top ones
         proof: In one payment company's test, an address another tool rated "medium-low risk, needs review" scored 0 on DART. The risky funds could not have reached it in time.
-      - problem: Users Don't Know Which Chain or Token an Address Is On
-        detail: An EVM address is the same wallet on every EVM chain, so checking one chain proves little.
-        solution: |
-          - **Paste and check**: DART detects every chain and token the address has activity on and screens USDT and USDC in one go
-          - USDC tracing follows CCTP across chains
-        proof: 11 chains covered. One call screens every chain and token with activity.
 
   - type: steps
     tone: alt
@@ -57,17 +51,6 @@ sections:
       - { label: Warn, title: Warn by Level, text: Pass stays silent. Higher levels show which public source matched; the user decides. }
       - { label: After receive, title: New Funds Arrive, text: Screen the incoming transfer inbound to check where it came from. }
       - { label: Alert, title: Flag a Bad Source, text: Notify the user when funds trace to frozen, hacked or scam money, before a freeze spreads. }
-
-  - type: table
-    eyebrow: Recommended setup
-    title: How Wallets Typically Integrate
-    head: [Checkpoint, Endpoint, Ruleset, Hops, Notes]
-    rows:
-      - [Before send, "`POST /api/v3/screen/kya/multi`", AML KYA Default, Default, Screens every chain and token the address uses]
-      - [After receive, "`POST /api/v3/screen/kyt`", Built-in KYT-IN, Inbound 3 (default), Traces upstream in time order]
-      - [Sanctions-only check, "`POST /api/v3/screen/kya`", Sanctions rulesets, Configurable, Returns in under a second]
-      - [Paid safety feature, Same as above, Per membership tier, Deeper as needed, Full check on every send and receive]
-    note: Exchange counterparties are exempt by default. Hops, thresholds and which levels trigger a warning are all yours to tune.
 
   - type: cases
     eyebrow: Customers
@@ -88,19 +71,6 @@ sections:
         title: A Self-Custody Wallet
         text: Screens deposits and withdrawals automatically, with rulesets tuned to its own risk appetite.
     note: Customer names withheld for confidentiality. Figures from DART production data, November 2026.
-
-  - type: cards
-    tone: alt
-    eyebrow: Related products
-    title: What Wallets Use
-    columns: 3
-    items:
-      - { title: Address Screening (KYA), text: Check the recipient before sending, across every chain and token., href: /products/kya/ }
-      - { title: Transaction Screening (KYT), text: Check where incoming funds came from, in time order., href: /products/kyt/ }
-      - { title: Sanctions Screening, text: Official lists in under a second, without slowing down sends., href: /products/sanctions/ }
-      - { title: Rulesets & Scoring, text: Decide which levels interrupt the user., href: /products/rulesets/ }
-      - { title: AI Agents (MCP), text: Let an in-wallet AI assistant screen addresses and read results., href: /products/agents/ }
-      - { title: Fund Tracing & Investigations, text: When a user reports a loss, follow the funds across hops and chains., href: /products/investigations/ }
 
   - type: faq
     eyebrow: FAQ

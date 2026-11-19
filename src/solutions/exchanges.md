@@ -41,12 +41,6 @@ sections:
           - We turn new official actions into **built-in rulesets** you can select in the console or API
           - Every rule is readable. Copy a ruleset and adjust it to your own policy
         proof: FinCEN's 9714 order was published on 6 November. The DART built-in ruleset went live the same day.
-      - problem: Licensing Reviews Ask Why You Blocked or Passed
-        detail: A bare score with no reasoning leaves you exposed in VASP licensing reviews and regulatory inspections.
-        solution: |
-          - **Every point maps to a rule**: path, hop, amount, share of funds and points added, all listed
-          - Every screening is saved as an **immutable snapshot**, with the ruleset version on record
-        proof: Pull any snapshot from the console or API, and build screening and disposition reports for any period.
 
   - type: steps
     tone: alt
@@ -58,17 +52,6 @@ sections:
       - { label: KYT-IN, title: Screen the Source, text: Trace upstream in time order against the inbound ruleset and get a 0–100 score. }
       - { label: Decide, title: Credit or Hold, text: Pass credits straight away; review and EDD go to a queue; block freezes and escalates. }
       - { label: Withdrawal, title: Screen the Destination, text: Before release, run KYA or KYT-OUT on the target address. Critical hits such as sanctions are blocked. }
-
-  - type: table
-    eyebrow: Recommended setup
-    title: How Exchanges Typically Integrate
-    head: [Checkpoint, Endpoint, Ruleset, Hops, Exchange Exemption]
-    rows:
-      - [Before crediting a deposit, "`POST /api/v3/screen/kyt`", Built-in KYT-IN + default scoring, Inbound 3 (default), "On"]
-      - [Before releasing a withdrawal, "`POST /api/v3/screen/kyt` or `/screen/kya`", Built-in KYT-OUT / AML KYA Default, Outbound 1 (default), "On"]
-      - [First or large deposits, "`POST /api/v3/screen/kya/multi`", AML KYA Default, Deeper as needed, "On"]
-      - [Dedicated sanctions checks, "`POST /api/v3/screen/kya`", Sanctions rulesets, Configurable, "Off if required"]
-    note: "Hops, thresholds and rules are all adjustable. Sync calls return the result directly; for very active addresses, use async mode (`mode: async`) so nothing blocks."
 
   - type: cases
     eyebrow: Customers
@@ -84,19 +67,6 @@ sections:
         title: FinCEN 9714 Order
         text: Published on 6 November, live as a DART built-in ruleset the same day. Customers selected it in the console and could identify related funds in their deposits and withdrawals.
     note: Customer names withheld for confidentiality. Figures from DART production data, November 2026.
-
-  - type: cards
-    tone: alt
-    eyebrow: Related products
-    title: What Exchanges Use
-    columns: 3
-    items:
-      - { title: Transaction Screening (KYT), text: Source of funds on deposits, destination on withdrawals, with rules per direction., href: /products/kyt/ }
-      - { title: Address Screening (KYA), text: New users, large amounts and withdrawal targets, across every chain the address uses., href: /products/kya/ }
-      - { title: Sanctions Screening, text: Official lists in under a second. A natural fit before releasing withdrawals., href: /products/sanctions/ }
-      - { title: Rulesets & Scoring, text: Write your risk appetite as rules. Copy a built-in ruleset and edit., href: /products/rulesets/ }
-      - { title: Fund Tracing & Investigations, text: Follow suspicious funds across hops and chains and export a tracing report., href: /products/investigations/ }
-      - { title: AI Agents (MCP), text: Let analysts screen and explain addresses from their AI assistant., href: /products/agents/ }
 
   - type: faq
     eyebrow: FAQ

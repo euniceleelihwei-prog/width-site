@@ -43,15 +43,6 @@ sections:
       - { label: 第 2 步, title: 审核用途, text: 我们确认研究或教学用途，商业用途请走企业接入。 }
       - { label: 第 3 步, title: 开通额度, text: 开通学术 API 额度，或按项目约定数据集和课程合作。 }
 
-  - type: split
-    eyebrow: 合作约定
-    title: 我们希望你做的一件事
-    text: 使用 Width 数据发表论文、报告或课程材料时，请注明数据来源为 Width。这是学术合作里我们唯一的要求。
-    points:
-      - 学术 API 额度仅限非商业用途
-      - 数据集为事件级脱敏数据，不含个人信息
-      - 联合研究的署名和发布方式，按项目单独约定
-
   - type: faq
     eyebrow: 常见问题
     title: 高校常问的问题

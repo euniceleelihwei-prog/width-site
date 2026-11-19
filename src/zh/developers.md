@@ -66,27 +66,6 @@ sections:
       - { tag: Skill, title: Agent Skill, text: 现成的 Skill 文件，放进 AI 助手就能用。, href: "https://width.info/agent/SKILL.md" }
       - { tag: 开源, title: AMLClaw, text: 基于 DART API 的开源合规工作台：筛查、地址和交易监控、证据报告。, href: "https://github.com/amlclaw/amlclaw.com" }
 
-  - type: split
-    eyebrow: MCP
-    title: AI 助手接上就能用
-    text: "MCP 地址 `https://api.width.live/mcp`，用 `Authorization: Bearer <API Key>` 认证。19 个工具覆盖筛查、读取结果、管理规则集和规则。"
-    ctas:
-      - { label: 了解 AI 助手, href: /products/agents/, style: ghost }
-    visual: code
-    code:
-      title: mcp.json
-      body: |
-        {
-          "mcpServers": {
-            "width-dart": {
-              "url": "https://api.width.live/mcp",
-              "headers": {
-                "Authorization": "Bearer <你的 API Key>"
-              }
-            }
-          }
-        }
-
   - type: cta
     title: 拿一个 API Key 试试
     text: 接入 DART，免费用到 2028 年 12 月 31 日。工程师在群里直接支持对接。

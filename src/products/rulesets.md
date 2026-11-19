@@ -74,16 +74,6 @@ sections:
       - { label: Scoring Formula in Detail, href: "https://width.info/docs", style: ghost }
     visual: result
 
-  - type: steps
-    tone: alt
-    eyebrow: How to customise
-    title: Four Steps to Your Own Rules
-    items:
-      - { label: Clone, title: Start from a Built-In, text: "KYA, KYT-IN, KYT-OUT and scoring all ship as built-ins. Clone one to make it yours." }
-      - { label: Edit, title: Change Conditions and Points, text: "Combine category, amount, share, hop range, chain and more; adjust base points, weights and verdict bands." }
-      - { label: Test, title: Replay Past Addresses, text: "Run the same batch through the old and new rulesets and compare before you switch." }
-      - { label: Apply, title: Choose It per Screening, text: Select it in the console or pass its ID in the API. The snapshot records which version ran. }
-
   - type: faq
     eyebrow: FAQ
     title: Rulesets and Scoring Questions

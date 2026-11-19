@@ -46,17 +46,6 @@ sections:
       - { label: Step 3, title: Investigator Account, text: Once approved, your account opens. Every query is logged. }
       - { label: Step 4, title: Case Collaboration, text: Request analyst support and evidence packs for priority cases. }
 
-  - type: table
-    eyebrow: Ground rules
-    title: How We Work
-    head: [Topic, Rule]
-    rows:
-      - [Verification, Agency email plus official letter or ID; reviewed manually before access]
-      - [Audit trail, Every query is logged]
-      - [Data requests, "Reviewed by legal, with a process per jurisdiction, starting with Hong Kong and Singapore"]
-      - [Freezes, We provide tracing reports and evidence packs but don't promise freeze outcomes]
-      - [Cost, First pilots are free]
-
   - type: faq
     eyebrow: FAQ
     title: Questions Agencies Ask

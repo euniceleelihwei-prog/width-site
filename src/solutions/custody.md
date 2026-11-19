@@ -40,12 +40,6 @@ sections:
           - **Screen before sweeping**: run inbound screening on deposits and pause the sweep for any address that hits
           - Trace upstream in time order, counting only money that arrived before it left
         proof: There's a ready-made guide for adding KYT to MPC sweeps, and we map the flow with you during onboarding.
-      - problem: High Volume, and Screening Can't Slow Deposits
-        detail: Custody volume peaks on working days. Slow screening means downstream complaints.
-        solution: |
-          - Sanctions checks return in **under a second**; sync calls return directly, deep traces run async
-          - Console, API and CSV batch share one account and one quota
-        proof: DART handles 300,000–400,000 API calls a day in production.
 
   - type: steps
     tone: alt
@@ -56,17 +50,6 @@ sections:
       - { label: KYT-IN, title: Screen Before Sweeping, text: Screen the source against the client's ruleset; pause the sweep on a hit and hand it to the client. }
       - { label: Sweep, title: Clean Funds Move On, text: Passed funds sweep as normal; results and snapshots are kept per client. }
       - { label: Withdrawal, title: Screen the Destination, text: When a client withdraws, run KYA or KYT-OUT on the target address. }
-
-  - type: table
-    eyebrow: Recommended setup
-    title: How Custodians Typically Integrate
-    head: [Checkpoint, Endpoint, Ruleset, Hops, Notes]
-    rows:
-      - ["On deposit, before sweep", "`POST /api/v3/screen/kyt`", Client's KYT-IN ruleset, Inbound 3 (default), Pause the sweep on a hit]
-      - [Before a client withdrawal, "`POST /api/v3/screen/kyt` or `/screen/kya`", Client's KYT-OUT / KYA ruleset, Outbound 1 (default), Critical hits blocked]
-      - [Backfill for a new client, CSV batch import, AML KYA Default, Default, One-off rescreen of existing addresses]
-      - [High volume or deep traces, "`mode: async`", Same as above, Deeper as needed, Returns a job ID; nothing blocks]
-    note: Exchange counterparties are exempt by default. Hops, thresholds and rules can be set per client.
 
   - type: cases
     eyebrow: Customers
@@ -82,19 +65,6 @@ sections:
         title: KYT for MPC Sweeps
         text: Teams that run their own sweeps on MPC custody can follow the guide to put KYT into the sweep flow.
     note: Customer names withheld for confidentiality. Figures from DART production data, November 2026.
-
-  - type: cards
-    tone: alt
-    eyebrow: Related products
-    title: What Custodians Use
-    columns: 3
-    items:
-      - { title: Transaction Screening (KYT), text: Source on deposit, destination on withdrawal, a gate before sweeping., href: /products/kyt/ }
-      - { title: Address Screening (KYA), text: New clients and withdrawal targets across every chain and token., href: /products/kya/ }
-      - { title: Rulesets & Scoring, text: One ruleset per client, set to their own policy., href: /products/rulesets/ }
-      - { title: Sanctions Screening, text: Official lists in under a second., href: /products/sanctions/ }
-      - { title: Fund Tracing & Investigations, text: When a client has an incident, follow the money across hops and chains., href: /products/investigations/ }
-      - { title: Integration Guides, text: Step-by-step guides including KYT for MPC sweeps., href: /blog/category/guides/, link: Read the Guides }
 
   - type: faq
     eyebrow: FAQ

@@ -41,12 +41,6 @@ sections:
           - 交易所对手方默认豁免，充提交易所的正常转账不会被误报
           - 四档结论，钱包可以只对高档位弹窗
         proof: 某支付公司实测：另一款工具判「中低风险、需复核」的地址，DART 判 0 分通过，那些风险资金在时间上根本流不过来。
-      - problem: 用户不知道地址在哪条链、哪种币
-        detail: 同一个 EVM 地址在每条链上都是同一个钱包，只查一条链说明不了问题。
-        solution: |
-          - **粘贴即查**：自动识别地址在哪些链、哪些币种上有流水，USDT、USDC 一次筛完
-          - USDC 支持 CCTP 跨链续追
-        proof: 覆盖 11 条链，一个地址一次筛完全部有流水的链和币种。
 
   - type: steps
     tone: alt
@@ -57,17 +51,6 @@ sections:
       - { label: 提示, title: 按档位提醒, text: 通过不打扰；高档位提示命中了哪类公开来源，由用户决定是否继续。 }
       - { label: 收款后, title: 新资金到账, text: 对到账交易做流入方向筛查，查资金来源。 }
       - { label: 预警, title: 来源有问题时提醒, text: 来自被冻结、黑客、诈骗资金时推送提醒，减少后续被连带冻结。 }
-
-  - type: table
-    eyebrow: 推荐配置
-    title: 钱包常用接入方式
-    head: [节点, 接口, 规则集, 跳数, 说明]
-    rows:
-      - [转账前查收款地址, "`POST /api/v3/screen/kya/multi`", AML KYA Default, 默认, 一次筛完该地址有流水的全部链和币种]
-      - [收款后查资金来源, "`POST /api/v3/screen/kyt`", 内置 KYT-IN, 流入 3 跳（默认）, 按时间顺序向上游追]
-      - [只做制裁拦截, "`POST /api/v3/screen/kya`", 制裁类规则集, 按需配置, 1 秒内返回]
-      - [付费会员安全功能, 同上, 按会员等级配置, 按需加深, 每笔收付完整检测]
-    note: 交易所对手方默认豁免；跳数、阈值和提示档位都可以按你的产品体验调整。
 
   - type: cases
     eyebrow: 案例
@@ -88,19 +71,6 @@ sections:
         title: 某自托管钱包
         text: 充值、提现自动筛查，规则集按自身风险偏好配置。
     note: 案例均匿名展示。数据来自 DART 生产环境，截至 2026 年 11 月。
-
-  - type: cards
-    tone: alt
-    eyebrow: 相关产品
-    title: 钱包会用到的能力
-    columns: 3
-    items:
-      - { title: 地址筛查 KYA, text: 转账前查收款地址，一次筛完全部链和币种。, href: /products/kya/ }
-      - { title: 交易筛查 KYT, text: 收款后查资金来源，按时间顺序向上游追。, href: /products/kyt/ }
-      - { title: 制裁筛查, text: 官方名单 1 秒内返回，转账前检查不卡用户。, href: /products/sanctions/ }
-      - { title: 规则集与评分, text: 按你的产品体验决定哪些档位提示用户。, href: /products/rulesets/ }
-      - { title: AI 助手（MCP）, text: 钱包里的 AI 助手可以直接查地址、看结果。, href: /products/agents/ }
-      - { title: 资金追踪与调查, text: 用户报案时，跨跳、跨链追资金去向。, href: /products/investigations/ }
 
   - type: faq
     eyebrow: 常见问题

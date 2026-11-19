@@ -41,12 +41,6 @@ sections:
           - A hop only counts if funds **arrived before they left**. Backwards paths are dropped
           - Results list path, hop, amount, share of funds and points
         proof: In one payment company's test, another tool rated an address "medium-low risk, needs review". DART scored it 0. Broken down, the risky funds could not have reached it in time.
-      - problem: Every Banking Partner Wants Something Different
-        detail: Each bank and card scheme has its own view on risk categories and thresholds.
-        solution: |
-          - **One ruleset per partner**: copy a built-in ruleset, change conditions and weights, and save each separately
-          - Every screening records which ruleset it ran under
-        proof: Every screening is saved as an immutable snapshot you can pull in bulk over the API.
 
   - type: steps
     tone: alt
@@ -57,17 +51,6 @@ sections:
       - { label: KYT-IN, title: Screen the Source, text: Trace upstream in time order against your ruleset for a 0–100 score and a disposition. }
       - { label: Decide, title: Route by Level, text: Pass tops up the card; review and EDD go to a queue; block returns or freezes funds. }
       - { label: Off-ramp, title: Check Again Before Payout, text: Screen the target and funds before fiat payout or merchant settlement, and keep the snapshot. }
-
-  - type: table
-    eyebrow: Recommended setup
-    title: How Payments Businesses Typically Integrate
-    head: [Checkpoint, Endpoint, Ruleset, Hops, Notes]
-    rows:
-      - [Before top-up or deposit, "`POST /api/v3/screen/kyt`", Built-in KYT-IN + default scoring, Inbound 3 (default), Source of funds by disposition]
-      - [OTC or merchant receipts, "`POST /api/v3/screen/kya/multi`", AML KYA Default, Default, Screens every chain and token of the payer]
-      - [Before payout or settlement, "`POST /api/v3/screen/kyt`", Built-in KYT-OUT, Outbound 1 (default), Critical hits blocked]
-      - [Per banking partner, Same as above, Your copied ruleset, As required, One ruleset per partner]
-    note: Exchange counterparties are exempt by default. Hops, thresholds and rules are all adjustable, and every screening is snapshotted.
 
   - type: cases
     eyebrow: Customers
@@ -83,19 +66,6 @@ sections:
         title: A Payment Company's Comparison
         text: Broken down transfer by transfer, the funds on the risky paths flowed backwards in time. The customer's money could not have come from the risky address.
     note: Customer names withheld for confidentiality.
-
-  - type: cards
-    tone: alt
-    eyebrow: Related products
-    title: What Payments Teams Use
-    columns: 3
-    items:
-      - { title: Transaction Screening (KYT), text: Source on the way in, destination on the way out., href: /products/kyt/ }
-      - { title: Address Screening (KYA), text: Check the payer before OTC or merchant receipts., href: /products/kya/ }
-      - { title: Sanctions Screening, text: Official lists in under a second., href: /products/sanctions/ }
-      - { title: Rulesets & Scoring, text: One ruleset per banking partner, thresholds as required., href: /products/rulesets/ }
-      - { title: Fund Tracing & Investigations, text: When something goes wrong, follow the money across hops and chains., href: /products/investigations/ }
-      - { title: AI Agents (MCP), text: Let analysts screen and explain addresses from their AI assistant., href: /products/agents/ }
 
   - type: faq
     eyebrow: FAQ

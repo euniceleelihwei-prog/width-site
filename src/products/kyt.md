@@ -52,34 +52,6 @@ sections:
       - { label: Triage, title: Four Verdicts, text: "0–19 pass, 20–49 review, 50–79 EDD, 80–100 block. Tune the bands to your risk appetite." }
       - { label: Evidence, title: Snapshot Saved, text: Every screening's parameters and full result are stored as an immutable snapshot for audit. }
 
-  - type: split
-    tone: alt
-    eyebrow: API
-    title: Get the Answer Now, or Hand It to Async
-    text: Calls are synchronous by default and return the score, verdict and hits directly. For very active addresses traced deep, switch to async mode, get a job ID and poll for the result without blocking deposits or payouts.
-    points:
-      - "`POST /api/v3/transaction-transfers`: list the token transfers in a transaction"
-      - "`POST /api/v3/screen/kyt`: screen one transfer"
-      - "`GET /api/v3/screen/result/{jobId}`: read an async result"
-    ctas:
-      - { label: API Reference, href: "https://width.info/api-reference", style: ghost }
-    visual: code
-    code:
-      title: POST /api/v3/screen/kyt
-      body: |
-        curl -X POST https://api.width.live/api/v3/screen/kyt \
-          -H "X-Api-Key: $DART_API_KEY" \
-          -H "Content-Type: application/json" \
-          -d '{
-            "chain_name": "Tron",
-            "tx_id": "9f3c…e71a",
-            "event_index": 0,
-            "screen_direction": "in"
-          }'
-
-        # → data.score.verdict: accept / review / edd / block
-        # → data.hits: rule, hop, amount, share of funds
-
   - type: cards
     eyebrow: Capabilities
     title: What Comes with Every Screening

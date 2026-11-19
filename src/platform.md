@@ -40,17 +40,6 @@ sections:
       - { tag: MCP, title: AI Agents, text: "19 MCP tools so an AI agent can screen, read results and edit rules.", href: /products/agents/ }
 
   - type: split
-    eyebrow: Data
-    title: 200 Million Labeled Addresses, <em>Kept Current</em>
-    text: To judge a transfer you first need to know who every counterparty along the way is. We run our own onchain data layer, with labels maintained by a dedicated intelligence team.
-    points:
-      - "**Exchanges**: over 90% of our 200M labels are exchange addresses, and exchange counterparties can be exempted by default"
-      - "**Stablecoin issuer freezes**: frozen addresses and when they were frozen"
-      - "**Sanctions and enforcement**: OFAC, UN, EU, UK and other official lists, plus law-enforcement freezes"
-      - "**Cybercrime and obfuscation**: hacks, scams, phishing, mixers, darknet markets, gambling and more"
-    visual: flow
-
-  - type: split
     reverse: true
     tone: alt
     eyebrow: Disposition
@@ -61,28 +50,6 @@ sections:
       - Inbound and outbound exposure are weighted separately, and further hops weigh less
       - Every screening is kept as an immutable snapshot
     visual: scores
-
-  - type: table
-    eyebrow: Access
-    title: Four Ways In, One Account
-    head: [Channel, Built For, What It Does]
-    rows:
-      - [Console, Compliance analysts, "Paste an address or transaction, see the fund-flow graph, hits and snapshots, manage rulesets"]
-      - [REST API, Your systems, "Sync calls return the result; async mode returns a job ID to poll"]
-      - [MCP, AI agents, "19 tools for Claude, Cursor, Codex and other agents"]
-      - [CSV batch, Back-screening, "Import a batch of addresses for historical review or a parallel test"]
-    note: Console, API and MCP share one account, one quota and the same snapshots.
-
-  - type: cards
-    eyebrow: Width platform
-    title: Onchain and Offchain Compliance in One Place
-    lead: The Width compliance platform adds case management, KYC / KYB, name screening and Travel Rule, and DART results can live in the same system.
-    columns: 4
-    items:
-      - { title: Case Management, text: "Review, due diligence and reporting records kept together.", href: "https://www.width.com/case-management" }
-      - { title: KYC / KYB, text: "Identity verification and due diligence for individuals and businesses.", href: "https://www.width.com/kyc-onboarding" }
-      - { title: Transaction Monitoring, text: "Rule-based monitoring and alerts for offchain transactions.", href: "https://www.width.com/transaction-monitoring" }
-      - { title: Travel Rule, text: "Originator and beneficiary data exchange for virtual-asset transfers.", href: "https://www.width.com/travel-rule" }
 
   - type: faq
     eyebrow: FAQ

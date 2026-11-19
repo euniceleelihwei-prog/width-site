@@ -65,16 +65,6 @@ sections:
       - [规则, "`list_rules`、`get_rule`、`create_rule`、`update_rule`、`delete_rule`、`highlight_rules`", 查看和编辑规则、标记重点规则]
     note: 每个工具对应同名的 HTTP 接口，返回的数据结构一致。
 
-  - type: cards
-    eyebrow: 接入方式
-    title: 给 AI 和开发者准备好的资料
-    columns: 4
-    items:
-      - { tag: MCP, title: MCP 接入地址, text: "`https://api.width.live/mcp`，用 API Key 鉴权。", href: /developers/, link: 接入说明 }
-      - { tag: Skill, title: Agent Skill, text: 一份现成的技能文件，放进 AI 助手就能按最佳实践调用。, href: "https://width.info/agent/SKILL.md", link: 下载 }
-      - { tag: llms.txt, title: llms.txt, text: 给大模型读的完整接口说明，一个文件讲清全部接口。, href: "https://width.info/llms.txt", link: 查看 }
-      - { tag: OpenAPI, title: OpenAPI 3.1, text: 每个接口的完整 schema，可以直接生成工具或 SDK。, href: "https://width.info/openapi.json", link: 查看 }
-
   - type: faq
     eyebrow: 常见问题
     title: 关于 MCP 接入

@@ -65,16 +65,6 @@ sections:
       - [Rules, "`list_rules`, `get_rule`, `create_rule`, `update_rule`, `delete_rule`, `highlight_rules`", "View and edit rules, flag key rules"]
     note: Each tool mirrors the HTTP endpoint of the same name and returns the same data.
 
-  - type: cards
-    eyebrow: Get connected
-    title: Everything Your Agent Needs
-    columns: 4
-    items:
-      - { tag: MCP, title: MCP Endpoint, text: "`https://api.width.live/mcp`, authenticated with your API key.", href: /developers/, link: Setup Guide }
-      - { tag: Skill, title: Agent Skill, text: A ready-made skill file that teaches an agent how to call DART well., href: "https://width.info/agent/SKILL.md", link: Download }
-      - { tag: llms.txt, title: llms.txt, text: "The whole API described for language models, in one file.", href: "https://width.info/llms.txt", link: View }
-      - { tag: OpenAPI, title: OpenAPI 3.1, text: "A schema for every endpoint, ready for tool or SDK generation.", href: "https://width.info/openapi.json", link: View }
-
   - type: faq
     eyebrow: FAQ
     title: MCP Questions

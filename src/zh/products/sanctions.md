@@ -56,15 +56,6 @@ sections:
       - { tag: 链上, title: 关联地址, text: 名单中列出的链上地址，以及我们归属到这些实体的地址。 }
       - { tag: 动作, title: 执法命令, text: "例如 FinCEN 9714 命令，这类官方动作做成内置规则集。" }
 
-  - type: steps
-    eyebrow: 怎么用
-    title: 放在哪几个节点
-    items:
-      - { label: 开户, title: 绑定地址时, text: 用户绑定提现地址、商户登记收款地址时先查一遍。 }
-      - { label: 转账前, title: 放款签名前, text: 收款地址在名单上，或直接和名单地址往来，就拦下来。 }
-      - { label: 收款后, title: 入账前, text: 查资金来源有没有经过制裁对象，按占比和跳数判断。 }
-      - { label: 回扫, title: 名单更新后, text: 用 CSV 批量把存量地址重新筛一遍，看新名单影响了谁。 }
-
   - type: split
     tone: alt
     eyebrow: 规则集

@@ -56,15 +56,6 @@ sections:
       - { tag: Onchain, title: Linked Addresses, text: Addresses named on the lists and addresses we attribute to those entities. }
       - { tag: Actions, title: Enforcement Orders, text: "Actions such as FinCEN's 9714 order, shipped as built-in rulesets." }
 
-  - type: steps
-    eyebrow: Where it fits
-    title: Where to Run It
-    items:
-      - { label: Onboarding, title: When an Address Is Added, text: "Check withdrawal addresses and merchant payout addresses as they are registered." }
-      - { label: Before send, title: Before Signing a Payout, text: "Stop transfers to listed addresses or to addresses that deal with them directly." }
-      - { label: After receive, title: Before Crediting, text: "Check whether incoming funds passed through a sanctioned party, by hop and share." }
-      - { label: Rescan, title: After a List Update, text: "Re-screen your existing addresses by CSV to see who a new listing affects." }
-
   - type: split
     tone: alt
     eyebrow: Rulesets

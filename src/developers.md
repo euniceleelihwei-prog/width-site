@@ -66,27 +66,6 @@ sections:
       - { tag: Skill, title: Agent Skill, text: "A ready-made skill file to drop into your AI agent.", href: "https://width.info/agent/SKILL.md" }
       - { tag: Open source, title: AMLClaw, text: "An open-source compliance desk built on the DART API, with screening, address and transaction monitoring, and evidence reports.", href: "https://github.com/amlclaw/amlclaw.com" }
 
-  - type: split
-    eyebrow: MCP
-    title: Plug It Into Your AI Agent
-    text: "The MCP endpoint is `https://api.width.live/mcp`, authenticated with `Authorization: Bearer <API key>`. 19 tools cover screening, results, rulesets and rules."
-    ctas:
-      - { label: AI Agents, href: /products/agents/, style: ghost }
-    visual: code
-    code:
-      title: mcp.json
-      body: |
-        {
-          "mcpServers": {
-            "width-dart": {
-              "url": "https://api.width.live/mcp",
-              "headers": {
-                "Authorization": "Bearer <YOUR_API_KEY>"
-              }
-            }
-          }
-        }
-
   - type: cta
     title: Get an API Key and Try It
     text: DART is free until 31 December 2028, and our engineers support your integration directly in a shared group.

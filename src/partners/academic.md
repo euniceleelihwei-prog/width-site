@@ -43,15 +43,6 @@ sections:
       - { label: Step 2, title: Use Review, text: We confirm research or teaching use. Commercial use goes through enterprise access. }
       - { label: Step 3, title: Access Opens, text: We open your API quota, or agree datasets and course work per project. }
 
-  - type: split
-    eyebrow: The one thing we ask
-    title: Credit the Data
-    text: When you publish a paper, report or course material using Width data, please credit Width as the data source. That's our only requirement for academic partners.
-    points:
-      - Academic API quota is for non-commercial use only
-      - Datasets are de-identified at the event level and contain no personal information
-      - Authorship and publication for joint research are agreed per project
-
   - type: faq
     eyebrow: FAQ
     title: Questions Universities Ask

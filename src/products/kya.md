@@ -53,23 +53,6 @@ sections:
       - { label: Direct exposure, title: It Dealt with a Risky Address in One Hop, text: "It received from, or sent to, a risky address directly. Scored by amount and share of funds." }
       - { label: Layered exposure, title: Enough Risky Funds Survive Several Hops, text: "Funds passed through intermediaries, in valid time order, and still clear that hop's threshold. Hops are configurable; we suggest 3 inbound and 1 outbound for daily screening." }
 
-  - type: table
-    tone: alt
-    eyebrow: Specs
-    title: Key Parameters
-    head: [Item, Detail]
-    rows:
-      - [Assets, "USDT and USDC across 11 chains"]
-      - [Chain and token, Detected automatically, or set them yourself]
-      - [Direction, Inbound and outbound each have their own hops and weights]
-      - [Hops, "Configurable. Default 3 inbound, 1 outbound"]
-      - [Time order, "On by default: only funds that arrived before they left are counted"]
-      - [Exchange exemption, On by default; switch it off for strict sanctions screening]
-      - [Ruleset, "Built-in KYA ruleset (72 rules, 9 categories), clone it to edit"]
-      - [Result, "0–100 score, one of four verdicts, hit list, exposures, snapshot ID"]
-      - [Modes, "Sync returns the result directly; async returns a job ID for very active addresses traced deep"]
-      - [Access, "Console, REST API, MCP and CSV batch, all on one account"]
-
   - type: split
     eyebrow: API
     title: One Request, Every Chain

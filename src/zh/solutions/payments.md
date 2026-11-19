@@ -41,12 +41,6 @@ sections:
           - 每一跳必须**先到账、后转出**才算关联，倒着流的路径直接排除
           - 结果列明命中路径、跳数、金额、占比和加分
         proof: 某支付公司实测：同一地址，另一款工具判「中低风险、需复核」，DART 判 0 分通过。逐笔拆开，那些风险资金在时间上根本流不过来。
-      - problem: 不同的合作银行，要求不一样
-        detail: 每家合作银行、卡组织对风险类别和阈值的要求都不同。
-        solution: |
-          - **规则集可以按合作方单独配置**：复制内置规则集，改条件和分值，各自独立保存
-          - 每次筛查记录用的是哪一套规则集，对账和审计都清楚
-        proof: 每次筛查存为不可篡改的快照，可通过 API 批量拉取。
 
   - type: steps
     tone: alt
@@ -57,17 +51,6 @@ sections:
       - { label: KYT-IN, title: 筛资金来源, text: 按时间顺序向上游追，匹配规则集，给出 0–100 分和处置建议。 }
       - { label: 处置, title: 按档位分流, text: 通过直接充卡；复核、加强尽调进人工队列；拦截则退回或冻结。 }
       - { label: 出金, title: 法币出金前复查, text: 出金或商户结算前，对目标地址和资金做一次筛查，结果存快照。 }
-
-  - type: table
-    eyebrow: 推荐配置
-    title: 支付和 U 卡业务常用接入方式
-    head: [节点, 接口, 规则集, 跳数, 说明]
-    rows:
-      - [充卡、入金前, "`POST /api/v3/screen/kyt`", 内置 KYT-IN + 默认评分规则集, 流入 3 跳（默认）, 资金来源分档处置]
-      - [OTC 收款、商户收款, "`POST /api/v3/screen/kya/multi`", AML KYA Default, 默认, 一次筛完对方地址的全部链和币种]
-      - [出金、结算前, "`POST /api/v3/screen/kyt`", 内置 KYT-OUT, 流出 1 跳（默认）, 命中严重规则直接拦截]
-      - [按合作银行定制, 同上, 复制后的自定义规则集, 按要求配置, 每家合作方一套规则集]
-    note: 交易所对手方默认豁免；跳数、阈值和规则都可以调整。每次筛查自动生成快照。
 
   - type: cases
     eyebrow: 案例
@@ -83,19 +66,6 @@ sections:
         title: 某支付公司的一次对比
         text: 逐笔拆开后发现，那些风险路径上的资金在时间上是倒着流的，客户的资金不可能来自风险地址。
     note: 案例均匿名展示。
-
-  - type: cards
-    tone: alt
-    eyebrow: 相关产品
-    title: 支付业务会用到的能力
-    columns: 3
-    items:
-      - { title: 交易筛查 KYT, text: 入金看来源，出金看去向。, href: /products/kyt/ }
-      - { title: 地址筛查 KYA, text: OTC 和商户收款前查对方地址。, href: /products/kya/ }
-      - { title: 制裁筛查, text: 官方名单 1 秒内返回。, href: /products/sanctions/ }
-      - { title: 规则集与评分, text: 每家合作银行一套规则集，阈值按要求配置。, href: /products/rulesets/ }
-      - { title: 资金追踪与调查, text: 出了问题，跨跳、跨链追资金去向。, href: /products/investigations/ }
-      - { title: AI 助手（MCP）, text: 合规人员让 AI 直接查地址、解释结果。, href: /products/agents/ }
 
   - type: faq
     eyebrow: 常见问题
