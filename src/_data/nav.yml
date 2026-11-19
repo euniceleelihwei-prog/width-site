@@ -1,52 +1,77 @@
 # 顶部导航与页脚。href 写英文路径，中文页面会自动加 /zh 前缀；外链写完整地址。
 # 顶部菜单只放 DART 自己的五项：产品、解决方案、数据、合作、价格。文章、手册、关于、联系放在页脚。
+# 每个菜单项的 icon 对应 _data/icons.yml 里的名字；feature 是下拉菜单右侧的推荐卡片：
+#   type: latest 自动取最新一篇文章；type: offer 用这里写的文字。不要 feature 就删掉这一段。
 main:
   - label: { en: Products, zh: 产品 }
+    feature:
+      type: latest
+      kicker: { en: Latest article, zh: 最新文章 }
     groups:
       - title: { en: Screening, zh: 筛查 }
         items:
           - label: { en: Platform Overview, zh: 平台总览 }
             desc: { en: "Data, tracing, rules and scoring in one engine", zh: 数据、追踪、规则、评分一套引擎 }
+            icon: layers
             href: /platform/
           - label: { en: Address Screening (KYA), zh: 地址筛查 KYA }
             desc: { en: Is this address safe to deal with?, zh: 这个地址能不能打交道 }
+            icon: target
             href: /products/kya/
           - label: { en: Transaction Screening (KYT), zh: 交易筛查 KYT }
             desc: { en: Where did this deposit come from?, zh: 这笔充值从哪来、提现到哪去 }
+            icon: swap
             href: /products/kyt/
           - label: { en: Sanctions Screening, zh: 制裁筛查 }
             desc: { en: "Official lists, answered in under a second", zh: 官方名单，1 秒内返回 }
+            icon: shield
             href: /products/sanctions/
       - title: { en: Go Deeper, zh: 进阶能力 }
         items:
           - label: { en: Fund Tracing & Investigations, zh: 资金追踪与调查 }
             desc: { en: Follow the money across hops and chains, zh: 跨跳、跨链追资金去向 }
+            icon: trace
             href: /products/investigations/
           - label: { en: Rulesets & Scoring, zh: 规则集与评分 }
             desc: { en: "Your risk appetite, written as rules", zh: 把你的风险偏好写成规则 }
+            icon: sliders
             href: /products/rulesets/
           - label: { en: AI Agents (MCP), zh: AI 助手（MCP） }
             desc: { en: "19 tools for any AI agent", zh: "19 个工具，AI 直接调用" }
+            icon: spark
             href: /products/agents/
           - label: { en: Developers & API, zh: 开发者与 API }
             desc: { en: "API, MCP, OpenAPI and llms.txt", zh: API、MCP、OpenAPI、llms.txt }
+            icon: code
             href: /developers/
 
   - label: { en: Solutions, zh: 解决方案 }
+    feature:
+      type: offer
+      big: { en: Free, zh: 免费 }
+      sub: { en: until 31 Dec 2028, zh: 至 2028 年 12 月 31 日 }
+      title: { en: Connect DART and pay nothing until 2029, zh: 接入 DART，免费用到 2028 年底 }
+      text: { en: "Console, API and MCP all included", zh: 控制台、API、MCP 全部可用 }
+      go: { en: "See what's included", zh: 看包含什么 }
+      href: /pricing/
     groups:
       - title: { en: By Industry, zh: 按行业 }
         items:
           - label: { en: Exchanges, zh: 交易所 }
             desc: { en: Screen deposits and withdrawals without false alarms, zh: 充提筛查，不误报不误伤 }
+            icon: bars
             href: /solutions/exchanges/
           - label: { en: Wallets, zh: 钱包 }
             desc: { en: Warn users before they send or receive, zh: 转账前、收款后提醒用户 }
+            icon: wallet
             href: /solutions/wallets/
           - label: { en: Payments & Card Issuers, zh: 支付与 U 卡 }
             desc: { en: Keep tainted USDT out of fiat rails, zh: 不让问题资金进法币通道 }
+            icon: card
             href: /solutions/payments/
           - label: { en: Custody & WaaS, zh: 托管与 WaaS }
             desc: { en: KYT built in for every client you serve, zh: 下游客户开箱即有 KYT }
+            icon: lock
             href: /solutions/custody/
 
   - label: { en: Data, zh: 数据 }
@@ -58,12 +83,15 @@ main:
         items:
           - label: { en: Law Enforcement, zh: 执法机构 }
             desc: { en: "Tracing, case support and evidence packs", zh: 追踪、案件协助、证据包 }
+            icon: badge
             href: /partners/lea/
           - label: { en: Universities & Research, zh: 高校与研究 }
             desc: { en: Academic API access and datasets, zh: 学术 API 额度与数据集 }
+            icon: cap
             href: /partners/academic/
           - label: { en: Address Check for Individuals, zh: 个人地址体检 }
             desc: { en: Check an address before you receive USDT, zh: 收 U 前先查一下 }
+            icon: person
             href: /check/
 
   - label: { en: Pricing, zh: 价格 }

@@ -152,14 +152,35 @@ a:hover .link-arrow::after, .link-arrow:hover::after { transform: translateX(4px
   transition: opacity .18s, transform .18s, visibility .18s;
 }
 .nav-item.open > .menu { opacity: 1; visibility: visible; transform: none; }
-.menu-inner { display: grid; gap: 8px; background: #fff; border: 1px solid var(--line); border-radius: 0; padding: 14px; box-shadow: 0 28px 64px -26px rgba(4, 16, 43, .38); }
-.menu-inner.cols-2 { grid-template-columns: repeat(2, 280px); }
+/* 下拉菜单：与 width.com 一致。每项一个线条图标，悬停时右侧出现箭头；右边可以放一张推荐卡片（.menu-feature）。 */
+.menu-inner { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; gap: 0 14px; align-items: stretch; background: #fff; border: 1px solid var(--line); padding: 12px; box-shadow: 0 28px 64px -26px rgba(4, 16, 43, .38); }
+.menu-group { min-width: 236px; }
 .menu-title { font-size: 12.5px; font-weight: 600; color: var(--text-3); margin: 6px 10px 6px; }
 .menu ul { list-style: none; margin: 0; padding: 0; }
-.menu a { display: block; padding: 9px 10px; border-radius: 0; }
-.menu a:hover { background: var(--surface-2); }
-.menu-label { display: block; font-weight: 600; font-size: 15px; color: var(--text); }
-.menu-desc { display: block; font-size: 13px; color: var(--text-3); line-height: 1.45; margin-top: 2px; }
+.menu-group a { display: flex; align-items: center; gap: 11px; padding: 10px 10px; color: var(--text); }
+.menu-group a::after { content: "\2192"; margin-left: auto; padding-left: 18px; font-size: 14px; line-height: 1; color: var(--accent); opacity: 0; transform: translateX(-6px); transition: opacity .18s ease, transform .18s ease; }
+.menu-group a:hover, .menu-group a:focus-visible { background: #f4f7fd; }
+.menu-group a:hover::after, .menu-group a:focus-visible::after { opacity: 1; transform: none; }
+.menu-group a:hover .menu-label { color: var(--accent); }
+.nav-ico { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--accent); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.menu-text { display: block; min-width: 0; }
+.menu-label { display: block; font-weight: 500; font-size: 15px; color: var(--text); white-space: nowrap; }
+.menu-desc { display: none; }   /* 说明文字保留在 nav.yml 里，菜单里不显示，保持和 width.com 一样简洁 */
+.menu-feature { display: flex; flex-direction: column; gap: 10px; box-sizing: border-box; width: 252px; padding: 12px 12px 14px; background: #f4f7fd; color: var(--text); white-space: normal; transition: background-color .18s ease; }
+.menu-feature:hover, .menu-feature:focus-visible { background: #eaf0fc; }
+.menu-feature-pic { display: block; overflow: hidden; background: #fff; aspect-ratio: 16 / 9; }
+.menu-feature-pic img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+.menu-feature:hover .menu-feature-pic img { transform: scale(1.04); }
+.menu-feature-pic.is-type { display: grid; place-content: center; text-align: center; background: linear-gradient(135deg, var(--accent), var(--dark)); color: #fff; }
+.menu-feature-pic.is-type b { font-size: 34px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
+.menu-feature-pic.is-type i { font-style: normal; font-size: 12.5px; font-weight: 500; opacity: .9; margin-top: 4px; }
+.menu-feature-kicker { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: -4px; }
+.menu-feature strong { font-size: 14px; line-height: 1.4; font-weight: 700; }
+.menu-feature small { margin-top: -4px; font-size: 12.5px; line-height: 1.45; color: var(--text-2); }
+.menu-feature-go { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--accent); }
+.menu-feature-go::after { content: " \2192"; display: inline-block; margin-left: 4px; transition: transform .2s ease; }
+.menu-feature:hover .menu-feature-go::after { transform: translateX(4px); }
+@media (max-width: 1180px) { .menu-feature { display: none; } }
 .nav-actions { display: flex; align-items: center; gap: 14px; }
 .lang-switch, .nav-signin { font-size: 14px; color: var(--text); }
 .lang-switch:hover, .nav-signin:hover { color: var(--accent); }
@@ -532,7 +553,9 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
   .nav-link { width: 100%; justify-content: space-between; height: 56px; font-size: 17px; padding: 0 4px; }
   .menu { position: static; opacity: 1; visibility: visible; transform: none; display: none; min-width: 0; }
   .nav-item.open > .menu { display: block; }
-  .menu-inner, .menu-inner.cols-2 { grid-template-columns: 1fr; background: none; border: 0; box-shadow: none; padding: 0 0 12px; }
+  .menu-inner { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: 1fr; background: none; border: 0; box-shadow: none; padding: 0 0 12px; }
+  .menu-group a::after { display: none; }
+  .menu-label { white-space: normal; }
   .nav-actions { flex-wrap: wrap; }
   .nav-actions .btn { width: 100%; height: 48px; }
   body.nav-open { overflow: hidden; }
