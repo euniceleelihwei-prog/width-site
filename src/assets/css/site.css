@@ -206,7 +206,12 @@ a:hover .link-arrow::after, .link-arrow:hover::after { transform: translateX(4px
 .hero.has-visual .hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
 .hero-copy { max-width: 760px; }
 .hero.has-visual h1 { font-size: clamp(36px, 4.2vw, 56px); }
-h1, h2 { text-wrap: balance; }
+/* 不留孤字：标题和短标签用 balance（各行长度接近），正文用 pretty（最后一行不只剩一两个字）。
+   中文再加 auto-phrase，尽量不把一个词拆到两行。旧浏览器不认识这些属性时按原样换行。 */
+h1, h2, h3, h4, summary, .stat-label, .tab-list button, .step-label, .menu-feature strong, .case-metric, .chip { text-wrap: balance; }
+p, li, td, th, dd, .lead, .hero-lead, .faq-a, .problem-a > div { text-wrap: pretty; }
+.lang-zh :is(h1, h2, h3, h4, summary, p, li, td, .lead, .stat-label) { word-break: auto-phrase; }
+.ph { display: inline-block; }   /* 中文标题的分段，由 site.js 生成 */
 .hero-lead { font-size: clamp(18px, 1.6vw, 21px); color: var(--text-2); margin-top: 20px; max-width: 640px; }
 .hero-note { margin-top: 18px; font-size: 14px; color: var(--text-3); }
 .hero-note a { color: var(--text-2); text-decoration: underline; text-underline-offset: 3px; }
