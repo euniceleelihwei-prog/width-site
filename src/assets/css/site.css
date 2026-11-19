@@ -112,7 +112,6 @@ a:hover .link-arrow::after, .link-arrow:hover::after { transform: translateX(4px
   clip-path: var(--chip); transition: background-color .18s ease, color .18s ease, border-color .18s ease;
 }
 .lang-zh .btn { font-size: 14.5px; letter-spacing: .02em; }
-.lang-en .btn { text-transform: capitalize; }   /* width.com 的按钮用 Title Case */
 .btn:focus-visible { outline: none; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .9); }
 .btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .btn-primary:hover { background: var(--dark); border-color: var(--dark); }
