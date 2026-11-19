@@ -8,7 +8,7 @@ breadcrumb:
 sections:
   - type: hero
     compact: true
-    eyebrow: SOLUTIONS · 解决方案
+    eyebrow: 解决方案
     title: 同一套引擎，<em>按你的业务节点用</em>
     lead: 交易所关心充提，钱包关心转账前后，支付公司关心资金进不进法币通道，托管机构关心下游客户。先找到你的位置，再看 DART 怎么解决你的问题。
   - type: cards

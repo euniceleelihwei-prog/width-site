@@ -53,10 +53,10 @@ sections:
     eyebrow: Where DART sits
     title: A check before money reaches fiat
     items:
-      - { label: TOP-UP, title: Customer funds a card, text: Stablecoins arrive and you have the transaction hash. }
+      - { label: Top-up, title: Customer funds a card, text: Stablecoins arrive and you have the transaction hash. }
       - { label: KYT-IN, title: Screen the source, text: Trace upstream in time order against your ruleset for a 0–100 score and a disposition. }
-      - { label: DECIDE, title: Route by level, text: Pass tops up the card; review and EDD go to a queue; block returns or freezes funds. }
-      - { label: OFF-RAMP, title: Check again before payout, text: Screen the target and funds before fiat payout or merchant settlement, and keep the snapshot. }
+      - { label: Decide, title: Route by level, text: Pass tops up the card; review and EDD go to a queue; block returns or freezes funds. }
+      - { label: Off-ramp, title: Check again before payout, text: Screen the target and funds before fiat payout or merchant settlement, and keep the snapshot. }
 
   - type: table
     eyebrow: Recommended setup

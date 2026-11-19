@@ -21,10 +21,10 @@ sections:
     title: Every layer is our own
     lead: Data, labels, rules and scoring are all built in-house, so they can follow your policy and every conclusion can be traced to its source.
     items:
-      - { label: LAYER 1, title: Onchain data, text: "USDT and USDC flows on 11 chains, updated in near real time." }
-      - { label: LAYER 2, title: Address labels, text: "200M labeled addresses, over 90% of them exchange addresses, plus continuously updated sanctions, freeze and hack labels." }
-      - { label: LAYER 3, title: Time-ordered tracing, text: "Hop-by-hop expansion upstream and downstream, keeping only paths that work in time." }
-      - { label: LAYER 4, title: Rules and scoring, text: "Path-matching rules flag violations; the scoring ruleset turns them into a 0–100 score and a disposition." }
+      - { label: Layer 1, title: Onchain data, text: "USDT and USDC flows on 11 chains, updated in near real time." }
+      - { label: Layer 2, title: Address labels, text: "200M labeled addresses, over 90% of them exchange addresses, plus continuously updated sanctions, freeze and hack labels." }
+      - { label: Layer 3, title: Time-ordered tracing, text: "Hop-by-hop expansion upstream and downstream, keeping only paths that work in time." }
+      - { label: Layer 4, title: Rules and scoring, text: "Path-matching rules flag violations; the scoring ruleset turns them into a 0–100 score and a disposition." }
 
   - type: cards
     tone: alt
@@ -34,9 +34,9 @@ sections:
     items:
       - { tag: KYA, title: Address screening, text: "Is this address safe to deal with? Self-hits, direct exposure and indirect exposure in one view.", href: /products/kya/ }
       - { tag: KYT, title: Transaction screening, text: "Where did this deposit come from, and where is this withdrawal going? Each direction judged on its own.", href: /products/kyt/ }
-      - { tag: SANCTIONS, title: Sanctions screening, text: "Entities, individuals, companies and addresses on official sanctions lists, answered in under a second.", href: /products/sanctions/ }
-      - { tag: TRACING, title: Fund tracing & investigations, text: "Follow funds across hops and chains, and export a tracing report.", href: /products/investigations/ }
-      - { tag: RULES, title: Rulesets & scoring, text: "72 open rules and an editable scoring matrix. Your risk appetite, written as rules.", href: /products/rulesets/ }
+      - { tag: Sanctions, title: Sanctions screening, text: "Entities, individuals, companies and addresses on official sanctions lists, answered in under a second.", href: /products/sanctions/ }
+      - { tag: Tracing, title: Fund tracing & investigations, text: "Follow funds across hops and chains, and export a tracing report.", href: /products/investigations/ }
+      - { tag: Rules, title: Rulesets & scoring, text: "72 open rules and an editable scoring matrix. Your risk appetite, written as rules.", href: /products/rulesets/ }
       - { tag: MCP, title: AI agents, text: "19 MCP tools so an AI agent can screen, read results and edit rules.", href: /products/agents/ }
 
   - type: split

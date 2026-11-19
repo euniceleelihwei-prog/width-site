@@ -3,7 +3,7 @@
 # 数字由数据团队定期更新（可以手改这个文件，也可以写脚本从 API 生成）。
 freeze:
   sample: true
-  eyebrow: { en: "FREEZE TRACKER · DAILY", zh: "FREEZE TRACKER · 每日更新" }
+  eyebrow: { en: "Freeze tracker · Daily", zh: "每日更新" }
   title: { en: Stablecoin freeze tracker, zh: 稳定币冻结榜 }
   desc:
     en: Addresses frozen by stablecoin issuers and the amounts held at the time of freezing, by chain and by week.
@@ -23,7 +23,7 @@ freeze:
 
 incidents:
   sample: true
-  eyebrow: { en: "SECURITY INCIDENTS · WEEKLY", zh: "SECURITY INCIDENTS · 每周更新" }
+  eyebrow: { en: "Security incidents · Weekly", zh: "每周更新" }
   title: { en: Security incidents, zh: 安全事件榜 }
   desc:
     en: Hacks and exploits ranked by loss, with where the funds are now. Attribution is only stated when officially confirmed.
@@ -42,7 +42,7 @@ incidents:
 
 sanctions:
   sample: true
-  eyebrow: { en: "SANCTIONS & ENFORCEMENT · ON EVERY NEW ACTION", zh: "SANCTIONS & ENFORCEMENT · 有新动作即更新" }
+  eyebrow: { en: "Sanctions and enforcement · On every new action", zh: "有新动作即更新" }
   title: { en: Sanctions & enforcement actions, zh: 制裁与执法动作 }
   desc:
     en: New listings and orders from OFAC, FinCEN, the UN and other authorities, with the onchain addresses they involve and when DART added them.

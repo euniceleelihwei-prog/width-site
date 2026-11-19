@@ -5,7 +5,7 @@ fullTitle: Width DART | Stablecoin AML screening, KYT and address risk for USDT 
 description: DART screens USDT and USDC flows in time order, so exchanges, wallets and payment companies keep tainted funds out without false alarms. Sanctions checks in under a second. Free until 31 December 2028.
 sections:
   - type: hero
-    eyebrow: WIDTH DART · STABLECOIN RISK SCREENING
+    eyebrow: WIDTH DART · Stablecoin risk screening
     title: Know where the money came from <em>before you accept it</em>
     lead: DART is onchain risk screening built for USDT and USDC. It follows funds hop by hop in time order, so only money that actually arrived before it moved on counts as exposure. Exchanges, wallets and payment companies use it to keep bad funds out without blocking good customers.
     ctas:
@@ -136,11 +136,11 @@ sections:
     title: One screening, four steps to a decision
     lead: The path-matching ruleset decides what counts as a violation. The scoring ruleset decides how serious it is and what to do. You can change both.
     items:
-      - { label: INPUT, title: Submit an address or transaction, text: An address (KYA) or a transaction hash (KYT). Chain and token are detected for you. }
-      - { label: STEP 01, title: Build the fund-flow graph in time order, text: Expand upstream and downstream hop by hop with a label on every counterparty; keep only paths that work in time. }
-      - { label: STEP 02, title: Match the rules, text: 72 rules decide which fund-flow paths count as violations, and which rule each one breaks. }
-      - { label: STEP 03, title: Score by share of funds, text: "Direction, hop distance, severity and share of funds become a 0–100 score." }
-      - { label: OUTPUT, title: A disposition with evidence, text: "Pass, review, EDD or block, with the hit list and a snapshot." }
+      - { label: Input, title: Submit an address or transaction, text: An address (KYA) or a transaction hash (KYT). Chain and token are detected for you. }
+      - { label: Step 1, title: Build the fund-flow graph in time order, text: Expand upstream and downstream hop by hop with a label on every counterparty; keep only paths that work in time. }
+      - { label: Step 2, title: Match the rules, text: 72 rules decide which fund-flow paths count as violations, and which rule each one breaks. }
+      - { label: Step 3, title: Score by share of funds, text: "Direction, hop distance, severity and share of funds become a 0–100 score." }
+      - { label: Output, title: A disposition with evidence, text: "Pass, review, EDD or block, with the hit list and a snapshot." }
 
   - type: split
     eyebrow: Explainable

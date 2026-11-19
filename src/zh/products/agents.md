@@ -10,7 +10,7 @@ breadcrumb:
 sections:
   - type: hero
     compact: true
-    eyebrow: FOR AI AGENTS · AI 助手
+    eyebrow: AI 助手
     title: 一句话，<br><em>让 AI 帮你查地址</em>
     lead: 「帮我查一下这个地址能不能收」「这笔充值为什么被判复核」「把第 3 跳的门槛调到 15%」。DART 开放 MCP，AI 助手直接调用筛查、读结果、改规则，和控制台、API 用同一个账号、同一批快照。
     ctas:

@@ -10,7 +10,7 @@ breadcrumb:
 sections:
   - type: hero
     compact: true
-    eyebrow: SANCTIONS · 制裁筛查
+    eyebrow: 制裁筛查
     title: 对方在不在制裁名单上，<br><em>1 秒内给答案</em>
     lead: 制裁是合规的底线，也是最不能等的检查。DART 用自建的制裁库查地址、实体、个人和公司，1 秒内返回；官方有新动作，我们第一时间做成内置规则集，你直接选用：FinCEN 9714 命令发布当天就上线了。
     ctas:

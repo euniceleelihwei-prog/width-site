@@ -39,9 +39,9 @@ sections:
     eyebrow: How to apply
     title: Three steps to start
     items:
-      - { label: STEP 01, title: Apply, text: Apply from a university email with a supervisor or project description. }
-      - { label: STEP 02, title: Use review, text: We confirm research or teaching use. Commercial use goes through enterprise access. }
-      - { label: STEP 03, title: Access opens, text: We open your API quota, or agree datasets and course work per project. }
+      - { label: Step 1, title: Apply, text: Apply from a university email with a supervisor or project description. }
+      - { label: Step 2, title: Use review, text: We confirm research or teaching use. Commercial use goes through enterprise access. }
+      - { label: Step 3, title: Access opens, text: We open your API quota, or agree datasets and course work per project. }
 
   - type: split
     eyebrow: The one thing we ask

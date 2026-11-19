@@ -54,10 +54,10 @@ sections:
     title: One check on the way in, one on the way out
     lead: Deposits are screened inbound and withdrawals outbound, each with its own ruleset and hop depth.
     items:
-      - { label: DEPOSIT, title: Funds land onchain, text: A user's deposit confirms and your system has the transaction hash. }
+      - { label: Deposit, title: Funds land onchain, text: A user's deposit confirms and your system has the transaction hash. }
       - { label: KYT-IN, title: Screen the source, text: Trace upstream in time order against the inbound ruleset and get a 0–100 score. }
-      - { label: DECIDE, title: Credit or hold, text: Pass credits straight away; review and EDD go to a queue; block freezes and escalates. }
-      - { label: WITHDRAWAL, title: Screen the destination, text: Before release, run KYA or KYT-OUT on the target address. Critical hits such as sanctions are blocked. }
+      - { label: Decide, title: Credit or hold, text: Pass credits straight away; review and EDD go to a queue; block freezes and escalates. }
+      - { label: Withdrawal, title: Screen the destination, text: Before release, run KYA or KYT-OUT on the target address. Critical hits such as sanctions are blocked. }
 
   - type: table
     eyebrow: Recommended setup

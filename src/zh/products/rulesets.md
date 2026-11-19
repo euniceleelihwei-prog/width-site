@@ -10,7 +10,7 @@ breadcrumb:
 sections:
   - type: hero
     compact: true
-    eyebrow: RULESETS & SCORING · 规则集与评分
+    eyebrow: 规则集与评分
     title: 把你的风险偏好，<br><em>写成规则</em>
     lead: 什么样的资金链路算违规、违规了扣多少分、多少分该拦，每家机构的口径都不一样。DART 用两套规则集把这件事拆开：路径匹配规则集判断「算不算违规」，评分规则集决定「有多严重、怎么处置」。两套都公开、都能改。
     ctas:

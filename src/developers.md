@@ -33,10 +33,10 @@ sections:
     eyebrow: Quickstart
     title: Your first screening in four steps
     items:
-      - { label: STEP 01, title: Get an API key, text: "Create a key in the console and send it in the X-Api-Key header." }
-      - { label: STEP 02, title: Screen an address, text: "POST /api/v3/screen/kya returns the result synchronously by default; add \"mode\": \"async\" to get a job ID." }
-      - { label: STEP 03, title: Read the result, text: "Check score.verdict and hits. Every hit carries its rule, hop, amount and share, and the snapshot can be pulled by ID any time." }
-      - { label: STEP 04, title: Tune it to your policy, text: "Clone a built-in ruleset, edit conditions and weights, and pass ruleset_id and scoring_ruleset_id when you screen." }
+      - { label: Step 1, title: Get an API key, text: "Create a key in the console and send it in the X-Api-Key header." }
+      - { label: Step 2, title: Screen an address, text: "POST /api/v3/screen/kya returns the result synchronously by default; add \"mode\": \"async\" to get a job ID." }
+      - { label: Step 3, title: Read the result, text: "Check score.verdict and hits. Every hit carries its rule, hop, amount and share, and the snapshot can be pulled by ID any time." }
+      - { label: Step 4, title: Tune it to your policy, text: "Clone a built-in ruleset, edit conditions and weights, and pass ruleset_id and scoring_ruleset_id when you screen." }
 
   - type: table
     tone: alt
@@ -59,12 +59,12 @@ sections:
     title: Docs and tools
     columns: 3
     items:
-      - { tag: DOCS, title: API reference, text: "Every endpoint's parameters, responses and examples, with a try-it panel.", href: "https://width.info/api-reference" }
-      - { tag: MANUAL, title: Product manual, text: "Both rulesets, the scoring formula and the console, explained with screenshots.", href: "https://width.info/docs" }
-      - { tag: OPENAPI, title: OpenAPI 3.1, text: "Schemas for every endpoint, for SDK or tool generation.", href: "https://width.info/openapi.json" }
-      - { tag: LLMS, title: llms.txt, text: "API notes written for language models; llms-full.txt has everything in one file.", href: "https://width.info/llms.txt" }
-      - { tag: SKILL, title: Agent skill, text: "A ready-made skill file to drop into your AI agent.", href: "https://width.info/agent/SKILL.md" }
-      - { tag: OPEN SOURCE, title: AMLClaw, text: "An open-source compliance desk built on the DART API, with screening, address and transaction monitoring, and evidence reports.", href: "https://github.com/amlclaw/amlclaw.com" }
+      - { tag: Docs, title: API reference, text: "Every endpoint's parameters, responses and examples, with a try-it panel.", href: "https://width.info/api-reference" }
+      - { tag: Manual, title: Product manual, text: "Both rulesets, the scoring formula and the console, explained with screenshots.", href: "https://width.info/docs" }
+      - { tag: OpenAPI, title: OpenAPI 3.1, text: "Schemas for every endpoint, for SDK or tool generation.", href: "https://width.info/openapi.json" }
+      - { tag: llms.txt, title: llms.txt, text: "API notes written for language models; llms-full.txt has everything in one file.", href: "https://width.info/llms.txt" }
+      - { tag: Skill, title: Agent skill, text: "A ready-made skill file to drop into your AI agent.", href: "https://width.info/agent/SKILL.md" }
+      - { tag: Open source, title: AMLClaw, text: "An open-source compliance desk built on the DART API, with screening, address and transaction monitoring, and evidence reports.", href: "https://github.com/amlclaw/amlclaw.com" }
 
   - type: split
     eyebrow: MCP

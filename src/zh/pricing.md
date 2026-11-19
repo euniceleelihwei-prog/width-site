@@ -8,7 +8,7 @@ breadcrumb:
 sections:
   - type: hero
     compact: true
-    eyebrow: PRICING · 价格
+    eyebrow: 价格
     title: 接入 DART，<em>免费用到 2028 年 12 月 31 日</em>
     lead: 给的是完整产品和工程师支持，不是试用版。我们希望更多机构用上按时间顺序判断风险的筛查方式，用真实业务把产品打磨好。
     ctas:

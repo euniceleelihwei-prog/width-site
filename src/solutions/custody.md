@@ -52,10 +52,10 @@ sections:
     eyebrow: Where DART sits
     title: "Three checkpoints: deposit, sweep and withdrawal"
     items:
-      - { label: DEPOSIT, title: A client wallet receives funds, text: A sub-address receives USDT or USDC and you have the transaction hash. }
+      - { label: Deposit, title: A client wallet receives funds, text: A sub-address receives USDT or USDC and you have the transaction hash. }
       - { label: KYT-IN, title: Screen before sweeping, text: Screen the source against the client's ruleset; pause the sweep on a hit and hand it to the client. }
-      - { label: SWEEP, title: Clean funds move on, text: Passed funds sweep as normal; results and snapshots are kept per client. }
-      - { label: WITHDRAWAL, title: Screen the destination, text: When a client withdraws, run KYA or KYT-OUT on the target address. }
+      - { label: Sweep, title: Clean funds move on, text: Passed funds sweep as normal; results and snapshots are kept per client. }
+      - { label: Withdrawal, title: Screen the destination, text: When a client withdraws, run KYA or KYT-OUT on the target address. }
 
   - type: table
     eyebrow: Recommended setup

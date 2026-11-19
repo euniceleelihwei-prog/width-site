@@ -53,10 +53,10 @@ sections:
     eyebrow: Where DART sits
     title: Two moments, one clear message
     items:
-      - { label: BEFORE SEND, title: User enters a recipient, text: Call address screening before the confirm screen. }
-      - { label: WARN, title: Warn by level, text: Pass stays silent. Higher levels show which public source matched; the user decides. }
-      - { label: AFTER RECEIVE, title: New funds arrive, text: Screen the incoming transfer inbound to check where it came from. }
-      - { label: ALERT, title: Flag a bad source, text: Notify the user when funds trace to frozen, hacked or scam money, before a freeze spreads. }
+      - { label: Before send, title: User enters a recipient, text: Call address screening before the confirm screen. }
+      - { label: Warn, title: Warn by level, text: Pass stays silent. Higher levels show which public source matched; the user decides. }
+      - { label: After receive, title: New funds arrive, text: Screen the incoming transfer inbound to check where it came from. }
+      - { label: Alert, title: Flag a bad source, text: Notify the user when funds trace to frozen, hacked or scam money, before a freeze spreads. }
 
   - type: table
     eyebrow: Recommended setup

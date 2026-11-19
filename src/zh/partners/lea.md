@@ -41,10 +41,10 @@ sections:
     eyebrow: 申请流程
     title: 四步开通
     items:
-      - { label: STEP 01, title: 提交申请, text: 使用机构邮箱提交申请，附公函或证件。 }
-      - { label: STEP 02, title: 人工审核, text: 我们核实机构身份和申请用途。 }
-      - { label: STEP 03, title: 开通调查员账号, text: 审核通过后开通账号，每次查询都留痕。 }
-      - { label: STEP 04, title: 案件协作, text: 重点案件可申请分析师协助和证据包。 }
+      - { label: 第 1 步, title: 提交申请, text: 使用机构邮箱提交申请，附公函或证件。 }
+      - { label: 第 2 步, title: 人工审核, text: 我们核实机构身份和申请用途。 }
+      - { label: 第 3 步, title: 开通调查员账号, text: 审核通过后开通账号，每次查询都留痕。 }
+      - { label: 第 4 步, title: 案件协作, text: 重点案件可申请分析师协助和证据包。 }
 
   - type: table
     eyebrow: 合作规则

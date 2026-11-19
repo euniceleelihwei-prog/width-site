@@ -132,18 +132,18 @@ sections:
 
   - type: steps
     id: how
-    eyebrow: HOW IT WORKS · 怎么工作
+    eyebrow: 怎么工作
     title: 一次筛查，四步给结论
     lead: 路径匹配规则集回答「算不算违规」，评分规则集回答「有多严重、怎么处置」。两套规则集都可以按你的口径改。
     items:
-      - { label: INPUT, title: 提交地址或交易, text: 地址（KYA）或交易哈希（KYT），自动识别链和币种。 }
-      - { label: STEP 01, title: 按时间顺序展开资金图, text: 逐跳展开上下游，每个对手方都带标签，只保留时间上流得过来的路径。 }
-      - { label: STEP 02, title: 匹配规则, text: 72 条规则判断哪条资金链路算违规、违反了哪一条。 }
-      - { label: STEP 03, title: 按资金占比评分, text: 按方向、跳数、严重度和资金占比算出 0–100 分。 }
-      - { label: OUTPUT, title: 四档处置和证据, text: 通过、复核、加强尽调、拦截，附命中明细和快照。 }
+      - { label: 输入, title: 提交地址或交易, text: 地址（KYA）或交易哈希（KYT），自动识别链和币种。 }
+      - { label: 第 1 步, title: 按时间顺序展开资金图, text: 逐跳展开上下游，每个对手方都带标签，只保留时间上流得过来的路径。 }
+      - { label: 第 2 步, title: 匹配规则, text: 72 条规则判断哪条资金链路算违规、违反了哪一条。 }
+      - { label: 第 3 步, title: 按资金占比评分, text: 按方向、跳数、严重度和资金占比算出 0–100 分。 }
+      - { label: 输出, title: 四档处置和证据, text: 通过、复核、加强尽调、拦截，附命中明细和快照。 }
 
   - type: split
-    eyebrow: EXPLAINABLE · 可解释
+    eyebrow: 可解释
     title: 每一分都说得清
     text: 结果不是一个黑盒分数。哪条路径命中、第几跳、多少金额、占资金多少、加了几分，都列在结果里；被排除的路径也写明原因。
     points:
@@ -156,7 +156,7 @@ sections:
 
   - type: cases
     tone: alt
-    eyebrow: IN PRODUCTION · 在生产环境
+    eyebrow: 在生产环境
     title: 已经在用 DART 的机构
     items:
       - tag: 钱包
@@ -178,7 +178,7 @@ sections:
 
   - type: split
     reverse: true
-    eyebrow: FOR AI AGENTS · AI 助手
+    eyebrow: AI 助手
     title: 让 AI 助手直接查地址
     text: DART 开放 MCP，19 个工具覆盖筛查、读取结果、管理规则集。Claude、Cursor、Codex 等 AI 工具接上就能用；控制台、API、MCP 共用一个账号和同一批快照。
     points:
@@ -213,7 +213,7 @@ sections:
       - { tag: 有新动作即更新, title: 制裁与执法动作, text: OFAC、FinCEN、联合国等新增名单，以及涉及的链上地址数。, href: /data/#sanctions, link: 查看榜单 }
 
   - type: posts
-    eyebrow: BLOG · 文章
+    eyebrow: 文章
     title: 最新文章
     limit: 3
 

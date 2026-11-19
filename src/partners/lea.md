@@ -41,10 +41,10 @@ sections:
     eyebrow: How to apply
     title: Four steps to access
     items:
-      - { label: STEP 01, title: Apply, text: Apply from an agency email with an official letter or ID. }
-      - { label: STEP 02, title: Manual review, text: We verify the agency and the purpose of the request. }
-      - { label: STEP 03, title: Investigator account, text: Once approved, your account opens. Every query is logged. }
-      - { label: STEP 04, title: Case collaboration, text: Request analyst support and evidence packs for priority cases. }
+      - { label: Step 1, title: Apply, text: Apply from an agency email with an official letter or ID. }
+      - { label: Step 2, title: Manual review, text: We verify the agency and the purpose of the request. }
+      - { label: Step 3, title: Investigator account, text: Once approved, your account opens. Every query is logged. }
+      - { label: Step 4, title: Case collaboration, text: Request analyst support and evidence packs for priority cases. }
 
   - type: table
     eyebrow: Ground rules
