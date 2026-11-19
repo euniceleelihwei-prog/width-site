@@ -201,7 +201,17 @@ h1, h2 { text-wrap: balance; }
 
 /* == section 通用 ======================================================== */
 .section { padding: var(--section-y) 0; }
-.section.alt { background: var(--tint); }
+/* 版块底色自动交替：白 → 浅蓝 → 白 …（hero 之后第一块是白色，底部 CTA 不参与）。
+   页面文件里的 tone: alt 不再需要，写了也不影响。浅蓝版块里卡片的内嵌块改为白色，避免和背景同色。 */
+main > .section:nth-child(even of .section:not(.cta-section)) {
+  background: var(--tint);
+  --inset: #fff; --card-line: transparent;
+  --card-shadow: 0 0 0 1px rgba(13, 79, 211, .08), 0 20px 48px -30px rgba(7, 34, 89, .3);
+}
+/* 不支持 nth-child(… of …) 的旧浏览器：退回到页面里手写的 tone: alt */
+@supports not selector(:nth-child(1 of .x)) {
+  .section.alt { background: var(--tint); --inset: #fff; --card-line: transparent; --card-shadow: 0 0 0 1px rgba(13, 79, 211, .08), 0 20px 48px -30px rgba(7, 34, 89, .3); }
+}
 .section.tight { padding: calc(var(--section-y) * .6) 0; }
 .section-head { max-width: 880px; margin-bottom: 48px; }
 .section-head .lead { max-width: 680px; }
@@ -235,16 +245,14 @@ h1, h2 { text-wrap: balance; }
 /* == problems ============================================================ */
 /* 三列卡片：上半是问题，下半是解法和证据；用 subgrid 让同一行的上下两半对齐 */
 .problems { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.problem { display: grid; grid-row: span 2; grid-template-rows: subgrid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
+.problem { display: grid; grid-row: span 2; grid-template-rows: subgrid; gap: 0; border: 1px solid var(--card-line, var(--line)); box-shadow: var(--card-shadow, none); border-radius: var(--radius-lg); background: var(--surface); overflow: hidden; }
 .problem-q { padding: 28px 28px 24px; border-bottom: 1px solid var(--line); position: relative; }
 .problem-q::before { content: ""; position: absolute; left: 0; top: 28px; bottom: 24px; width: 3px; background: var(--accent); }
 .problem-index { font-size: 14px; font-weight: 600; color: var(--text-3); display: block; margin-bottom: 10px; }
 .problem-q h3 { font-size: 20px; line-height: 1.35; }
 .problem-q p { color: var(--text-2); font-size: 15.5px; }
 /* 下半块：白底版块里用浅蓝；浅蓝版块里整张卡片都是白色，避免和背景同色 */
-.problem-a { padding: 24px 28px 28px; background: #eef3fc; font-size: 15.5px; }
-.section.alt .problem-a { background: #fff; }
-.section.alt .problem { border-color: transparent; box-shadow: 0 0 0 1px rgba(13, 79, 211, .08), 0 20px 48px -30px rgba(7, 34, 89, .3); }
+.problem-a { padding: 24px 28px 28px; background: var(--inset, #eef3fc); font-size: 15.5px; }
 .problem-a > div { color: var(--text); }
 .problem-a ul { padding-left: 18px; margin: 0; color: var(--text-2); }
 .problem-a li { margin-bottom: 6px; }
