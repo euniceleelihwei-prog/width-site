@@ -718,3 +718,45 @@ canvas.dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-e
   .stat:nth-child(n+3) { border-top: 1px solid rgba(4, 16, 43, .22); }
   .cta-band { align-items: start; }
 }
+
+/* == ledger（首页 hero：账本点阵，sections/ledger.njk + assets/js/ledger.js）==========
+   文字居中在上，下面一整幅宽的点阵（向上压住文字区域一截，上下边缘淡出），再下面是数字条。
+   点阵画在白底上（交接包的硬性要求：浅色背景），所以这一块从顶部的浅蓝渐变到白色。
+   红 / 琥珀只表示风险含义；按钮和按钮条沿用全站的 .btn / .ctas；动效按钮是直角。 */
+.ledger { position: relative; overflow: hidden; background: linear-gradient(180deg, #e3ecfb 0, #eef3fc 180px, #ffffff 440px); }
+.ledger-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: clamp(56px, 7vw, 104px); }
+.ledger h1 { margin: 0; max-width: 20ch; font-size: clamp(38px, 5vw, 64px); line-height: 1.12; }
+.lang-zh .ledger h1 { max-width: none; line-height: 1.22; }
+.ledger-lead { margin-top: clamp(20px, 2.4vw, 28px); max-width: 600px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.7; color: var(--text-2); }
+.lang-zh .ledger-lead { max-width: 680px; }   /* 中文导语由 site.js 按标点分段，只在标点后换行 */
+.ledger .ctas { justify-content: center; margin-top: 32px; }
+.ledger-note { margin: 18px 0 0; font-size: 14px; color: var(--text-3); }
+.ledger-wrap { position: relative; z-index: 1; margin-top: clamp(-190px, -12vw, -80px); }
+.ledger-field {
+  position: relative; width: 100%; height: clamp(420px, 40vw, 600px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 90%, transparent 100%);
+}
+.ledger-field canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* 模拟提示行和动效按钮：左右与下面数字条的内容边缘对齐 */
+.ledger-hud, .ledger-motion { --edge: max(var(--gutter), calc((100% - 1280px) / 2 + var(--gutter))); }
+.ledger-hud {
+  position: absolute; left: var(--edge); bottom: 15%; z-index: 2;
+  font: 500 11px var(--mono); letter-spacing: .02em; font-variant-numeric: tabular-nums; color: var(--text-3);
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+}
+.ledger-motion {
+  position: absolute; right: var(--edge); bottom: 14%; z-index: 3;
+  font: 500 11px var(--mono); letter-spacing: .02em; padding: 6px 11px; border-radius: 0;
+  border: 1px solid var(--line-strong); background: rgba(255, 255, 255, .88); color: var(--text); cursor: pointer;
+}
+.lang-zh .ledger-hud, .lang-zh .ledger-motion { font-family: var(--font); letter-spacing: 0; }   /* 中文用黑体，等宽字里的中文字距太散 */
+.ledger-motion:hover { border-color: var(--text-3); color: var(--accent); }
+.ledger-motion:focus-visible { border-radius: 0; }
+.ledger .stat-strip { margin-top: clamp(8px, 2vw, 24px); }
+@media (max-width: 640px) {
+  .ledger-wrap { margin-top: -120px; }
+  .ledger-field { height: 440px; }
+  .ledger-hud { bottom: 12%; }
+  .ledger-motion { bottom: calc(12% + 26px); }
+}

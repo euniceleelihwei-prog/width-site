@@ -77,11 +77,11 @@
   }
 })();
 
-// 中文标题不留孤字：把标题按标点切成小段（.ph，inline-block），浏览器就只会在标点后换行，
+// 中文标题不留孤字（首页 hero 的导语 .ledger-lead 也一样）：把标题按标点切成小段（.ph，inline-block），浏览器就只会在标点后换行，
 // 不会把一个词拆到两行，也不会在行尾剩一个字。段落太长放不下一行时仍会在段内正常换行。
 (function () {
   if (!document.body.classList.contains("lang-zh")) return;
-  document.querySelectorAll("h1, h2, h3, .stat-label, summary").forEach(function (h) {
+  document.querySelectorAll("h1, h2, h3, .stat-label, summary, .ledger-lead p").forEach(function (h) {
     var walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT), nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(function (n) {
@@ -101,7 +101,8 @@
 // 表示资金一跳一跳流向被筛地址。系统设置了「减少动态效果」时不播放。
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  // 底部深蓝带每页都有；hero 背景的点只放在首页（bodyClass: home-v2）
+  // 底部深蓝带每页都有；hero 背景的点只放在首页（bodyClass: home-v2）。
+  // 现在首页的 hero 是账本点阵（ledger 版块，没有 .hero-bg），所以首页只剩底部深蓝带有点；找不到 .hero-bg 时什么都不做。
   var isHome = document.body.classList.contains("home-v2");
   var hosts = [].slice.call(document.querySelectorAll(isHome ? ".hero-bg, .cta-section" : ".cta-section"));
   hosts.forEach(function (host) {

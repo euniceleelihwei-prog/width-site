@@ -5,14 +5,13 @@ title: 稳定币链上风控与 KYT 筛查
 fullTitle: Width DART｜稳定币链上风控、KYT 交易筛查、地址风险筛查
 description: DART 专做 USDT / USDC 链上风控，按资金的时间顺序逐跳追踪，误报少、1 秒内返回、每一分都说得清。交易所、钱包、支付公司、托管机构都在用，接入即免费用到 2028 年 12 月 31 日。
 sections:
-  - type: hero
+  - type: ledger
     eyebrow: WIDTH DART · 稳定币链上风控
     title: 收 U 之前，<br><em>先看清这笔钱从哪来</em>
     lead: "DART 专做 USDT / USDC 链上风控，按资金的时间顺序逐跳追踪。问题资金挡在门外，正常用户不被误伤。"
     ctas:
       - { label: 免费接入, href: /contact/ }
     note: 接入即免费用到 2028 年 12 月 31 日 · 控制台、API、MCP 全部可用
-    visual: flow
     stats:
       - { value: "30", unit: 万+, label: 每天生产环境 API 调用次数 }
       - { value: "< 1", unit: 秒, label: 制裁筛查返回 }

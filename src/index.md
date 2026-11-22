@@ -5,14 +5,13 @@ title: Stablecoin AML screening for USDT and USDC
 fullTitle: Width DART | Stablecoin AML screening, KYT and address risk for USDT & USDC
 description: DART screens USDT and USDC flows in time order, so exchanges, wallets and payment companies keep tainted funds out without false alarms. Sanctions checks in under a second. Free until 31 December 2028.
 sections:
-  - type: hero
+  - type: ledger
     eyebrow: WIDTH DART · Stablecoin risk screening
     title: Know Where the Money Came from <em>Before You Accept It</em>
     lead: "DART screens USDT and USDC flows hop by hop, in time order. Bad funds stay out, and good customers get through."
     ctas:
       - { label: Get Free Access, href: /contact/ }
     note: Free until 31 December 2028 · Console, API and MCP included
-    visual: flow
     stats:
       - { value: 300K+, label: API calls a day in production }
       - { value: "< 1", unit: s, label: sanctions screening response }

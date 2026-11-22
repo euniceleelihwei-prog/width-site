@@ -56,6 +56,7 @@ src/
 | 版块 `type` | 用途 | 主要字段 |
 |---|---|---|
 | `hero` | 页面头图 | eyebrow, title（可用 `<em>` 高亮）, lead, ctas, note, visual, stats, compact |
+| `ledger` | 首页头图：文字居中，下面整幅宽的账本点阵（模拟筛查动画），再下面是数字条 | eyebrow, title, lead, ctas, note, stats |
 | `stats` | 数字条 | items: value, unit, label |
 | `audiences` | 按客户类型切换的标签页 | items: label, title, text, points, href, link |
 | `problems` | 客户问题 → 怎么解决 → 证据 | items: problem, detail, solution, proof |
@@ -72,7 +73,7 @@ src/
 | `form` | 联系表单 | title, text, points |
 | `prose` | 一段正文 | body |
 
-全站版式：大标题在左、说明在右，细线代替卡片边框，底部行动号召是一整条深蓝（带流动的点）。首页另外写了 `bodyClass: home-v2`：字更大、hero 的资金图不加外框、hero 背景也有流动的点。
+全站版式：大标题在左、说明在右，细线代替卡片边框，底部行动号召是一整条深蓝（带流动的点）。首页另外写了 `bodyClass: home-v2`：字更大。首页头图用 `ledger` 版块，它的脚本是 `assets/js/ledger.js`，需要从 cdnjs 加载 three.js r128（模板 `sections/ledger.njk` 里已经引入，只在用到这个版块的页面加载）。
 
 所有版块都支持 `id`（锚点）和 `tone: alt`（换底色）。`visual` 可选 `flow`、`result`、`scores`、`code`、`image`。
 
