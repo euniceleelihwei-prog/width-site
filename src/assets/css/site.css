@@ -661,11 +661,14 @@ main h2 { font-size: clamp(32px, 3.8vw, 52px); line-height: 1.14; letter-spacing
 .cases { gap: 20px; }
 .case { border: 0; padding: 36px 34px 40px; min-height: 320px; display: flex; flex-direction: column; box-shadow: 0 0 0 1px rgba(13, 79, 211, .08), 0 20px 48px -30px rgba(7, 34, 89, .3); }
 .case .chip { align-self: flex-start; margin-bottom: auto; }
-.case-metric { font-size: clamp(38px, 3.8vw, 56px); letter-spacing: -0.03em; margin: 40px 0 14px; }
+/* 写成 .case .case-metric：数字是 <p>，否则会被上面的 .case p 压成正文大小 */
+.case .case-metric { font-size: clamp(38px, 3.8vw, 56px); color: var(--accent); letter-spacing: -0.03em; margin: 40px 0 14px; }
+.case .case-metric small { font-size: 13.5px; color: var(--text-3); }
 .case h3 { font-size: 21px; }
 .case:first-child { background: linear-gradient(150deg, var(--accent), var(--dark)); color: #fff; }
 .case:first-child :is(h3, .case-metric) { color: #fff; }
-.case:first-child :is(p, small) { color: rgba(255, 255, 255, .82); }
+.case:first-child :is(p, small), .case:first-child .case-metric small { color: rgba(255, 255, 255, .82); }
+.case:first-child .case-metric { color: #fff; }
 .case:first-child .chip { background: rgba(255, 255, 255, .16); color: #fff; }
 /* 标签页：下划线式，不加外框 */
 .tabs { box-shadow: none; border-radius: 0; background: none; overflow: visible; }
