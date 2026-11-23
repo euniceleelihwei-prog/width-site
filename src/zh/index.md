@@ -7,7 +7,7 @@ description: DART 专做 USDT / USDC 链上风控，按资金的时间顺序逐�
 sections:
   - type: ledger
     eyebrow: WIDTH DART · 稳定币链上风控
-    title: 收 U 之前，<br><em>先看清这笔钱从哪来</em>
+    title: 收U之前，<br><em>先看清这笔钱从哪来</em>
     lead: "DART 专做 USDT / USDC 链上风控，按资金的时间顺序逐跳追踪。问题资金挡在门外，正常用户不被误伤。"
     ctas:
       - { label: 免费接入, href: /contact/ }
@@ -41,7 +41,7 @@ sections:
         metric: 付费会员
         metricLabel: 安全能力变成收入
         title: 某 Web3 社交平台
-        text: 把 DART 打包进付费会员增值服务：用户每一笔收款、提款都做完整检测，避免把 U 打给恐怖融资地址。
+        text: 把 DART 打包进付费会员增值服务：用户每一笔收款、提款都做完整检测，避免把U打给恐怖融资地址。
       - tag: 托管 · WaaS
         metric: 1.7–1.8 万次
         metricLabel: 工作日每天
@@ -69,13 +69,13 @@ sections:
         title: 转账前提醒，收款后预警
         text: 钱包用户手里主要是 USDT / USDC。在转账和收款两个节点给用户一句准确的提示，就是钱包能给用户最直接的保护。
         points:
-          - "**转账前查收款地址**：提示制裁、恐怖融资、诈骗地址，避免把 U 打错人"
+          - "**转账前查收款地址**：提示制裁、恐怖融资、诈骗地址，避免把U打错人"
           - "**收款后查资金来源**：收到被冻结、黑客或诈骗资金时及时提醒，减少被连带冻结"
           - "**安全能力可以收费**：已有平台把 DART 打包进付费会员"
           - 某头部自托管钱包接入一周内，单日筛查量就到了 7 万次以上
         href: /solutions/wallets/
         link: 看钱包方案
-      - label: 支付与 U 卡
+      - label: 支付与U卡
         title: 不让问题资金进入卡组织和法币通道
         text: 充卡、入金、商户收款前先筛资金来源。银行和卡组织问起来，每一笔都有依据。
         points:
@@ -106,7 +106,7 @@ sections:
         href: /partners/lea/
         link: 看执法合作
       - label: 个人
-        title: 收 U 之前，先查一下这个地址
+        title: 收U之前，先查一下这个地址
         text: OTC 买家、商户、个人收款前最常问的一句话：这个地址安全吗？U 被冻了，又是为什么？
         points:
           - "**地址体检**：粘贴地址，自动识别链和币种，给出三档结论"

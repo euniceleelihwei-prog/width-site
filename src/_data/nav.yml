@@ -65,7 +65,7 @@ main:
             desc: { en: Warn users before they send or receive, zh: 转账前、收款后提醒用户 }
             icon: wallet
             href: /solutions/wallets/
-          - label: { en: Payments & Card Issuers, zh: 支付与 U 卡 }
+          - label: { en: Payments & Card Issuers, zh: 支付与U卡 }
             desc: { en: Keep tainted USDT out of fiat rails, zh: 不让问题资金进法币通道 }
             icon: card
             href: /solutions/payments/
@@ -90,43 +90,47 @@ main:
             icon: cap
             href: /partners/academic/
           - label: { en: Address Check for Individuals, zh: 个人地址体检 }
-            desc: { en: Check an address before you receive USDT, zh: 收 U 前先查一下 }
+            desc: { en: Check an address before you receive USDT, zh: 收U前先查一下 }
             icon: person
             href: /check/
 
   - label: { en: Pricing, zh: 价格 }
     href: /pricing/
 
+# 页脚五栏和顶部菜单一一对应（参考 trmlabs.com：页脚就是菜单的完整展开）：
+# 产品 / 解决方案 / 数据 / 合作 / 公司（顶部的「价格」放进公司栏）。改顶部菜单时这里一起改。
 footer:
   - title: { en: Products, zh: 产品 }
     items:
-      - { label: { en: Overview, zh: 平台总览 }, href: /platform/ }
+      - { label: { en: Platform Overview, zh: 平台总览 }, href: /platform/ }
       - { label: { en: Address Screening (KYA), zh: 地址筛查 KYA }, href: /products/kya/ }
       - { label: { en: Transaction Screening (KYT), zh: 交易筛查 KYT }, href: /products/kyt/ }
       - { label: { en: Sanctions Screening, zh: 制裁筛查 }, href: /products/sanctions/ }
-      - { label: { en: Fund Tracing, zh: 资金追踪 }, href: /products/investigations/ }
+      - { label: { en: Fund Tracing & Investigations, zh: 资金追踪与调查 }, href: /products/investigations/ }
       - { label: { en: Rulesets & Scoring, zh: 规则集与评分 }, href: /products/rulesets/ }
       - { label: { en: AI Agents (MCP), zh: AI 助手（MCP） }, href: /products/agents/ }
+      - { label: { en: Developers & API, zh: 开发者与 API }, href: /developers/ }
   - title: { en: Solutions, zh: 解决方案 }
     items:
       - { label: { en: Exchanges, zh: 交易所 }, href: /solutions/exchanges/ }
       - { label: { en: Wallets, zh: 钱包 }, href: /solutions/wallets/ }
-      - { label: { en: Payments & Card Issuers, zh: 支付与 U 卡 }, href: /solutions/payments/ }
+      - { label: { en: Payments & Card Issuers, zh: 支付与U卡 }, href: /solutions/payments/ }
       - { label: { en: Custody & WaaS, zh: 托管与 WaaS }, href: /solutions/custody/ }
-      - { label: { en: Law Enforcement, zh: 执法机构 }, href: /partners/lea/ }
-      - { label: { en: Universities & Research, zh: 高校与研究 }, href: /partners/academic/ }
-      - { label: { en: Address Check, zh: 个人地址体检 }, href: /check/ }
-  - title: { en: Data & Resources, zh: 数据与资源 }
+  - title: { en: Data, zh: 数据 }
     items:
       - { label: { en: Data Hub, zh: 数据中心 }, href: /data/ }
       - { label: { en: Blog & Research, zh: 文章与研究 }, href: /blog/ }
-      - { label: { en: Developers, zh: 开发者 }, href: /developers/ }
       - { label: { en: Product Manual, zh: 产品手册 }, href: "https://width.info/docs" }
       - { label: { en: API Reference, zh: API 文档 }, href: "https://width.info/api-reference" }
+  - title: { en: Partners, zh: 合作 }
+    items:
+      - { label: { en: Law Enforcement, zh: 执法机构 }, href: /partners/lea/ }
+      - { label: { en: Universities & Research, zh: 高校与研究 }, href: /partners/academic/ }
+      - { label: { en: Address Check for Individuals, zh: 个人地址体检 }, href: /check/ }
+      - { label: { en: All Partner Programmes, zh: 全部合作方式 }, href: /partners/ }
   - title: { en: Company, zh: 公司 }
     items:
       - { label: { en: About Us, zh: 关于我们 }, href: /about/ }
-      - { label: { en: Partners, zh: 合作伙伴 }, href: /partners/ }
       - { label: { en: Pricing, zh: 价格 }, href: /pricing/ }
       - { label: { en: Contact, zh: 联系我们 }, href: /contact/ }
       - { label: { en: Width Platform, zh: Width 合规平台 }, href: "https://www.width.com/" }

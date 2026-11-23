@@ -36,7 +36,7 @@ sections:
     items:
       - { tag: 企业, title: 交易所、钱包、支付、托管, text: 生产环境接入，按充提节点配置规则集。, href: /contact/, link: 免费接入 }
       - { tag: 公共部门, title: 执法机构、高校与研究, text: 经身份核实后开通调查员账号或学术额度。, href: /partners/, link: 合作通道 }
-      - { tag: 个人, title: 个人地址体检, text: 收 U 前查地址、查冻结，个人免费使用（即将上线）。, href: /check/, link: 了解更多 }
+      - { tag: 个人, title: 个人地址体检, text: 收U前查地址、查冻结，个人免费使用（即将上线）。, href: /check/, link: 了解更多 }
 
   - type: faq
     eyebrow: FAQ

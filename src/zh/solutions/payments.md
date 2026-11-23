@@ -1,17 +1,17 @@
 ---
 layout: layouts/page.njk
 permalink: /zh/solutions/payments/
-title: 支付公司与 U 卡资金来源筛查
+title: 支付公司与U卡资金来源筛查
 description: 支付公司、U 卡发行方、OTC 和商户的稳定币资金来源筛查：充卡、入金、出金前先查 USDT / USDC 从哪来，四档处置不一刀切，规则按合作银行要求配置，快照留存备审计。
 breadcrumb:
   - { label: 解决方案, href: /solutions/ }
-  - { label: 支付与 U 卡 }
+  - { label: 支付与U卡 }
 sections:
   - type: hero
     compact: true
-    eyebrow: 解决方案 · 支付与 U 卡
+    eyebrow: 解决方案 · 支付与U卡
     title: 不让问题资金<em>进入卡组织和法币通道</em>
-    lead: 充卡、入金、商户收款、法币出金之前，先查这笔 U 从哪来。合作银行和卡组织问起来，每一笔都拿得出依据。
+    lead: 充卡、入金、商户收款、法币出金之前，先查这笔U从哪来。合作银行和卡组织问起来，每一笔都拿得出依据。
     ctas:
       - { label: 免费接入, href: "/contact/?type=payments" }
       - { label: 看产品手册, href: "https://width.info/docs" }
@@ -20,14 +20,14 @@ sections:
 
   - type: problems
     eyebrow: 支付业务的难题
-    title: 支付公司和 U 卡发行方常见的问题
+    title: 支付公司和U卡发行方常见的问题
     items:
       - problem: 一笔问题资金，可能连累整条通道
         detail: U 一旦进了卡组织和银行通道，问题资金会让合作银行、卡组织重新审视你的整个业务。
         solution: |
           - **充卡、入金前筛资金来源**：涉及制裁、发行方冻结、黑客、诈骗资金时分档处置
           - 按时间顺序向上游追，只计算转出前已经到账的钱
-        proof: 中东某 U 卡发行方在充卡前筛查资金来源，不让问题资金进入卡组织和法币通道。
+        proof: 中东某U卡发行方在充卡前筛查资金来源，不让问题资金进入卡组织和法币通道。
       - problem: 要么全拦、要么全放，业务和合规两头为难
         detail: 只有「通过 / 拒绝」两种结果，拦多了丢客户，放多了担风险。
         solution: |
@@ -58,7 +58,7 @@ sections:
     columns: 2
     items:
       - tag: U 卡 · 中东
-        title: 中东某 U 卡发行方
+        title: 中东某U卡发行方
         text: 充卡前筛查资金来源，不让问题资金进入卡组织和法币通道。
       - tag: 支付公司
         metric: 0 分
