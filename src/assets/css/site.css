@@ -380,6 +380,21 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 .post-body h3 { font-size: 19px; line-height: 1.35; }
 .post-body p { color: var(--text-2); font-size: 15px; }
 .post-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 13px; color: var(--text-3); margin-bottom: 12px; }
+/* news：新闻与亮点卡片（sections/news.njk），和文章卡片同一套边框、悬停 */
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.news-card { display: flex; flex-direction: column; border: 1px solid var(--line); background: var(--surface); overflow: hidden; transition: border-color .2s; }
+.news-card:hover { border-color: rgba(13, 79, 211, .22); }
+.news-cover { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); }
+.news-cover.placeholder { display: grid; place-items: center; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(13, 79, 211, .05) 14px 15px), var(--surface-2); border-bottom: 1px dashed rgba(13, 79, 211, .25); }
+.news-cover.placeholder span { font-weight: 600; color: var(--accent); font-size: 13.5px; }
+.news-body { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 26px; }
+.news-body h3 { font-size: 20px; font-weight: 700; line-height: 1.35; margin: 0 0 8px; }
+.news-body h3 a { color: inherit; text-decoration: none; }
+.news-body p { color: var(--text-2); font-size: 15px; margin: 0; }
+.news-body .post-meta { margin-bottom: 14px; }
+.news-body .link-arrow { margin-top: auto; padding-top: 16px; }
+@media (max-width: 1020px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .news-grid { grid-template-columns: 1fr; } }
 .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .filter-bar a { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line-strong); font-size: 14px; color: var(--text-2); }
 .filter-bar a[aria-current="page"], .filter-bar a:hover { border-color: var(--accent); color: var(--accent); background: rgba(13, 79, 211, .06); }
@@ -783,7 +798,6 @@ main .cta-band h2 { font-size: clamp(34px, 4.2vw, 58px); line-height: 1.12; }
 .home-v2 .cta-points { display: none; }
 .home-v2 .cta-band .ctas { margin-top: 36px; }
 /* 流动的点（site.js 生成的 canvas）：hero 背景和底部深蓝带 */
-canvas.dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .home-v2 .hero-bg { z-index: 0; }
 .home-v2 .hero > .container { position: relative; z-index: 1; }
 @media (max-width: 980px) {
@@ -841,3 +855,110 @@ canvas.dots { position: absolute; inset: 0; width: 100%; height: 100%; pointer-e
   .ledger-hud { bottom: 12%; }
   .ledger-motion { bottom: calc(12% + 26px); }
 }
+
+/* == 2026-11-23：底部 CTA 跟 WIDTH 官网首页一致 ==================================
+   居中单栏：标题（最大 46px）、一句说明、按钮一行、要点缩成一行小字（相当于 WIDTH 的 strap）。
+   背景用 WIDTH 首页 CTA 的蓝色渐变和两团光。 */
+.cta-section { background: linear-gradient(120deg, #0D4FD3 0%, #1A5FE6 55%, #2F6FEA 100%); }
+.cta-section::before { content: ""; position: absolute; inset: -20%; pointer-events: none;
+  background: radial-gradient(40% 50% at 18% 20%, rgba(255,255,255,.18), transparent 60%),
+              radial-gradient(36% 46% at 86% 82%, rgba(127,169,248,.38), transparent 60%); }
+.cta-section, .home-v2 .cta-section { padding: 0; }
+.cta-section .container, .home-v2 .cta-section .container { padding-top: clamp(64px, 7vw, 96px); padding-bottom: clamp(64px, 7vw, 96px); }
+.cta-band, .home-v2 .cta-band { display: block; max-width: 860px; margin: 0 auto; text-align: center; }
+.cta-band .eyebrow { justify-content: center; }
+main .cta-band h2, .home-v2 main .cta-band h2, .lang-en.home-v2 main .cta-band h2 {
+  margin: 0; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.12; letter-spacing: -.032em; }
+.lang-zh main .cta-band h2 { letter-spacing: -.01em; }
+.cta-band .lead { max-width: 56ch; margin: 20px auto 0; font-size: clamp(16px, 1.35vw, 19px); line-height: 1.55; color: rgba(255, 255, 255, .86); }
+.cta-band .ctas, .home-v2 .cta-band .ctas { justify-content: center; margin-top: 34px; }
+.cta-points, .home-v2 .cta-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0;
+  margin: 36px auto 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, .8); }
+.cta-points li { padding: 2px 20px; text-align: center; text-wrap: balance; border-left: 1px solid rgba(255, 255, 255, .22); }
+.cta-points li:first-child { border-left: 0; }
+.cta-points:has(li:nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 620px; }
+.cta-points:has(li:only-child) { grid-template-columns: minmax(0, 1fr); }
+.cta-points:has(li:nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 0; }
+.cta-points:has(li:nth-child(4)) li:nth-child(odd) { border-left: 0; }
+@media (max-width: 720px) {
+  main .cta-section .cta-band .cta-points { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 28px; max-width: none; }
+  .cta-points li { border-left: 0; padding: 0; }
+  main .cta-band h2, .home-v2 main .cta-band h2, .lang-en.home-v2 main .cta-band h2 { font-size: 28px; }
+}
+.cta-side { display: flex; flex-direction: column-reverse; }
+/* 2026-11-25：底部三条要点对齐。原来 .cta-points strong 设了 white-space: nowrap，加粗短语不能拆行，
+   居中 + balance 时整段被挤到下一行，留下单个词（如 "a"）。现在加粗跟着句子正常换行，每栏左对齐、顶端对齐。 */
+.cta-points li, .home-v2 .cta-points li { padding: 0 24px; text-align: left; text-wrap: pretty; }
+.cta-points strong { white-space: normal; }
+.lang-zh .cta-points strong { white-space: nowrap; } /* 中文：加粗短语（如日期）不拆开，其余照常逐字换行 */
+@media (max-width: 720px) {
+  main .cta-section .cta-band .cta-points { gap: 0; }
+  .cta-points li, .home-v2 .cta-points li { padding: 12px 0; }
+  .cta-points li + li { border-top: 1px solid rgba(255, 255, 255, .22); }
+  .cta-points li:first-child { padding-top: 0; }
+}
+
+/* 数字条里的中文词（当天）：中文字比数字满，缩到和数字差不多高 */
+.stat-value.is-word { font-size: clamp(30px, 3.1vw, 44px); line-height: clamp(40px, 4.2vw, 60px); letter-spacing: 0; } /* 行高等于数字的字号，下面的说明文字才和其他三栏对齐 */
+.stat-value.is-word small { line-height: 1; }
+.lang-zh .stat-label { word-break: keep-all; } /* 窄屏时不把“命令”这类词拆开 */
+
+/* == 2026-11-24：区块头改成上下排：标题在上，说明在下，都靠左 ====================
+   原来“标题在左、说明在右”，说明悬在标题旁边，位置随标题长短变、末行还会剩一两个字。
+   现在全站统一：标题一行（或两行），下面 20px 是说明，最宽 720px，行尾自动均衡。 */
+.container:not(.faq-wrap) > .section-head:not(.row):not(.center) { display: block; max-width: none; margin: 0 0 clamp(36px, 4.5vw, 56px); }
+.container:not(.faq-wrap) > .section-head:not(.row):not(.center) .lead { justify-self: auto; max-width: 720px; margin: 20px 0 0; font-size: 18px; line-height: 1.7; text-wrap: balance; }
+.lang-en .container:not(.faq-wrap) > .section-head:not(.row):not(.center) .lead { max-width: 640px; }
+.section-head .lead > p { margin: 0; }
+
+/* == 2026-11-24：points3 去掉顶部细线，改成浅蓝底的三张卡片，标签做成小胶囊 ======== */
+.points3 { gap: 20px; margin-top: clamp(40px, 5vw, 64px); }
+.points3 > div { border-top: 0; padding: clamp(24px, 2.4vw, 32px); background: #f4f7fd; }
+.points3-tag { display: inline-block; padding: 5px 12px; border-radius: 999px; background: rgba(13, 79, 211, .08); font-size: 13px; font-weight: 600; line-height: 1.4; }
+.points3 h3 { font-size: clamp(20px, 1.8vw, 24px); margin: 18px 0 10px; }
+.points3 p { font-size: 15.5px; line-height: 1.7; max-width: none; }
+
+/* == 2026-11-24：按机构看（audiences）重做 ======================================
+   标签改成一条浅底分段按钮；内容放进一块浅蓝底面板：左边标题 + 说明 + 按钮式链接，
+   右边四个要点做成 2×2 白卡片，用 01–04 编号代替打勾。 */
+.tabs { border-radius: 0; background: none; box-shadow: none; overflow: visible; }
+.tab-list { display: inline-flex; max-width: 100%; gap: 4px; padding: 6px; border: 0; background: #eef3fc; }
+.tab-list button { height: 44px; padding: 0 20px; border: 0; margin: 0; border-radius: 0; background: none; color: var(--text-2); font-size: 15px; font-weight: 500; transition: background .2s, color .2s, box-shadow .2s; }
+.tab-list button:hover { color: var(--text); }
+.tab-list button[aria-selected="true"] { background: #fff; color: var(--accent); border: 0; box-shadow: 0 1px 2px rgba(4, 16, 43, .08), 0 8px 18px -10px rgba(13, 79, 211, .45); }
+.tab-panel { margin-top: 20px; padding: clamp(28px, 4vw, 56px); gap: clamp(32px, 4vw, 64px); grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); align-items: start; background: #f4f7fd; }
+.tab-copy h3 { font-size: clamp(24px, 2.3vw, 30px); line-height: 1.3; letter-spacing: -0.02em; margin: 0 0 16px; }
+.tab-copy p { font-size: 16.5px; line-height: 1.75; margin: 0 0 28px; }
+.tab-copy .link-arrow { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; }
+.tab-copy .link-arrow:hover { background: var(--dark); color: #fff; }
+.tab-points { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; counter-reset: tp; }
+.tab-points li { counter-increment: tp; flex-direction: column; gap: 10px; padding: 22px 22px 24px; background: #fff; font-size: 15px; line-height: 1.65; box-shadow: 0 1px 0 rgba(13, 79, 211, .06); }
+.tab-points li::before { content: counter(tp, decimal-leading-zero); font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--accent); }
+.tab-points li .tick { display: none; }
+@media (max-width: 900px) {
+  .tab-list { display: flex; overflow-x: auto; }
+  .tab-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .tab-points { grid-template-columns: 1fr; } }
+
+/* == 2026-11-24：案例卡片内容统一从上往下排 =====================================
+   原来标签顶在上面、其余内容沉到底，正文行数不同时三张卡的大数字高低不齐。
+   现在：标签 → 大数字 → 小说明 → 机构 → 正文，三张卡每一行都对齐；中文词的大数字缩小一号。 */
+.case { min-height: 0; padding: 32px 32px 36px; }
+.case .chip { margin-bottom: 28px; }
+.case .case-metric { margin: 0 0 22px; font-size: clamp(36px, 3.4vw, 50px); line-height: 1; white-space: nowrap; }
+.case .case-metric.is-word { font-size: clamp(30px, 2.8vw, 40px); line-height: clamp(36px, 3.4vw, 50px); letter-spacing: 0; }
+.case .case-metric small { margin-top: 12px; line-height: 1.4; white-space: normal; }
+.case h3 { font-size: 20px; margin: 0 0 10px; padding-top: 20px; border-top: 1px solid rgba(4, 16, 43, .1); }
+.case:first-child h3 { border-top-color: rgba(255, 255, 255, .22); }
+.case p:last-child { margin-bottom: 0; }
+.case .chip + h3 { border-top: 0; padding-top: 0; } /* 没有大数字的案例卡：不要分隔线 */
+
+/* == 2026-11-25：案例卡片线条图标（cases.njk 的 icon 字段）=====================
+   图标钉在卡片右上角（不占一行），标签仍在左上第一个；不加底板，直角。没有 icon 的卡片不受影响。 */
+.case { position: relative; }
+.case-ico { position: absolute; top: 35px; right: 32px; width: 24px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.case:first-child .case-ico { stroke: #fff; }
+/* 带图标的卡片稍微收紧（方案页的案例卡不变）：标签到大数字 28→22px，底部留白 36→30px */
+.case:has(.case-ico) { padding-bottom: 30px; }
+.case:has(.case-ico) .chip { margin-bottom: 22px; }

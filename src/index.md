@@ -32,17 +32,20 @@ sections:
     eyebrow: In production
     title: Teams Already Running on DART
     items:
-      - tag: Wallet
+      - icon: wallet
+        tag: Wallet
         metric: 70,000+
         metricLabel: screenings a day, within a week of going live
         title: A Leading Self-Custody Wallet
         text: On the day the FinCEN 9714 order was published, it could flag related funds in deposits and withdrawals. Hop depth and other settings are tuned to its own risk policy.
-      - tag: Social · payments
+      - icon: users
+        tag: Social · payments
         metric: Paid tier
         metricLabel: safety turned into revenue
         title: A Web3 Social Platform
         text: Bundled DART into its paid membership. Every incoming and outgoing transfer is fully checked, so members don't send USDT to terrorist-financing addresses.
-      - tag: Custody · WaaS
+      - icon: lock
+        tag: Custody · WaaS
         metric: 17–18K
         metricLabel: screenings every working day
         title: A Wallet and Custody Infrastructure Provider
@@ -114,6 +117,15 @@ sections:
           - We only report which public sources matched. We never label a person's address
         href: /check/
         link: About the Address Check
+
+  - type: news
+    title: News & Highlights
+    lead: "The latest from DART: announcements, product updates and industry notes."
+    placeholder: true
+    items:
+      - { tag: News, title: News Headline Placeholder One, text: One-line summary placeholder. Replace before launch. }
+      - { tag: Product Update, title: News Headline Placeholder Two, text: One-line summary placeholder. Replace before launch. }
+      - { tag: Highlight, title: News Headline Placeholder Three, text: One-line summary placeholder. Replace before launch. }
 
   - type: cta
     eyebrow: Free access

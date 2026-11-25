@@ -32,17 +32,20 @@ sections:
     eyebrow: 在生产环境
     title: 已经在用 DART 的机构
     items:
-      - tag: 钱包
-        metric: 7 万次 +
+      - icon: wallet
+        tag: 钱包
+        metric: 7 万次+
         metricLabel: 接入一周内的单日筛查量
         title: 某头部自托管钱包
         text: FinCEN 9714 命令发布当天，就能在充提中识别相关资金；跳数等参数按他们的风控要求单独配置。
-      - tag: 社交 · 支付
+      - icon: users
+        tag: 社交 · 支付
         metric: 付费会员
         metricLabel: 安全能力变成收入
         title: 某 Web3 社交平台
         text: 把 DART 打包进付费会员增值服务：用户每一笔收款、提款都做完整检测，避免把U打给恐怖融资地址。
-      - tag: 托管 · WaaS
+      - icon: lock
+        tag: 托管 · WaaS
         metric: 1.7–1.8 万次
         metricLabel: 工作日每天
         title: 某钱包与托管基础设施服务商
@@ -114,6 +117,15 @@ sections:
           - 只说命中了哪些公开来源，不给个人地址下定性
         href: /check/
         link: 了解个人地址体检
+
+  - type: news
+    title: 新闻与亮点
+    lead: DART 的最新动态、产品更新和行业观察。
+    placeholder: true
+    items:
+      - { tag: 新闻, title: 新闻标题占位一, text: 一句话摘要占位，上线前替换为真实内容。 }
+      - { tag: 产品更新, title: 新闻标题占位二, text: 一句话摘要占位，上线前替换为真实内容。 }
+      - { tag: 亮点, title: 新闻标题占位三, text: 一句话摘要占位，上线前替换为真实内容。 }
 
   - type: cta
     eyebrow: 免费接入

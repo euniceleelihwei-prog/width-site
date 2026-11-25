@@ -68,6 +68,7 @@ src/
 | `faq` | 常见问题（自动生成 FAQ 结构化数据） | items: q, a |
 | `cta` | 行动号召 | title, text, points, ctas |
 | `posts` | 最新文章 | limit, category |
+| `news` | 新闻与亮点（三张卡片，没有图片时显示 16:9 占位框） | title, lead, placeholder（true 时显示“占位内容”提示）, items: image, imageAlt, tag, date, title, text, href |
 | `showcase` | 一张大的产品示意图 + 一行三个要点 | title, lead, items: tag, title, text |
 | `boards` | 数据榜单 | items: 榜单 key（见 boards.yml） |
 | `form` | 联系表单 | title, text, points |
