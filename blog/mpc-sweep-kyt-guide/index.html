@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Running your own sweeps on MPC custody, with KYT built in · Width DART</title>
+  <meta name="description" content="Payment, card, exchange and wallet teams on MPC custody can run their own sweeps. Screen each deposit with DART first, then sweep, so tainted funds never reach your hot wallet and fees come down.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://euniceleelihwei-prog.github.io/width-site/blog/mpc-sweep-kyt-guide/">
+  <link rel="alternate" hreflang="en" href="https://euniceleelihwei-prog.github.io/width-site/blog/mpc-sweep-kyt-guide/">
+  <link rel="alternate" hreflang="zh-CN" href="https://euniceleelihwei-prog.github.io/width-site/zh/blog/mpc-sweep-kyt-guide/">
+  <link rel="alternate" hreflang="x-default" href="https://euniceleelihwei-prog.github.io/width-site/blog/mpc-sweep-kyt-guide/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Width DART">
+  <meta property="og:title" content="Running your own sweeps on MPC custody, with KYT built in">
+  <meta property="og:description" content="Payment, card, exchange and wallet teams on MPC custody can run their own sweeps. Screen each deposit with DART first, then sweep, so tainted funds never reach your hot wallet and fees come down.">
+  <meta property="og:url" content="https://euniceleelihwei-prog.github.io/width-site/blog/mpc-sweep-kyt-guide/">
+  <meta property="og:image" content="https://euniceleelihwei-prog.github.io/width-site/assets/uploads/blog/mpc-sweep-cover.webp">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@WidthGRC">
+
+  <link rel="icon" href="/width-site/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Width DART" href="/width-site/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/width-site/assets/css/site.css"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://euniceleelihwei-prog.github.io/width-site/#org",
+      "name": "WIDTH Pte. Ltd.",
+      "alternateName": ["Width", "Width DART"],
+      "url": "https://euniceleelihwei-prog.github.io/width-site/",
+      "logo": "https://euniceleelihwei-prog.github.io/width-site/assets/img/width-logo.svg",
+      "email": "sales@width.com",
+      "telephone": "+65 6816 2740",
+      "sameAs": ["https://x.com/WidthGRC", "https://www.linkedin.com/company/widthsg/", "https://www.youtube.com/@WidthCompliance"]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Running your own sweeps on MPC custody, with KYT built in",
+      "description": "Payment, card, exchange and wallet teams on MPC custody can run their own sweeps. Screen each deposit with DART first, then sweep, so tainted funds never reach your hot wallet and fees come down.",
+      "datePublished": "2026-11-05T00:00:00.000Z",
+      "dateModified": "2026-11-05T00:00:00.000Z",
+      "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "Width DART team" },
+      "publisher": { "@id": "https://euniceleelihwei-prog.github.io/width-site/#org" },
+      "image": "https://euniceleelihwei-prog.github.io/width-site/assets/uploads/blog/mpc-sweep-cover.webp",
+      "mainEntityOfPage": "https://euniceleelihwei-prog.github.io/width-site/blog/mpc-sweep-kyt-guide/"
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="lang-en ">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-header="">
+  <div class="bar">
+    <a class="brand" href="/width-site/" aria-label="Width DART">
+      <img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20">
+      <span class="brand-product">DART</span>
+    </a>
+
+    <nav class="nav" aria-label="Main" data-nav="">
+      <ul class="nav-list">
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Products<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-2 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">Screening</p>
+                <ul>
+                  <li><a href="/width-site/platform/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8.500 4.500L12 13 3.500 8.500z"></path><path d="M3.500 12.500L12 17l8.500-4.500M3.500 16.500L12 21l8.500-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Platform Overview</span><span class="menu-desc">Data, tracing, rules and scoring in one engine</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kya/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.500"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2.500v3M12 18.500v3M2.500 12h3M18.500 12h3"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Screening (KYA)</span><span class="menu-desc">Is this address safe to deal with?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kyt/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h15l-3.500-3.500M20 16H5l3.500 3.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Transaction Screening (KYT)</span><span class="menu-desc">Where did this deposit come from?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/sanctions/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.500 3v5.500c0 4.500-3.200 7.800-7.500 9.500-4.300-1.700-7.500-5-7.500-9.500V6z"></path><path d="M8.500 12l2.500 2.500 4.500-5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Sanctions Screening</span><span class="menu-desc">Official lists, answered in under a second</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <div class="menu-group">
+                <p class="menu-title">Go Deeper</p>
+                <ul>
+                  <li><a href="/width-site/products/investigations/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="7" cy="18" r="2"></circle><path d="M6.900 6.800l10.200 4.400M17.200 12.900L8.800 17.200"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Fund Tracing &amp; Investigations</span><span class="menu-desc">Follow the money across hops and chains</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/rulesets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Rulesets &amp; Scoring</span><span class="menu-desc">Your risk appetite, written as rules</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/agents/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4l1.900 5.100L18 11l-5.100 1.900L11 18l-1.900-5.100L4 11l5.100-1.900z"></path><path d="M18.500 15.500v4M16.500 17.500h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">AI Agents (MCP)</span><span class="menu-desc">19 tools for any AI agent</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/developers/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.500 7.500L4 12l4.500 4.500M15.500 7.500L20 12l-4.500 4.500M13.500 5l-3 14"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Developers &amp; API</span><span class="menu-desc">API, MCP, OpenAPI and llms.txt</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/blog/money-does-not-flow-backwards/"><span class="menu-feature-pic"><img src="/width-site/assets/uploads/blog/dart-timing-cover.webp" alt="" loading="lazy"></span>
+                <span class="menu-feature-kicker">Latest article</span>
+                <strong>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky</strong>
+                <span class="menu-feature-go">Read More</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Solutions<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">By Industry</p>
+                <ul>
+                  <li><a href="/width-site/solutions/exchanges/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 16V10M12 16V5M17 16v-4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Exchanges</span><span class="menu-desc">Screen deposits and withdrawals without false alarms</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/wallets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8V5H6.500a2.500 2.500 0 0 0 0 5H20v9H6a2 2 0 0 1-2-2V7.500"></path><circle cx="16" cy="14.500" r="1"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Wallets</span><span class="menu-desc">Warn users before they send or receive</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/payments/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Payments &amp; Card Issuers</span><span class="menu-desc">Keep tainted USDT out of fiat rails</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/custody/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.500" width="14" height="9.500" rx="1.500"></rect><path d="M8 10.500V8a4 4 0 0 1 8 0v2.500M12 14.500v2"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Custody &amp; WaaS</span><span class="menu-desc">KYT built in for every client you serve</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/pricing/">
+                <span class="menu-feature-pic is-type"><b>Free</b><i>until 31 Dec 2028</i></span>
+                <strong>Connect DART and pay nothing until 2029</strong><small>Console, API and MCP all included</small>
+                <span class="menu-feature-go">See what&#39;s included</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/data/">Data</a></li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Partners<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1">
+              <div class="menu-group">
+                <p class="menu-title">Work with DART</p>
+                <ul>
+                  <li><a href="/width-site/partners/lea/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.500v6c0 4.300-2.900 7.400-7 9-4.100-1.600-7-4.700-7-9v-6z"></path><path d="M12 8.200l1.100 2.300 2.500.3-1.800 1.700.5 2.500-2.300-1.200-2.300 1.200.5-2.500-1.800-1.700 2.500-.3z"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Law Enforcement</span><span class="menu-desc">Tracing, case support and evidence packs</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/partners/academic/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.500 9.500L12 5l9.500 4.500L12 14z"></path><path d="M6.500 11.700V16c1.500 1.500 3.400 2.200 5.500 2.200s4-.7 5.500-2.200v-4.300M21.500 9.500v5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Universities &amp; Research</span><span class="menu-desc">Academic API access and datasets</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/check/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="3.500"></circle><path d="M3.500 20c.6-3.600 3.200-5.500 6.500-5.500 1.200 0 2.300.250 3.200.7M15 17.500l2.200 2.200 4-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Check for Individuals</span><span class="menu-desc">Check an address before you receive USDT</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/pricing/">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="/width-site/zh/blog/mpc-sweep-kyt-guide/" hreflang="zh-CN">中文</a>
+        <a class="nav-signin" href="https://width.info/login">Sign In</a>
+        <a class="btn btn-primary btn-sm" href="/width-site/contact/">Get Free Access</a>
+      </div>
+    </nav>
+
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" data-burger=""><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+  <main id="main">
+    <article class="post">
+  <header class="post-hero">
+    <div class="container narrow">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/width-site/">Home</a><span aria-hidden="true">/</span>
+        <a href="/width-site/blog/">Blog</a><span aria-hidden="true">/</span>
+        <a href="/width-site/blog/category/guides/">Guides</a>
+      </nav>
+      <h1>Running your own sweeps on MPC custody, with KYT built in</h1>
+      <p class="post-lead">Payment, card, exchange and wallet teams on MPC custody can run their own sweeps. Screen each deposit with DART first, then sweep, so tainted funds never reach your hot wallet and fees come down.</p>
+      <p class="post-meta">
+        <span>By Width DART team</span>
+        <time datetime="2026-11-05T00:00:00.000Z">5 Nov 2026</time>
+        <span>5 min read</span>
+      </p>
+    </div>
+  </header>
+  <div class="container narrow"><img class="post-cover-lg" src="/width-site/assets/uploads/blog/mpc-sweep-cover.webp" alt="Running your own sweeps on MPC custody, with KYT built in"></div>
+  <div class="container narrow prose post-content">
+    <blockquote>
+<p>For teams on MPC custody wallets, whether payments, card programs, exchanges or wallets. This guide covers three things: how sweeping works, how to run it yourself, and where DART fits in as your KYT step.</p>
+</blockquote>
+<p>Your MPC custodian handles signing. Sweeping is something you can run yourself, and doing so changes two things:</p>
+<ol>
+<li><strong>You choose your KYT.</strong> Rules, thresholds and hop depth are yours. Screen with DART before sweeping and tainted funds never reach your hot wallet.</li>
+<li><strong>Fees come down.</strong> Custodian-paid fees are usually on the expensive side. On Tron, renting energy from an external market or staking your own TRX costs less.</li>
+</ol>
+<h2>1. What MPC custody actually does for you</h2>
+<p>MPC custody solves key security: <strong>the key is split into shares and signing is a joint operation</strong>, so the full private key never exists on any one machine. Keep that with your custodian.</p>
+<p>Onchain, a sweep is just a transfer from a user's deposit address to your collection address: a TRC20 <code>transfer</code> on Tron, an ERC20 <code>transfer</code> on EVM chains, signed via MPC.</p>
+<p>A custodian's &quot;auto-sweep&quot; breaks down into three steps:</p>
+<ol>
+<li>A scheduled job finds deposit addresses with enough balance;</li>
+<li>It tops up their fees (energy and bandwidth on Tron, the native coin on EVM chains);</li>
+<li>It calls the custodian's signing API to move the funds.</li>
+</ol>
+<p>All three can be done yourself with the custodian's transfer API.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Bundled</th>
+<th>Run it yourself</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sweep rules</td>
+<td>The custodian's frequency and thresholds</td>
+<td>Your own thresholds, batches and time windows, tuned to your peaks</td>
+</tr>
+<tr>
+<td>Fees</td>
+<td>Paid by the custodian, usually pricier</td>
+<td>Rent energy or stake TRX on Tron; top up native coin on EVM. Costs are visible</td>
+</tr>
+<tr>
+<td>KYT</td>
+<td>The custodian's chosen vendor</td>
+<td>Your choice, with your own rules, thresholds and hop depth</td>
+</tr>
+<tr>
+<td>When screening happens</td>
+<td>Depends on the custodian</td>
+<td>Screen first, sweep second, so tainted funds stay out of the hot wallet</td>
+</tr>
+</tbody>
+</table>
+<p>Signing, key security and the custodian's transfer API stay exactly as they are. You only replace the policy layer above signing.</p>
+<h2>2. Five steps to your own sweeps</h2>
+<p>The order is always <strong>screen first, then sweep</strong>.</p>
+<h3>Step 1: Receive deposit notifications</h3>
+<p>Use the custodian's webhook, or poll its deposit history endpoint. Record chain, transaction hash, deposit address, token and amount for each deposit.</p>
+<h3>Step 2: Screen the deposit with DART</h3>
+<p>Submit the transaction hash with direction <code>in</code>, meaning &quot;where did this money come from&quot;:</p>
+<pre><code class="language-json">POST https://api.width.live/api/v3/screen/kyt
+X-Api-Key: YOUR_KEY
+
+{
+  &quot;chain_name&quot;: &quot;Tron&quot;,
+  &quot;tx_id&quot;: &quot;&lt;deposit tx hash&gt;&quot;,
+  &quot;token&quot;: &quot;usdt&quot;,
+  &quot;screen_direction&quot;: &quot;in&quot;,
+  &quot;mode&quot;: &quot;async&quot;
+}
+</code></pre>
+<p>Async mode returns a <code>job_id</code> right away; fetch the result with <code>GET /api/v3/screen/result/{job_id}</code>. It contains a 0–100 risk score, a disposition, and which rules hit, at which hop and for how much. See the <a href="https://width.info/api-reference">API reference</a> for every parameter, with a try-it panel.</p>
+<h3>Step 3: Act on the verdict</h3>
+<table>
+<thead>
+<tr>
+<th>Verdict</th>
+<th>Score</th>
+<th>Suggested handling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pass</td>
+<td>0–19</td>
+<td>Credit as normal and queue for sweeping</td>
+</tr>
+<tr>
+<td>Review</td>
+<td>20–49</td>
+<td>Hold the credit; compliance checks the risk path first</td>
+</tr>
+<tr>
+<td>EDD</td>
+<td>50–79</td>
+<td>Freeze the credit and ask the user for source-of-funds evidence</td>
+</tr>
+<tr>
+<td>Block</td>
+<td>80–100</td>
+<td>Don't credit, don't sweep; leave funds in place or move them to a quarantine address pending review</td>
+</tr>
+</tbody>
+</table>
+<p>These bands are DART's default scoring; adjust thresholds to your risk appetite.</p>
+<p><strong>Why blocked funds must not be swept:</strong> once tainted funds mix into your hot wallet, anyone screening that wallet will see the link. Exchanges, banks and partners may refuse funds or ask questions. Screen first and your hot wallet only ever holds clean money.</p>
+<h3>Step 4: Top up fees</h3>
+<p><strong>Tron:</strong> USDT transfers consume energy and bandwidth. With no energy, TRX is burned instead, which is the most expensive option. Cheaper: stake TRX for energy and delegate it to the deposit address, reclaiming it after the sweep; or rent energy on demand. Compare an energy market quote with your custodian's price before launch and multiply by your monthly sweep count.</p>
+<p><strong>EVM chains:</strong> a deposit address without ETH, BNB or similar can't move USDT, so top it up from a dedicated gas wallet first.</p>
+<p><strong>Tip:</strong> set a minimum sweep amount so small balances accumulate instead of paying more in fees than they're worth.</p>
+<h3>Step 5: Sweep via the custodian's transfer API</h3>
+<p>Move funds from the deposit address to your collection address with an MPC signature. Record the transaction hash, amount and the matching DART result for every sweep. DART saves every screening as an immutable snapshot, so audits can trace back directly.</p>
+<pre><code class="language-python"># run every N minutes
+for addr in deposit_addresses:
+    deposits = pending_deposits(addr)              # credited, not yet swept
+    if any(d.verdict != &quot;pass&quot; for d in deposits):
+        continue                                   # anything not passed: leave the address
+    balance = custody.get_balance(addr, &quot;USDT&quot;)
+    if balance &lt; MIN_SWEEP_AMOUNT:
+        continue                                   # too small, let it accumulate
+    ensure_fee(addr)                               # delegate energy (Tron) / top up gas (EVM)
+    tx = custody.transfer(addr, COLLECT_ADDRESS, &quot;USDT&quot;, balance)   # MPC signature
+    save_sweep_record(addr, tx, deposits)          # link to DART results for audit
+</code></pre>
+<h3>Withdrawals: screen the destination before signing</h3>
+<p>Before signing a withdrawal, screen the destination with DART (<code>POST /api/v3/screen/kya</code>) to check where the money is going. Pass goes to signing; everything else goes to a person. <strong>Deposits: check the source. Withdrawals: check the destination.</strong></p>
+<h2>3. Why screening needs more than one hop</h2>
+<p>Dirty money rarely lands on your address directly. It's usually split into small amounts and passed through a few layers of freshly created throwaway addresses before the deposit. Look only one hop back and you see a brand-new, unlabeled address that passes.</p>
+<p>DART's hop depth is configurable. For everyday screening we suggest 3 hops inbound and 1 outbound, a good balance of speed and coverage.</p>
+<h2>4. Getting started</h2>
+<ol>
+<li><a href="/width-site/contact/">Contact us</a> to open a DART account. It's free until 31 December 2028.</li>
+<li>Create an API key in the console.</li>
+<li>Run last month's deposits through DART, look at the score distribution and set your thresholds.</li>
+<li>Wire screening into deposits and withdrawals and launch your own sweeps.</li>
+</ol>
+<p>Already using another KYT tool? Run both in parallel for a while and compare before you decide. Our engineers support you throughout.</p>
+
+  </div>
+  <div class="container narrow"><p class="post-tags"><span class="chip">#MPC</span><span class="chip">#sweeping</span><span class="chip">#KYT</span><span class="chip">#custody</span></p>
+    <div class="post-cta">
+      <div><h2>Screen your next address with DART</h2><p>Free until 31 December 2028. Console, API and MCP included.</p></div>
+      <div class="ctas"><a class="btn btn-primary" href="/width-site/contact/">Get Free Access</a><a class="btn btn-ghost" href="https://width.info/docs">Read the Docs</a></div>
+    </div>
+  </div>
+</article>
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Related Articles</h2></div>
+    <div class="post-grid"><article class="post-card">
+  <a href="/width-site/blog/money-does-not-flow-backwards/"><img class="post-cover" src="/width-site/assets/uploads/blog/dart-timing-cover.webp" alt="Money doesn&#39;t flow backwards: two KYT tools, two verdicts on the same address" loading="lazy">
+    <div class="post-body">
+      <p class="post-meta"><span class="chip">Research</span><time datetime="2026-11-12T00:00:00.000Z">12 Nov 2026</time></p>
+      <h3>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky</h3>
+      <p>For the same TRON address, another KYT tool said &quot;medium-low risk, review&quot;, while DART scored 0. Broken down transfer by transfer, the risky funds were flowing backwards in time.</p>
+    </div>
+  </a>
+</article>
+<article class="post-card">
+  <a href="/width-site/blog/fincen-9714-ruleset/"><img class="post-cover" src="/width-site/assets/uploads/blog/mexc-ruleset-shot.webp" alt="The FinCEN 9714 built-in ruleset in the DART console" loading="lazy">
+    <div class="post-body">
+      <p class="post-meta"><span class="chip">Regulation</span><time datetime="2026-11-06T00:00:00.000Z">6 Nov 2026</time></p>
+      <h3>FinCEN&#39;s 9714 order: DART shipped a built-in ruleset the same day</h3>
+      <p>On 6 November 2026, FinCEN issued a Section 9714 order against MEXC. It isn&#39;t an OFAC sanction, but the impact on institutions with US exposure is direct. DART shipped a built-in ruleset the same day.</p>
+    </div>
+  </a>
+</article>
+</div>
+  </div>
+</section>
+
+  </main>
+  <footer class="site-footer">
+  <div class="disposition-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="/width-site/"><img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20"><span class="brand-product">DART</span></a>
+      <p>Onchain intelligence for stablecoin compliance. DART screens USDT and USDC flows in time order, so good customers get through and bad funds don&#39;t.</p>
+      <p class="footer-free">Free until 31 Dec 2028</p>
+      <div class="footer-contact">
+        <p class="eyebrow">Contact</p>
+        <a href="mailto:sales@width.com">sales@width.com</a>
+        <a href="tel:+6568162740">+65 6816 2740</a>
+        <span>Singapore · Hong Kong · Beijing</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Products</p>
+      <ul>
+        <li><a href="/width-site/platform/">Platform Overview</a></li>
+        <li><a href="/width-site/products/kya/">Address Screening (KYA)</a></li>
+        <li><a href="/width-site/products/kyt/">Transaction Screening (KYT)</a></li>
+        <li><a href="/width-site/products/sanctions/">Sanctions Screening</a></li>
+        <li><a href="/width-site/products/investigations/">Fund Tracing &amp; Investigations</a></li>
+        <li><a href="/width-site/products/rulesets/">Rulesets &amp; Scoring</a></li>
+        <li><a href="/width-site/products/agents/">AI Agents (MCP)</a></li>
+        <li><a href="/width-site/developers/">Developers &amp; API</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Solutions</p>
+      <ul>
+        <li><a href="/width-site/solutions/exchanges/">Exchanges</a></li>
+        <li><a href="/width-site/solutions/wallets/">Wallets</a></li>
+        <li><a href="/width-site/solutions/payments/">Payments &amp; Card Issuers</a></li>
+        <li><a href="/width-site/solutions/custody/">Custody &amp; WaaS</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Data</p>
+      <ul>
+        <li><a href="/width-site/data/">Data Hub</a></li>
+        <li><a href="/width-site/blog/">Blog &amp; Research</a></li>
+        <li><a href="https://width.info/docs">Product Manual</a></li>
+        <li><a href="https://width.info/api-reference">API Reference</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Partners</p>
+      <ul>
+        <li><a href="/width-site/partners/lea/">Law Enforcement</a></li>
+        <li><a href="/width-site/partners/academic/">Universities &amp; Research</a></li>
+        <li><a href="/width-site/check/">Address Check for Individuals</a></li>
+        <li><a href="/width-site/partners/">All Partner Programmes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Company</p>
+      <ul>
+        <li><a href="/width-site/about/">About Us</a></li>
+        <li><a href="/width-site/pricing/">Pricing</a></li>
+        <li><a href="/width-site/contact/">Contact</a></li>
+        <li><a href="https://www.width.com/">Width Platform</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2014–2026 WIDTH Pte. Ltd. All rights reserved.</span>
+    <span class="footer-links">
+      <a href="https://www.width.com/privacy">Privacy</a>
+      <a href="https://www.width.com/security">Security</a>
+      <a href="https://x.com/WidthGRC" aria-label="X">X</a>
+      <a href="https://www.linkedin.com/company/widthsg/">LinkedIn</a>
+      <a href="https://www.youtube.com/@WidthCompliance">YouTube</a>
+    </span>
+  </div>
+</footer>
+
+  <script src="/width-site/assets/js/site.js" defer=""></script>
+</body>
+</html>

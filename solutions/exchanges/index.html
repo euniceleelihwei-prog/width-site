@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crypto exchange KYT for deposits and withdrawals · Width DART</title>
+  <meta name="description" content="Crypto exchange KYT for USDT and USDC deposits and withdrawals. Time-ordered tracing cuts false positives, exchange counterparties are exempt, and every score is explained.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://euniceleelihwei-prog.github.io/width-site/solutions/exchanges/">
+  <link rel="alternate" hreflang="en" href="https://euniceleelihwei-prog.github.io/width-site/solutions/exchanges/">
+  <link rel="alternate" hreflang="zh-CN" href="https://euniceleelihwei-prog.github.io/width-site/zh/solutions/exchanges/">
+  <link rel="alternate" hreflang="x-default" href="https://euniceleelihwei-prog.github.io/width-site/solutions/exchanges/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Width DART">
+  <meta property="og:title" content="Crypto exchange KYT for deposits and withdrawals">
+  <meta property="og:description" content="Crypto exchange KYT for USDT and USDC deposits and withdrawals. Time-ordered tracing cuts false positives, exchange counterparties are exempt, and every score is explained.">
+  <meta property="og:url" content="https://euniceleelihwei-prog.github.io/width-site/solutions/exchanges/">
+  <meta property="og:image" content="https://euniceleelihwei-prog.github.io/width-site/assets/img/og-default.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@WidthGRC">
+
+  <link rel="icon" href="/width-site/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Width DART" href="/width-site/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/width-site/assets/css/site.css"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://euniceleelihwei-prog.github.io/width-site/#org",
+      "name": "WIDTH Pte. Ltd.",
+      "alternateName": ["Width", "Width DART"],
+      "url": "https://euniceleelihwei-prog.github.io/width-site/",
+      "logo": "https://euniceleelihwei-prog.github.io/width-site/assets/img/width-logo.svg",
+      "email": "sales@width.com",
+      "telephone": "+65 6816 2740",
+      "sameAs": ["https://x.com/WidthGRC", "https://www.linkedin.com/company/widthsg/", "https://www.youtube.com/@WidthCompliance"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://euniceleelihwei-prog.github.io/width-site/" },
+        { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://euniceleelihwei-prog.github.io/width-site/solutions/" },
+        { "@type": "ListItem", "position": 3, "name": "Exchanges" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Does the exchange exemption let risk slip through?", "acceptedAnswer": { "@type": "Answer", "text": "The exemption only stops tracing once a path reaches another exchange. If the screened address carries a risk label itself, or a path hits a rule before it reaches an exchange, it still counts. Turn the exemption off for strict scenarios such as sanctions screening." } },
+        { "@type": "Question", "name": "Should deposits and withdrawals use the same rules?", "acceptedAnswer": { "@type": "Answer", "text": "We don't recommend it. Deposits look at where funds came from (inbound) and withdrawals at where they go (outbound). DART ships separate KYT-IN and KYT-OUT rulesets. Hops default to 3 inbound and 1 outbound, and both are adjustable." } },
+        { "@type": "Question", "name": "Will screening slow down crediting?", "acceptedAnswer": { "@type": "Answer", "text": "Sanctions checks return in under a second, and sync calls return the result directly. Deep traces on very active addresses take longer, so use async mode and either credit then act on the result, or hold then release." } },
+        { "@type": "Question", "name": "Do we have to add rules when a new list is published?", "acceptedAnswer": { "@type": "Answer", "text": "No. We turn new official actions into built-in rulesets. The FinCEN 9714 order, for example, was live the day it was published. You can still copy and edit any ruleset." } },
+        { "@type": "Question", "name": "What can we show an examiner?", "acceptedAnswer": { "@type": "Answer", "text": "Every screening has an immutable snapshot recording the request and the full result. Pull them in bulk over the API to report on any period. The product manual documents rule definitions and the scoring formula, so it can sit alongside your internal policy." } }
+      ]
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="lang-en ">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-header="">
+  <div class="bar">
+    <a class="brand" href="/width-site/" aria-label="Width DART">
+      <img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20">
+      <span class="brand-product">DART</span>
+    </a>
+
+    <nav class="nav" aria-label="Main" data-nav="">
+      <ul class="nav-list">
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Products<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-2 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">Screening</p>
+                <ul>
+                  <li><a href="/width-site/platform/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8.500 4.500L12 13 3.500 8.500z"></path><path d="M3.500 12.500L12 17l8.500-4.500M3.500 16.500L12 21l8.500-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Platform Overview</span><span class="menu-desc">Data, tracing, rules and scoring in one engine</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kya/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.500"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2.500v3M12 18.500v3M2.500 12h3M18.500 12h3"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Screening (KYA)</span><span class="menu-desc">Is this address safe to deal with?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kyt/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h15l-3.500-3.500M20 16H5l3.500 3.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Transaction Screening (KYT)</span><span class="menu-desc">Where did this deposit come from?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/sanctions/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.500 3v5.500c0 4.500-3.200 7.800-7.500 9.500-4.300-1.700-7.500-5-7.500-9.500V6z"></path><path d="M8.500 12l2.500 2.500 4.500-5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Sanctions Screening</span><span class="menu-desc">Official lists, answered in under a second</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <div class="menu-group">
+                <p class="menu-title">Go Deeper</p>
+                <ul>
+                  <li><a href="/width-site/products/investigations/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="7" cy="18" r="2"></circle><path d="M6.900 6.800l10.200 4.400M17.200 12.900L8.800 17.200"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Fund Tracing &amp; Investigations</span><span class="menu-desc">Follow the money across hops and chains</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/rulesets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Rulesets &amp; Scoring</span><span class="menu-desc">Your risk appetite, written as rules</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/agents/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4l1.900 5.100L18 11l-5.100 1.900L11 18l-1.900-5.100L4 11l5.100-1.900z"></path><path d="M18.500 15.500v4M16.500 17.500h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">AI Agents (MCP)</span><span class="menu-desc">19 tools for any AI agent</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/developers/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.500 7.500L4 12l4.500 4.500M15.500 7.500L20 12l-4.500 4.500M13.500 5l-3 14"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Developers &amp; API</span><span class="menu-desc">API, MCP, OpenAPI and llms.txt</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/blog/money-does-not-flow-backwards/"><span class="menu-feature-pic"><img src="/width-site/assets/uploads/blog/dart-timing-cover.webp" alt="" loading="lazy"></span>
+                <span class="menu-feature-kicker">Latest article</span>
+                <strong>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky</strong>
+                <span class="menu-feature-go">Read More</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Solutions<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">By Industry</p>
+                <ul>
+                  <li><a href="/width-site/solutions/exchanges/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 16V10M12 16V5M17 16v-4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Exchanges</span><span class="menu-desc">Screen deposits and withdrawals without false alarms</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/wallets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8V5H6.500a2.500 2.500 0 0 0 0 5H20v9H6a2 2 0 0 1-2-2V7.500"></path><circle cx="16" cy="14.500" r="1"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Wallets</span><span class="menu-desc">Warn users before they send or receive</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/payments/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Payments &amp; Card Issuers</span><span class="menu-desc">Keep tainted USDT out of fiat rails</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/custody/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.500" width="14" height="9.500" rx="1.500"></rect><path d="M8 10.500V8a4 4 0 0 1 8 0v2.500M12 14.500v2"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Custody &amp; WaaS</span><span class="menu-desc">KYT built in for every client you serve</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/pricing/">
+                <span class="menu-feature-pic is-type"><b>Free</b><i>until 31 Dec 2028</i></span>
+                <strong>Connect DART and pay nothing until 2029</strong><small>Console, API and MCP all included</small>
+                <span class="menu-feature-go">See what&#39;s included</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/data/">Data</a></li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Partners<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1">
+              <div class="menu-group">
+                <p class="menu-title">Work with DART</p>
+                <ul>
+                  <li><a href="/width-site/partners/lea/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.500v6c0 4.300-2.900 7.400-7 9-4.100-1.600-7-4.700-7-9v-6z"></path><path d="M12 8.200l1.100 2.300 2.500.3-1.800 1.700.5 2.500-2.300-1.200-2.300 1.200.5-2.500-1.800-1.700 2.500-.3z"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Law Enforcement</span><span class="menu-desc">Tracing, case support and evidence packs</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/partners/academic/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.500 9.500L12 5l9.500 4.500L12 14z"></path><path d="M6.500 11.700V16c1.500 1.500 3.400 2.200 5.500 2.200s4-.7 5.500-2.200v-4.300M21.500 9.500v5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Universities &amp; Research</span><span class="menu-desc">Academic API access and datasets</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/check/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="3.500"></circle><path d="M3.500 20c.6-3.600 3.200-5.500 6.500-5.500 1.200 0 2.300.250 3.200.7M15 17.500l2.200 2.200 4-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Check for Individuals</span><span class="menu-desc">Check an address before you receive USDT</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/pricing/">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="/width-site/zh/solutions/exchanges/" hreflang="zh-CN">中文</a>
+        <a class="nav-signin" href="https://width.info/login">Sign In</a>
+        <a class="btn btn-primary btn-sm" href="/width-site/contact/">Get Free Access</a>
+      </div>
+    </nav>
+
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" data-burger=""><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+  <main id="main">
+    
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <a href="/width-site/">Home</a>
+  <span aria-hidden="true">/</span><a href="/width-site/solutions/">Solutions</a>
+  <span aria-hidden="true">/</span><span aria-current="page">Exchanges</span>
+</nav>
+<section class="hero has-visual compact">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy"><p class="eyebrow">Solutions · Exchanges</p>
+      <h1>Screen Every Deposit and Withdrawal, <em>Without the False Alarms</em></h1><div class="hero-lead"><p>Deposits are about where the money came from; withdrawals are about where it is going. DART traces funds hop by hop in time order and drops paths the money could not have taken, so your compliance team only works the cases that matter.</p>
+</div>
+<div class="ctas">
+  <a class="btn btn-primary" href="/width-site/contact/?type=exchange">Get Free Access</a>
+  <a class="btn btn-ghost" href="https://width.info/docs" target="_blank" rel="noopener">Read the Docs</a>
+</div>
+<p class="hero-note">Free until 31 December 2028</p>
+    </div>
+    <div class="hero-visual"><figure class="viz viz-result-card">
+  <header>
+    <div>
+      <p class="mini-label">KYA · Tron · USDT</p>
+      <p class="mono" data-at="0" data-d="1.3">TZCL2K…3ULr</p>
+    </div>
+    <span class="chip chip-review" data-at="6" data-d=".3">Review</span>
+  </header>
+  <div class="result-score">
+    <div class="score-dial"><span class="dial-n"></span><small>/100</small></div>
+    <ol class="bands" aria-label="Disposition bands">
+      <li class="pass">0–19</li><li class="review is-on" data-at="6">20–49</li><li class="edd">50–79</li><li class="block">80–100</li>
+    </ol>
+  </div>
+  <table class="hits">
+    <thead><tr><th>Hit</th><th>Hop</th><th>Share</th><th>Points</th></tr></thead>
+    <tbody>
+      <tr data-at="2" data-d=".3" data-hit="1"><td><span class="dot risk"></span>Sanctions · inbound</td><td>2</td><td>18%</td><td>+30</td></tr>
+      <tr data-at="3" data-d=".2" data-hit="2"><td><span class="dot edd"></span>Mixer · inbound</td><td>1</td><td>6%</td><td>+6</td></tr>
+      <tr class="excluded" data-at="4" data-d=".3" data-hit="3"><td><span class="dot mute"></span>Hacker · backwards in time</td><td>2</td><td>—</td><td>excluded</td></tr>
+      <tr class="excluded exempt" data-at="5" data-d=".3" data-hit="4"><td><span class="dot ex"></span>Exchange counterparty</td><td>1</td><td>—</td><td>exempt</td></tr>
+    </tbody>
+  </table>
+  <footer class="mono" data-at="6" data-d=".6">Snapshot saved · immutable</footer>
+</figure>
+</div>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container">
+    
+<div class="section-head"><p class="eyebrow">Exchange compliance</p><h2>Sound Familiar?</h2>
+</div>
+
+    <div class="problems">
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">01</span>
+          <h3>Too Many Deposit Alerts for the Review Team</h3><p>If a tool only asks &quot;are these addresses connected?&quot;, ordinary deposits get traced a few hops out to something risky, and most alerts end up as false positives.</p>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">How DART solves it</p>
+          <div><ul>
+<li>A hop only counts if the funds <strong>arrived before they left</strong>. Paths that run backwards in time are dropped</li>
+<li><strong>Share of funds matters</strong>: the further the hop, the higher the threshold, so a trace amount of bad money doesn't condemn an address</li>
+<li>Four dispositions (pass, review, EDD, block) mean reviewers only see the middle two</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">Proof</span>In one payment company's test, another tool rated an address &quot;medium-low risk, needs review&quot;. DART scored it 0. Broken down transfer by transfer, the risky funds could not have reached it in time.</p>
+        </div>
+      </article>
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">02</span>
+          <h3>Getting Dragged In by Other Exchanges&#39; Users</h3><p>A hot wallet touches thousands of addresses a day. Trace through another exchange and you will almost always hit something risky.</p>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">How DART solves it</p>
+          <div><ul>
+<li><strong>Exchange counterparties are exempt by default</strong>: tracing stops at another exchange, so other users of that exchange don't count against you</li>
+<li>Switch the exemption off for strict scenarios such as sanctions screening</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">Proof</span>A Middle East exchange runs deposit and withdrawal screening with the exemption on by default.</p>
+        </div>
+      </article>
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">03</span>
+          <h3>New Regulatory Actions Outpace Your Rules</h3><p>Official lists and enforcement orders change faster every year. Maintaining rules in-house is slow and easy to get wrong.</p>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">How DART solves it</p>
+          <div><ul>
+<li>We turn new official actions into <strong>built-in rulesets</strong> you can select in the console or API</li>
+<li>Every rule is readable. Copy a ruleset and adjust it to your own policy</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">Proof</span>FinCEN's 9714 order was published on 6 November. The DART built-in ruleset went live the same day.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    
+<div class="section-head"><p class="eyebrow">Where DART sits</p><h2>One Check on the Way In, One on the Way Out</h2><div class="lead"><p>Deposits are screened inbound and withdrawals outbound, each with its own ruleset and hop depth.</p>
+</div>
+</div>
+
+    <ol class="steps cols-4">
+      <li class="step">
+        <span class="step-label">Deposit</span>
+        <h3>Funds Land Onchain</h3>
+        <p>A user's deposit confirms and your system has the transaction hash.</p>
+      </li>
+      <li class="step">
+        <span class="step-label">KYT-IN</span>
+        <h3>Screen the Source</h3>
+        <p>Trace upstream in time order against the inbound ruleset and get a 0–100 score.</p>
+      </li>
+      <li class="step">
+        <span class="step-label">Decide</span>
+        <h3>Credit or Hold</h3>
+        <p>Pass credits straight away; review and EDD go to a queue; block freezes and escalates.</p>
+      </li>
+      <li class="step">
+        <span class="step-label">Withdrawal</span>
+        <h3>Screen the Destination</h3>
+        <p>Before release</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container">
+    
+<div class="section-head"><p class="eyebrow">Customers</p><h2>Exchanges Already on DART</h2>
+</div>
+
+    <div class="cases cols-2">
+      <article class="case"><span class="chip">Exchange · Middle East</span>
+        <h3>A Middle East Exchange</h3>
+        <p>Screens deposits and withdrawals automatically, with exchange counterparties exempt by default, so it isn't dragged in by other exchanges' users.</p>
+      </article>
+      <article class="case"><span class="chip">Regulatory update</span><p class="case-metric">Same day<small>From new order to built-in ruleset</small></p>
+        <h3>FinCEN 9714 Order</h3>
+        <p>Published on 6 November, live as a DART built-in ruleset the same day. Customers selected it in the console and could identify related funds in their deposits and withdrawals.</p>
+      </article>
+    </div><p class="section-note">Customer names withheld for confidentiality. Figures from DART production data, November 2026.</p>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container faq-wrap">
+    
+<div class="section-head"><p class="eyebrow">FAQ</p><h2>Questions Exchanges Ask</h2>
+</div>
+
+    <div class="faq">
+      <details open="">
+        <summary>Does the exchange exemption let risk slip through?</summary>
+        <div class="faq-a"><p>The exemption only stops tracing once a path reaches another exchange. If the screened address carries a risk label itself, or a path hits a rule before it reaches an exchange, it still counts. Turn the exemption off for strict scenarios such as sanctions screening.</p>
+</div>
+      </details>
+      <details>
+        <summary>Should deposits and withdrawals use the same rules?</summary>
+        <div class="faq-a"><p>We don't recommend it. Deposits look at where funds came from (inbound) and withdrawals at where they go (outbound). DART ships separate KYT-IN and KYT-OUT rulesets. Hops default to 3 inbound and 1 outbound, and both are adjustable.</p>
+</div>
+      </details>
+      <details>
+        <summary>Will screening slow down crediting?</summary>
+        <div class="faq-a"><p>Sanctions checks return in under a second, and sync calls return the result directly. Deep traces on very active addresses take longer, so use async mode and either credit then act on the result, or hold then release.</p>
+</div>
+      </details>
+      <details>
+        <summary>Do we have to add rules when a new list is published?</summary>
+        <div class="faq-a"><p>No. We turn new official actions into built-in rulesets. The FinCEN 9714 order, for example, was live the day it was published. You can still copy and edit any ruleset.</p>
+</div>
+      </details>
+      <details>
+        <summary>What can we show an examiner?</summary>
+        <div class="faq-a"><p>Every screening has an immutable snapshot recording the request and the full result. Pull them in bulk over the API to report on any period. The product manual documents rule definitions and the scoring formula, so it can sit alongside your internal policy.</p>
+</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-band">
+      <div class="cta-copy"><p class="eyebrow">Free access</p>
+        <h2>Run It <em>Next to Your Current Tools</em></h2><div class="lead"><p>Nothing to switch off. Send us a batch of historical deposit and withdrawal addresses (anonymized is fine) and we explain every difference.</p>
+</div>
+      </div>
+      <div class="cta-side"><ol class="cta-points"><li>A result for every address, with the path behind it and a <strong>diff against your current tools</strong></li><li>Stablecoins on DART, everything else stays where it is</li><li>Free until <strong>31 December 2028</strong></li></ol>
+<div class="ctas">
+  <a class="btn btn-primary" href="/width-site/contact/?type=exchange">Get Free Access</a>
+  <a class="btn btn-ghost" href="/width-site/contact/?type=exchange">Book a Demo</a>
+</div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <div class="disposition-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="/width-site/"><img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20"><span class="brand-product">DART</span></a>
+      <p>Onchain intelligence for stablecoin compliance. DART screens USDT and USDC flows in time order, so good customers get through and bad funds don&#39;t.</p>
+      <p class="footer-free">Free until 31 Dec 2028</p>
+      <div class="footer-contact">
+        <p class="eyebrow">Contact</p>
+        <a href="mailto:sales@width.com">sales@width.com</a>
+        <a href="tel:+6568162740">+65 6816 2740</a>
+        <span>Singapore · Hong Kong · Beijing</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Products</p>
+      <ul>
+        <li><a href="/width-site/platform/">Platform Overview</a></li>
+        <li><a href="/width-site/products/kya/">Address Screening (KYA)</a></li>
+        <li><a href="/width-site/products/kyt/">Transaction Screening (KYT)</a></li>
+        <li><a href="/width-site/products/sanctions/">Sanctions Screening</a></li>
+        <li><a href="/width-site/products/investigations/">Fund Tracing &amp; Investigations</a></li>
+        <li><a href="/width-site/products/rulesets/">Rulesets &amp; Scoring</a></li>
+        <li><a href="/width-site/products/agents/">AI Agents (MCP)</a></li>
+        <li><a href="/width-site/developers/">Developers &amp; API</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Solutions</p>
+      <ul>
+        <li><a href="/width-site/solutions/exchanges/">Exchanges</a></li>
+        <li><a href="/width-site/solutions/wallets/">Wallets</a></li>
+        <li><a href="/width-site/solutions/payments/">Payments &amp; Card Issuers</a></li>
+        <li><a href="/width-site/solutions/custody/">Custody &amp; WaaS</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Data</p>
+      <ul>
+        <li><a href="/width-site/data/">Data Hub</a></li>
+        <li><a href="/width-site/blog/">Blog &amp; Research</a></li>
+        <li><a href="https://width.info/docs">Product Manual</a></li>
+        <li><a href="https://width.info/api-reference">API Reference</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Partners</p>
+      <ul>
+        <li><a href="/width-site/partners/lea/">Law Enforcement</a></li>
+        <li><a href="/width-site/partners/academic/">Universities &amp; Research</a></li>
+        <li><a href="/width-site/check/">Address Check for Individuals</a></li>
+        <li><a href="/width-site/partners/">All Partner Programmes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Company</p>
+      <ul>
+        <li><a href="/width-site/about/">About Us</a></li>
+        <li><a href="/width-site/pricing/">Pricing</a></li>
+        <li><a href="/width-site/contact/">Contact</a></li>
+        <li><a href="https://www.width.com/">Width Platform</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2014–2026 WIDTH Pte. Ltd. All rights reserved.</span>
+    <span class="footer-links">
+      <a href="https://www.width.com/privacy">Privacy</a>
+      <a href="https://www.width.com/security">Security</a>
+      <a href="https://x.com/WidthGRC" aria-label="X">X</a>
+      <a href="https://www.linkedin.com/company/widthsg/">LinkedIn</a>
+      <a href="https://www.youtube.com/@WidthCompliance">YouTube</a>
+    </span>
+  </div>
+</footer>
+
+  <script src="/width-site/assets/js/site.js" defer=""></script>
+</body>
+</html>

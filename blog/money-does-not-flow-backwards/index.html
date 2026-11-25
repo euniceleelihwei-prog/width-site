@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky · Width DART</title>
+  <meta name="description" content="For the same TRON address, another KYT tool said &quot;medium-low risk, review&quot;, while DART scored 0. Broken down transfer by transfer, the risky funds were flowing backwards in time.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://euniceleelihwei-prog.github.io/width-site/blog/money-does-not-flow-backwards/">
+  <link rel="alternate" hreflang="en" href="https://euniceleelihwei-prog.github.io/width-site/blog/money-does-not-flow-backwards/">
+  <link rel="alternate" hreflang="zh-CN" href="https://euniceleelihwei-prog.github.io/width-site/zh/blog/money-does-not-flow-backwards/">
+  <link rel="alternate" hreflang="x-default" href="https://euniceleelihwei-prog.github.io/width-site/blog/money-does-not-flow-backwards/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Width DART">
+  <meta property="og:title" content="Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky">
+  <meta property="og:description" content="For the same TRON address, another KYT tool said &quot;medium-low risk, review&quot;, while DART scored 0. Broken down transfer by transfer, the risky funds were flowing backwards in time.">
+  <meta property="og:url" content="https://euniceleelihwei-prog.github.io/width-site/blog/money-does-not-flow-backwards/">
+  <meta property="og:image" content="https://euniceleelihwei-prog.github.io/width-site/assets/uploads/blog/dart-timing-cover.webp">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@WidthGRC">
+
+  <link rel="icon" href="/width-site/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Width DART" href="/width-site/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/width-site/assets/css/site.css"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://euniceleelihwei-prog.github.io/width-site/#org",
+      "name": "WIDTH Pte. Ltd.",
+      "alternateName": ["Width", "Width DART"],
+      "url": "https://euniceleelihwei-prog.github.io/width-site/",
+      "logo": "https://euniceleelihwei-prog.github.io/width-site/assets/img/width-logo.svg",
+      "email": "sales@width.com",
+      "telephone": "+65 6816 2740",
+      "sameAs": ["https://x.com/WidthGRC", "https://www.linkedin.com/company/widthsg/", "https://www.youtube.com/@WidthCompliance"]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Money doesn't flow backwards: why KYT that ignores time flags good addresses as risky",
+      "description": "For the same TRON address, another KYT tool said \"medium-low risk, review\", while DART scored 0. Broken down transfer by transfer, the risky funds were flowing backwards in time.",
+      "datePublished": "2026-11-12T00:00:00.000Z",
+      "dateModified": "2026-11-12T00:00:00.000Z",
+      "inLanguage": "en",
+      "author": { "@type": "Organization", "name": "Width DART team" },
+      "publisher": { "@id": "https://euniceleelihwei-prog.github.io/width-site/#org" },
+      "image": "https://euniceleelihwei-prog.github.io/width-site/assets/uploads/blog/dart-timing-cover.webp",
+      "mainEntityOfPage": "https://euniceleelihwei-prog.github.io/width-site/blog/money-does-not-flow-backwards/"
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="lang-en ">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-header="">
+  <div class="bar">
+    <a class="brand" href="/width-site/" aria-label="Width DART">
+      <img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20">
+      <span class="brand-product">DART</span>
+    </a>
+
+    <nav class="nav" aria-label="Main" data-nav="">
+      <ul class="nav-list">
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Products<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-2 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">Screening</p>
+                <ul>
+                  <li><a href="/width-site/platform/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8.500 4.500L12 13 3.500 8.500z"></path><path d="M3.500 12.500L12 17l8.500-4.500M3.500 16.500L12 21l8.500-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Platform Overview</span><span class="menu-desc">Data, tracing, rules and scoring in one engine</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kya/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.500"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2.500v3M12 18.500v3M2.500 12h3M18.500 12h3"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Screening (KYA)</span><span class="menu-desc">Is this address safe to deal with?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kyt/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h15l-3.500-3.500M20 16H5l3.500 3.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Transaction Screening (KYT)</span><span class="menu-desc">Where did this deposit come from?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/sanctions/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.500 3v5.500c0 4.500-3.200 7.800-7.500 9.500-4.300-1.700-7.500-5-7.500-9.500V6z"></path><path d="M8.500 12l2.500 2.500 4.500-5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Sanctions Screening</span><span class="menu-desc">Official lists, answered in under a second</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <div class="menu-group">
+                <p class="menu-title">Go Deeper</p>
+                <ul>
+                  <li><a href="/width-site/products/investigations/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="7" cy="18" r="2"></circle><path d="M6.900 6.800l10.200 4.400M17.200 12.900L8.800 17.200"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Fund Tracing &amp; Investigations</span><span class="menu-desc">Follow the money across hops and chains</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/rulesets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Rulesets &amp; Scoring</span><span class="menu-desc">Your risk appetite, written as rules</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/agents/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4l1.900 5.100L18 11l-5.100 1.900L11 18l-1.900-5.100L4 11l5.100-1.900z"></path><path d="M18.500 15.500v4M16.500 17.500h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">AI Agents (MCP)</span><span class="menu-desc">19 tools for any AI agent</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/developers/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.500 7.500L4 12l4.500 4.500M15.500 7.500L20 12l-4.500 4.500M13.500 5l-3 14"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Developers &amp; API</span><span class="menu-desc">API, MCP, OpenAPI and llms.txt</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/blog/money-does-not-flow-backwards/"><span class="menu-feature-pic"><img src="/width-site/assets/uploads/blog/dart-timing-cover.webp" alt="" loading="lazy"></span>
+                <span class="menu-feature-kicker">Latest article</span>
+                <strong>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky</strong>
+                <span class="menu-feature-go">Read More</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Solutions<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">By Industry</p>
+                <ul>
+                  <li><a href="/width-site/solutions/exchanges/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 16V10M12 16V5M17 16v-4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Exchanges</span><span class="menu-desc">Screen deposits and withdrawals without false alarms</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/wallets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8V5H6.500a2.500 2.500 0 0 0 0 5H20v9H6a2 2 0 0 1-2-2V7.500"></path><circle cx="16" cy="14.500" r="1"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Wallets</span><span class="menu-desc">Warn users before they send or receive</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/payments/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Payments &amp; Card Issuers</span><span class="menu-desc">Keep tainted USDT out of fiat rails</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/custody/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.500" width="14" height="9.500" rx="1.500"></rect><path d="M8 10.500V8a4 4 0 0 1 8 0v2.500M12 14.500v2"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Custody &amp; WaaS</span><span class="menu-desc">KYT built in for every client you serve</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/pricing/">
+                <span class="menu-feature-pic is-type"><b>Free</b><i>until 31 Dec 2028</i></span>
+                <strong>Connect DART and pay nothing until 2029</strong><small>Console, API and MCP all included</small>
+                <span class="menu-feature-go">See what&#39;s included</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/data/">Data</a></li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Partners<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1">
+              <div class="menu-group">
+                <p class="menu-title">Work with DART</p>
+                <ul>
+                  <li><a href="/width-site/partners/lea/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.500v6c0 4.300-2.900 7.400-7 9-4.100-1.600-7-4.700-7-9v-6z"></path><path d="M12 8.200l1.100 2.300 2.500.3-1.800 1.700.5 2.500-2.300-1.200-2.300 1.200.5-2.500-1.800-1.700 2.500-.3z"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Law Enforcement</span><span class="menu-desc">Tracing, case support and evidence packs</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/partners/academic/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.500 9.500L12 5l9.500 4.500L12 14z"></path><path d="M6.500 11.700V16c1.500 1.500 3.400 2.200 5.500 2.200s4-.7 5.500-2.200v-4.300M21.500 9.500v5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Universities &amp; Research</span><span class="menu-desc">Academic API access and datasets</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/check/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="3.500"></circle><path d="M3.500 20c.6-3.600 3.200-5.500 6.500-5.500 1.200 0 2.300.250 3.200.7M15 17.500l2.200 2.200 4-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Check for Individuals</span><span class="menu-desc">Check an address before you receive USDT</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/pricing/">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="/width-site/zh/blog/money-does-not-flow-backwards/" hreflang="zh-CN">中文</a>
+        <a class="nav-signin" href="https://width.info/login">Sign In</a>
+        <a class="btn btn-primary btn-sm" href="/width-site/contact/">Get Free Access</a>
+      </div>
+    </nav>
+
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" data-burger=""><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+  <main id="main">
+    <article class="post">
+  <header class="post-hero">
+    <div class="container narrow">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/width-site/">Home</a><span aria-hidden="true">/</span>
+        <a href="/width-site/blog/">Blog</a><span aria-hidden="true">/</span>
+        <a href="/width-site/blog/category/research/">Research</a>
+      </nav>
+      <h1>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky</h1>
+      <p class="post-lead">For the same TRON address, another KYT tool said &quot;medium-low risk, review&quot;, while DART scored 0. Broken down transfer by transfer, the risky funds were flowing backwards in time.</p>
+      <p class="post-meta">
+        <span>By Width DART team</span>
+        <time datetime="2026-11-12T00:00:00.000Z">12 Nov 2026</time>
+        <span>4 min read</span>
+      </p>
+    </div>
+  </header>
+  <div class="container narrow"><img class="post-cover-lg" src="/width-site/assets/uploads/blog/dart-timing-cover.webp" alt="Money doesn&#39;t flow backwards: two KYT tools, two verdicts on the same address"></div>
+  <div class="container narrow prose post-content">
+    <p>A customer's technical lead recently asked us a very good question.</p>
+<p>He had screened the same TRON address with another KYT tool and with DART:</p>
+<ul>
+<li><strong>The other tool:</strong> on the outbound side, the address was linked to 6 addresses frozen by Tether, the nearest 2 hops away and the furthest 8, involving about $110,000. Verdict: &quot;medium-low risk, review advised.&quot;</li>
+<li><strong>DART (default settings):</strong> score 0, pass, no rules triggered.</li>
+</ul>
+<p>Did DART miss something?</p>
+<h2>1. Change two settings and the risk &quot;appears&quot;</h2>
+<p>We screened the same address again in DART, this time <strong>turning off &quot;enforce time order&quot;</strong> and raising outbound tracing from 1 hop to 5.</p>
+<p>All the paths to frozen and sanctioned addresses showed up, triggering rules such as &quot;frozen address exposure&quot; and &quot;sanctioned address exposure&quot;, which was essentially what the other tool reported.</p>
+<p><strong>Both tools were looking at the same onchain data. The only difference was whether they respected the order in which money actually moved.</strong></p>
+<p>Once we broke those paths down and lined up the timestamp of every transfer, the answer was clear: <strong>the money on those paths was flowing backwards.</strong></p>
+<h2>2. Money doesn't flow backwards</h2>
+<p>A simplified example (addresses and amounts are illustrative).</p>
+<p><strong>Inbound:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>What happened</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Oct, 09:00</td>
+<td>Address A withdraws 5,000 USDT from an exchange</td>
+</tr>
+<tr>
+<td>1 Oct, 10:00</td>
+<td>A sends 3,000 USDT to B (your user)</td>
+</tr>
+<tr>
+<td>3 Oct, 14:00</td>
+<td>H, an address holding stolen funds, sends 8,000 USDT to A</td>
+</tr>
+</tbody>
+</table>
+<p>Looking only at connections: H → A → B. B is 2 hops from stolen funds, so it's high risk.</p>
+<p>Adding time: B received its 3,000 USDT on 1 October, when A held nothing but money withdrawn from an exchange. H's money arrived two days later. <strong>Not a single cent B received could have been stolen funds.</strong></p>
+<p><strong>Outbound works the same way:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>What happened</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Oct</td>
+<td>Address A sends 2,000 USDT to F, a frozen address</td>
+</tr>
+<tr>
+<td>3 Oct</td>
+<td>Your user B sends 5,000 USDT to A</td>
+</tr>
+</tbody>
+</table>
+<p>Looking only at connections: B → A → F. B's funds &quot;went to&quot; a frozen address, 2 hops away.</p>
+<p>Adding time: A's transfer to F happened before B's money ever arrived. <strong>B's money could not have reached F.</strong></p>
+<p>These paths exist on the graph. They don't exist in the money.</p>
+<h2>3. Ignore time and almost every address looks risky</h2>
+<p>The chain is a densely connected network. Popular relay addresses, exchange hot wallets, DEXs and bridges interact with thousands of addresses every day.</p>
+<p>Expand by connection alone and you will almost always hit a risky address eventually, more so the more hops you allow. In the example above, the other tool went 8 hops out. Add a scoring model where &quot;further hops score less, but still score&quot; and the result is that <strong>most addresses carry some risk score.</strong></p>
+<p>It looks strict, but it's expensive:</p>
+<ul>
+<li><strong>Alert floods.</strong> Compliance teams review piles of &quot;risky&quot; addresses every day, and most of them are false positives.</li>
+<li><strong>Good users get hurt.</strong> When reviews can't keep up, everything gets delayed or blocked, and normal deposits and payments stall.</li>
+<li><strong>Real risk gets buried.</strong> When every address is red, red stops meaning anything.</li>
+</ul>
+<p><strong>Strict is not the same as accurate.</strong> We went down that road ourselves early on.</p>
+<h2>4. How DART decides</h2>
+<ol>
+<li><strong>Trace funds in time order.</strong> Every hop must be &quot;in first, then out&quot;: only money that arrived before the funds moved on counts toward the path. Paths that run backwards are dropped.</li>
+<li><strong>Weigh the share of funds, not just whether there's a connection.</strong> What matters is how much of the money is risky. The further the hop, the higher the bar: 5% / 10% / 15% / 20% at hops 2 / 3 / 4 / 5.</li>
+<li><strong>Exchange addresses are exempt by default.</strong> Tracing stops at other exchanges, which run their own KYC and controls, so one exchange user's brush with a risky address doesn't land on you.</li>
+<li><strong>Every score has a path behind it.</strong> Which path hit, at which hop, how much, what share: all of it is shown, so compliance can decide and explain the decision to a regulator.</li>
+<li><strong>Rules follow your business.</strong> How many hops inbound and outbound (3 in and 1 out by default, adjustable), whether time order is enforced, and the base points and share thresholds for each risk can all be tuned.</li>
+</ol>
+<h2>5. Want it stricter? You can</h2>
+<p>Different businesses need different levels of strictness. Tighten it for large withdrawals or before custody signing; relax it a little for small deposits and everyday payments.</p>
+<p>If you prefer a &quot;better safe than sorry&quot; policy, do what we did above: turn off enforced time order, trace more hops and raise the base points for multi-hop hits. The results will look much like those tools.</p>
+<p><strong>The reverse isn't possible.</strong> A tool that ignores time has no way to drop paths that run backwards.</p>
+<p><strong>Strictness is a dial you set per business. Understanding the order money moves in is the foundation.</strong></p>
+<hr>
+<p>DART covers USDT and USDC on 11 chains, with 200 million labeled addresses and 72 risk rules, available through the console, API and MCP. If you have addresses you think were judged too harshly, <a href="/width-site/contact/">send them to us</a> and we'll take them apart together, transfer by transfer.</p>
+
+  </div>
+  <div class="container narrow"><p class="post-tags"><span class="chip">#KYT</span><span class="chip">#fund tracing</span><span class="chip">#false positives</span></p>
+    <div class="post-cta">
+      <div><h2>Screen your next address with DART</h2><p>Free until 31 December 2028. Console, API and MCP included.</p></div>
+      <div class="ctas"><a class="btn btn-primary" href="/width-site/contact/">Get Free Access</a><a class="btn btn-ghost" href="https://width.info/docs">Read the Docs</a></div>
+    </div>
+  </div>
+</article>
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>Related Articles</h2></div>
+    <div class="post-grid"><article class="post-card">
+  <a href="/width-site/blog/fincen-9714-ruleset/"><img class="post-cover" src="/width-site/assets/uploads/blog/mexc-ruleset-shot.webp" alt="The FinCEN 9714 built-in ruleset in the DART console" loading="lazy">
+    <div class="post-body">
+      <p class="post-meta"><span class="chip">Regulation</span><time datetime="2026-11-06T00:00:00.000Z">6 Nov 2026</time></p>
+      <h3>FinCEN&#39;s 9714 order: DART shipped a built-in ruleset the same day</h3>
+      <p>On 6 November 2026, FinCEN issued a Section 9714 order against MEXC. It isn&#39;t an OFAC sanction, but the impact on institutions with US exposure is direct. DART shipped a built-in ruleset the same day.</p>
+    </div>
+  </a>
+</article>
+<article class="post-card">
+  <a href="/width-site/blog/mpc-sweep-kyt-guide/"><img class="post-cover" src="/width-site/assets/uploads/blog/mpc-sweep-cover.webp" alt="Running your own sweeps on MPC custody, with KYT built in" loading="lazy">
+    <div class="post-body">
+      <p class="post-meta"><span class="chip">Guides</span><time datetime="2026-11-05T00:00:00.000Z">5 Nov 2026</time></p>
+      <h3>Running your own sweeps on MPC custody, with KYT built in</h3>
+      <p>Payment, card, exchange and wallet teams on MPC custody can run their own sweeps. Screen each deposit with DART first, then sweep, so tainted funds never reach your hot wallet and fees come down.</p>
+    </div>
+  </a>
+</article>
+</div>
+  </div>
+</section>
+
+  </main>
+  <footer class="site-footer">
+  <div class="disposition-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="/width-site/"><img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20"><span class="brand-product">DART</span></a>
+      <p>Onchain intelligence for stablecoin compliance. DART screens USDT and USDC flows in time order, so good customers get through and bad funds don&#39;t.</p>
+      <p class="footer-free">Free until 31 Dec 2028</p>
+      <div class="footer-contact">
+        <p class="eyebrow">Contact</p>
+        <a href="mailto:sales@width.com">sales@width.com</a>
+        <a href="tel:+6568162740">+65 6816 2740</a>
+        <span>Singapore · Hong Kong · Beijing</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Products</p>
+      <ul>
+        <li><a href="/width-site/platform/">Platform Overview</a></li>
+        <li><a href="/width-site/products/kya/">Address Screening (KYA)</a></li>
+        <li><a href="/width-site/products/kyt/">Transaction Screening (KYT)</a></li>
+        <li><a href="/width-site/products/sanctions/">Sanctions Screening</a></li>
+        <li><a href="/width-site/products/investigations/">Fund Tracing &amp; Investigations</a></li>
+        <li><a href="/width-site/products/rulesets/">Rulesets &amp; Scoring</a></li>
+        <li><a href="/width-site/products/agents/">AI Agents (MCP)</a></li>
+        <li><a href="/width-site/developers/">Developers &amp; API</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Solutions</p>
+      <ul>
+        <li><a href="/width-site/solutions/exchanges/">Exchanges</a></li>
+        <li><a href="/width-site/solutions/wallets/">Wallets</a></li>
+        <li><a href="/width-site/solutions/payments/">Payments &amp; Card Issuers</a></li>
+        <li><a href="/width-site/solutions/custody/">Custody &amp; WaaS</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Data</p>
+      <ul>
+        <li><a href="/width-site/data/">Data Hub</a></li>
+        <li><a href="/width-site/blog/">Blog &amp; Research</a></li>
+        <li><a href="https://width.info/docs">Product Manual</a></li>
+        <li><a href="https://width.info/api-reference">API Reference</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Partners</p>
+      <ul>
+        <li><a href="/width-site/partners/lea/">Law Enforcement</a></li>
+        <li><a href="/width-site/partners/academic/">Universities &amp; Research</a></li>
+        <li><a href="/width-site/check/">Address Check for Individuals</a></li>
+        <li><a href="/width-site/partners/">All Partner Programmes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Company</p>
+      <ul>
+        <li><a href="/width-site/about/">About Us</a></li>
+        <li><a href="/width-site/pricing/">Pricing</a></li>
+        <li><a href="/width-site/contact/">Contact</a></li>
+        <li><a href="https://www.width.com/">Width Platform</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2014–2026 WIDTH Pte. Ltd. All rights reserved.</span>
+    <span class="footer-links">
+      <a href="https://www.width.com/privacy">Privacy</a>
+      <a href="https://www.width.com/security">Security</a>
+      <a href="https://x.com/WidthGRC" aria-label="X">X</a>
+      <a href="https://www.linkedin.com/company/widthsg/">LinkedIn</a>
+      <a href="https://www.youtube.com/@WidthCompliance">YouTube</a>
+    </span>
+  </div>
+</footer>
+
+  <script src="/width-site/assets/js/site.js" defer=""></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Width DART · 文章</title>
+  <link>https://euniceleelihwei-prog.github.io/width-site/zh/blog/</link>
+  <atom:link href="https://euniceleelihwei-prog.github.io/width-site/zh/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>以稳定币为核心的链上情报与合规。DART 按资金的时间顺序筛查 USDT / USDC，正常用户顺利通过，问题资金挡在门外。</description>
+  <language>zh-CN</language>
+  <item>
+    <title>钱不会倒着流：为什么不看时间顺序的 KYT，会把好地址判成高风险</title>
+    <link>https://euniceleelihwei-prog.github.io/width-site/zh/blog/money-does-not-flow-backwards/</link>
+    <guid>https://euniceleelihwei-prog.github.io/width-site/zh/blog/money-does-not-flow-backwards/</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+    <description>同一个 TRON 地址，另一款 KYT 工具判「中低风险、建议复核」，DART 判 0 分通过。逐笔拆开后发现，那些风险资金在时间上是倒着流的。</description>
+  </item>
+  <item>
+    <title>FinCEN 9714 命令发布当天，DART 上线内置规则集</title>
+    <link>https://euniceleelihwei-prog.github.io/width-site/zh/blog/fincen-9714-ruleset/</link>
+    <guid>https://euniceleelihwei-prog.github.io/width-site/zh/blog/fincen-9714-ruleset/</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <description>2026 年 11 月 6 日，FinCEN 依据 9714 条款对 MEXC 发布命令。这不是 OFAC 制裁，但对有美国业务往来的机构影响很直接。DART 当天就上线了内置规则集。</description>
+  </item>
+  <item>
+    <title>MPC 托管用户自建归集与 KYT 接入指南</title>
+    <link>https://euniceleelihwei-prog.github.io/width-site/zh/blog/mpc-sweep-kyt-guide/</link>
+    <guid>https://euniceleelihwei-prog.github.io/width-site/zh/blog/mpc-sweep-kyt-guide/</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <description>用 MPC 托管钱包的支付、U 卡、交易所、钱包团队，可以自己做归集：先用 DART 筛查充值、再归集，风险资金进不了热钱包，手续费也更省。</description>
+  </item>
+</channel>
+</rss>

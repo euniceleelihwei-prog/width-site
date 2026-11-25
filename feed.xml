@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Width DART · Blog</title>
+  <link>https://euniceleelihwei-prog.github.io/width-site/blog/</link>
+  <atom:link href="https://euniceleelihwei-prog.github.io/width-site/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Onchain intelligence for stablecoin compliance. DART screens USDT and USDC flows in time order, so good customers get through and bad funds don&#39;t.</description>
+  <language>en</language>
+  <item>
+    <title>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky</title>
+    <link>https://euniceleelihwei-prog.github.io/width-site/blog/money-does-not-flow-backwards/</link>
+    <guid>https://euniceleelihwei-prog.github.io/width-site/blog/money-does-not-flow-backwards/</guid>
+    <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+    <description>For the same TRON address, another KYT tool said &quot;medium-low risk, review&quot;, while DART scored 0. Broken down transfer by transfer, the risky funds were flowing backwards in time.</description>
+  </item>
+  <item>
+    <title>FinCEN&#39;s 9714 order: DART shipped a built-in ruleset the same day</title>
+    <link>https://euniceleelihwei-prog.github.io/width-site/blog/fincen-9714-ruleset/</link>
+    <guid>https://euniceleelihwei-prog.github.io/width-site/blog/fincen-9714-ruleset/</guid>
+    <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+    <description>On 6 November 2026, FinCEN issued a Section 9714 order against MEXC. It isn&#39;t an OFAC sanction, but the impact on institutions with US exposure is direct. DART shipped a built-in ruleset the same day.</description>
+  </item>
+  <item>
+    <title>Running your own sweeps on MPC custody, with KYT built in</title>
+    <link>https://euniceleelihwei-prog.github.io/width-site/blog/mpc-sweep-kyt-guide/</link>
+    <guid>https://euniceleelihwei-prog.github.io/width-site/blog/mpc-sweep-kyt-guide/</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <description>Payment, card, exchange and wallet teams on MPC custody can run their own sweeps. Screen each deposit with DART first, then sweep, so tainted funds never reach your hot wallet and fees come down.</description>
+  </item>
+</channel>
+</rss>

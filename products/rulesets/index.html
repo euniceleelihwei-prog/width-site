@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configurable AML rulesets and risk scoring for crypto | Width DART</title>
+  <meta name="description" content="72 open rules across 9 risk categories, from sanctions and terrorist financing to hacks and scams, scored by direction, hop, severity and share of funds. Clone the built-ins and tune them to your risk appetite.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://euniceleelihwei-prog.github.io/width-site/products/rulesets/">
+  <link rel="alternate" hreflang="en" href="https://euniceleelihwei-prog.github.io/width-site/products/rulesets/">
+  <link rel="alternate" hreflang="zh-CN" href="https://euniceleelihwei-prog.github.io/width-site/zh/products/rulesets/">
+  <link rel="alternate" hreflang="x-default" href="https://euniceleelihwei-prog.github.io/width-site/products/rulesets/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Width DART">
+  <meta property="og:title" content="Rulesets &amp; scoring">
+  <meta property="og:description" content="72 open rules across 9 risk categories, from sanctions and terrorist financing to hacks and scams, scored by direction, hop, severity and share of funds. Clone the built-ins and tune them to your risk appetite.">
+  <meta property="og:url" content="https://euniceleelihwei-prog.github.io/width-site/products/rulesets/">
+  <meta property="og:image" content="https://euniceleelihwei-prog.github.io/width-site/assets/img/og-default.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@WidthGRC">
+
+  <link rel="icon" href="/width-site/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Width DART" href="/width-site/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/width-site/assets/css/site.css"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://euniceleelihwei-prog.github.io/width-site/#org",
+      "name": "WIDTH Pte. Ltd.",
+      "alternateName": ["Width", "Width DART"],
+      "url": "https://euniceleelihwei-prog.github.io/width-site/",
+      "logo": "https://euniceleelihwei-prog.github.io/width-site/assets/img/width-logo.svg",
+      "email": "sales@width.com",
+      "telephone": "+65 6816 2740",
+      "sameAs": ["https://x.com/WidthGRC", "https://www.linkedin.com/company/widthsg/", "https://www.youtube.com/@WidthCompliance"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://euniceleelihwei-prog.github.io/width-site/" },
+        { "@type": "ListItem", "position": 2, "name": "Platform", "item": "https://euniceleelihwei-prog.github.io/width-site/platform/" },
+        { "@type": "ListItem", "position": 3, "name": "Rulesets & scoring" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the difference between the path-matching and scoring rulesets?", "acceptedAnswer": { "@type": "Answer", "text": "The path-matching ruleset only answers whether a money trail is a violation and which rule it breaks. It never produces a score. The score comes entirely from the scoring ruleset, so the same hits can score differently under a different scoring ruleset while the hits themselves stay the same." } },
+        { "@type": "Question", "name": "Can I edit the built-in rulesets?", "acceptedAnswer": { "@type": "Answer", "text": "Built-ins are read-only so every customer has a stable baseline. Clone one and you can change anything in your copy; each ruleset is stored separately." } },
+        { "@type": "Question", "name": "What are the verdict bands?", "acceptedAnswer": { "@type": "Answer", "text": "By default 0–19 pass, 20–49 review, 50–79 enhanced due diligence and 80–100 block. You can move the bands to match your risk appetite." } },
+        { "@type": "Question", "name": "Why do further hops need a bigger share?", "acceptedAnswer": { "@type": "Answer", "text": "The further a hop is from the screened address, the more hands the money has passed through and the weaker the link. By default risky funds must reach 5% / 10% / 15% / 20% of the flow at hops 2 / 3 / 4 / 5 before they count, so an address that brushed against a little tainted money isn't treated like the source." } },
+        { "@type": "Question", "name": "Can an AI assistant edit rules for me?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. DART's MCP tools cover reading and writing rulesets and rules, so you can describe a policy in plain language and have your assistant draft or adjust the rules." } }
+      ]
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="lang-en ">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-header="">
+  <div class="bar">
+    <a class="brand" href="/width-site/" aria-label="Width DART">
+      <img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20">
+      <span class="brand-product">DART</span>
+    </a>
+
+    <nav class="nav" aria-label="Main" data-nav="">
+      <ul class="nav-list">
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Products<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-2 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">Screening</p>
+                <ul>
+                  <li><a href="/width-site/platform/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8.500 4.500L12 13 3.500 8.500z"></path><path d="M3.500 12.500L12 17l8.500-4.500M3.500 16.500L12 21l8.500-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Platform Overview</span><span class="menu-desc">Data, tracing, rules and scoring in one engine</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kya/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.500"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2.500v3M12 18.500v3M2.500 12h3M18.500 12h3"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Screening (KYA)</span><span class="menu-desc">Is this address safe to deal with?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/kyt/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h15l-3.500-3.500M20 16H5l3.500 3.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Transaction Screening (KYT)</span><span class="menu-desc">Where did this deposit come from?</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/sanctions/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.500 3v5.500c0 4.500-3.200 7.800-7.500 9.500-4.300-1.700-7.500-5-7.500-9.500V6z"></path><path d="M8.500 12l2.500 2.500 4.500-5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Sanctions Screening</span><span class="menu-desc">Official lists, answered in under a second</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <div class="menu-group">
+                <p class="menu-title">Go Deeper</p>
+                <ul>
+                  <li><a href="/width-site/products/investigations/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="7" cy="18" r="2"></circle><path d="M6.900 6.800l10.200 4.400M17.200 12.900L8.800 17.200"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Fund Tracing &amp; Investigations</span><span class="menu-desc">Follow the money across hops and chains</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/rulesets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Rulesets &amp; Scoring</span><span class="menu-desc">Your risk appetite, written as rules</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/products/agents/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4l1.900 5.100L18 11l-5.100 1.900L11 18l-1.900-5.100L4 11l5.100-1.900z"></path><path d="M18.500 15.500v4M16.500 17.500h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">AI Agents (MCP)</span><span class="menu-desc">19 tools for any AI agent</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/developers/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.500 7.500L4 12l4.500 4.500M15.500 7.500L20 12l-4.500 4.500M13.500 5l-3 14"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Developers &amp; API</span><span class="menu-desc">API, MCP, OpenAPI and llms.txt</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/blog/money-does-not-flow-backwards/"><span class="menu-feature-pic"><img src="/width-site/assets/uploads/blog/dart-timing-cover.webp" alt="" loading="lazy"></span>
+                <span class="menu-feature-kicker">Latest article</span>
+                <strong>Money doesn&#39;t flow backwards: why KYT that ignores time flags good addresses as risky</strong>
+                <span class="menu-feature-go">Read More</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Solutions<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">By Industry</p>
+                <ul>
+                  <li><a href="/width-site/solutions/exchanges/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 16V10M12 16V5M17 16v-4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Exchanges</span><span class="menu-desc">Screen deposits and withdrawals without false alarms</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/wallets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8V5H6.500a2.500 2.500 0 0 0 0 5H20v9H6a2 2 0 0 1-2-2V7.500"></path><circle cx="16" cy="14.500" r="1"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Wallets</span><span class="menu-desc">Warn users before they send or receive</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/payments/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Payments &amp; Card Issuers</span><span class="menu-desc">Keep tainted USDT out of fiat rails</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/solutions/custody/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.500" width="14" height="9.500" rx="1.500"></rect><path d="M8 10.500V8a4 4 0 0 1 8 0v2.500M12 14.500v2"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Custody &amp; WaaS</span><span class="menu-desc">KYT built in for every client you serve</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/pricing/">
+                <span class="menu-feature-pic is-type"><b>Free</b><i>until 31 Dec 2028</i></span>
+                <strong>Connect DART and pay nothing until 2029</strong><small>Console, API and MCP all included</small>
+                <span class="menu-feature-go">See what&#39;s included</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/data/">Data</a></li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">Partners<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1">
+              <div class="menu-group">
+                <p class="menu-title">Work with DART</p>
+                <ul>
+                  <li><a href="/width-site/partners/lea/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.500v6c0 4.300-2.900 7.400-7 9-4.100-1.600-7-4.700-7-9v-6z"></path><path d="M12 8.200l1.100 2.300 2.500.3-1.800 1.700.5 2.500-2.300-1.200-2.300 1.200.5-2.500-1.800-1.700 2.500-.3z"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Law Enforcement</span><span class="menu-desc">Tracing, case support and evidence packs</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/partners/academic/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.500 9.500L12 5l9.500 4.500L12 14z"></path><path d="M6.500 11.700V16c1.500 1.500 3.400 2.200 5.500 2.200s4-.7 5.500-2.200v-4.300M21.500 9.500v5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Universities &amp; Research</span><span class="menu-desc">Academic API access and datasets</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/check/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="3.500"></circle><path d="M3.500 20c.6-3.600 3.200-5.500 6.500-5.500 1.200 0 2.300.250 3.200.7M15 17.500l2.200 2.200 4-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">Address Check for Individuals</span><span class="menu-desc">Check an address before you receive USDT</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/pricing/">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="/width-site/zh/products/rulesets/" hreflang="zh-CN">中文</a>
+        <a class="nav-signin" href="https://width.info/login">Sign In</a>
+        <a class="btn btn-primary btn-sm" href="/width-site/contact/">Get Free Access</a>
+      </div>
+    </nav>
+
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" data-burger=""><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+  <main id="main">
+    
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <a href="/width-site/">Home</a>
+  <span aria-hidden="true">/</span><a href="/width-site/platform/">Platform</a>
+  <span aria-hidden="true">/</span><span aria-current="page">Rulesets &amp; scoring</span>
+</nav>
+<section class="hero has-visual compact">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy"><p class="eyebrow">Rulesets &amp; scoring</p>
+      <h1>Your Risk Appetite, <em>Written as Rules</em></h1><div class="hero-lead"><p>Which money trails count as a violation, how many points each one costs, and where you draw the line differs for every institution. DART splits this into two rulesets. The path-matching ruleset decides whether a trail is a violation. The scoring ruleset decides how serious it is and what to do. Both are open, and both are yours to edit.</p>
+</div>
+<div class="ctas">
+  <a class="btn btn-primary" href="/width-site/contact/">Get Free Access</a>
+  <a class="btn btn-ghost" href="https://width.info/docs" target="_blank" rel="noopener">Read the Docs</a>
+</div>
+<p class="hero-note">Free until 31 December 2028</p>
+    </div>
+    <div class="hero-visual"><figure class="viz viz-scores">
+  <ol class="score-bands">
+    <li class="pass"><b>0–19</b><span>Pass</span><p>Let it through automatically</p></li>
+    <li class="review"><b>20–49</b><span>Review</span><p>A quick human look</p></li>
+    <li class="edd"><b>50–79</b><span>EDD</span><p>Ask for source of funds</p></li>
+    <li class="block"><b>80–100</b><span>Block</span><p>Refuse the transfer</p></li>
+  </ol>
+</figure>
+</div>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container">
+    
+<div class="section-head"><p class="eyebrow">Why editable rules matter</p><h2>The Problems with Someone Else's Rules</h2>
+</div>
+
+    <div class="problems">
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">01</span>
+          <h3>A Black Box You Can&#39;t Change or Explain</h3>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">How DART solves it</p>
+          <div><ul>
+<li>All 72 built-in rules are <strong>open</strong>: conditions, hop range, severity and action are there to read</li>
+<li>Built-in rulesets are read-only; <strong>clone</strong> one and change anything in your copy</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">Proof</span>Every snapshot records the ruleset used for that screening.</p>
+        </div>
+      </article>
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">02</span>
+          <h3>One Threshold for Everything Means Misses or Noise</h3>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">How DART solves it</p>
+          <div><ul>
+<li>The further the hop, the higher the bar: by default 5% / 10% / 15% / 20% of the flow at hops 2 / 3 / 4 / 5</li>
+<li>Inbound and outbound have separate weights; verdict bands follow your risk appetite</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">Proof</span>A payment company compared the same address with another tool. It said &quot;medium-low risk, review&quot;; DART scored it 0.</p>
+        </div>
+      </article>
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">03</span>
+          <h3>Regulators and Banking Partners Have Their Own Requirements</h3>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">How DART solves it</p>
+          <div><ul>
+<li>Keep one ruleset per jurisdiction or partner and choose which one to run per screening</li>
+<li>New official actions arrive as built-in rulesets you can switch on</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">Proof</span>FinCEN's 9714 order was published on 6 November; the DART ruleset went live the same day.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    
+<div class="section-head"><p class="eyebrow">Path-matching ruleset</p><h2>72 Rules in 9 Categories</h2><div class="lead"><p>Each rule answers one question, whether this money trail is a violation. A hit carries the rule's severity and action, but no score.</p>
+</div>
+</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Category</th><th scope="col">Rules</th><th scope="col">Default Severity</th><th scope="col">Typical Cases</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">High-risk entities</th><td>16</td><td>High</td><td>High-risk service providers, unlicensed operators</td></tr>
+          <tr><th scope="row">Cybercrime</th><td>12</td><td>High</td><td>Hacks, scams, phishing</td></tr>
+          <tr><th scope="row">Obfuscation</th><td>8</td><td>High</td><td>Mixers and other obfuscation services</td></tr>
+          <tr><th scope="row">Sanctions</th><td>6</td><td>Critical</td><td>Entities on official sanctions lists</td></tr>
+          <tr><th scope="row">Terrorist financing</th><td>6</td><td>Critical</td><td>Funds linked to terrorism</td></tr>
+          <tr><th scope="row">Enforcement freezes</th><td>6</td><td>Critical</td><td>Stablecoin issuer freezes, law enforcement freezes</td></tr>
+          <tr><th scope="row">Illicit markets</th><td>6</td><td>Critical</td><td>Darknet markets</td></tr>
+          <tr><th scope="row">Other financial crime</th><td>6</td><td>Critical</td><td>Money laundering and other financial crime</td></tr>
+          <tr><th scope="row">Gambling</th><td>6</td><td>Medium</td><td>Gambling platforms</td></tr>
+        </tbody>
+      </table>
+    </div><p class="section-note">Rules come in three shapes: self-hit (the address carries the label), direct exposure (one hop), and layered exposure (risky funds still above the threshold after several hops).</p>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container split">
+    <div class="split-copy"><p class="eyebrow">Scoring ruleset</p><h2>Where the Score Comes from, in One Formula</h2><div class="split-text"><p>The scoring ruleset is a matrix of <strong>direction × hop band × severity</strong>. Each hit contributes:</p>
+<p><strong>base points × severity weight × share of funds</strong></p>
+<p>The share is measured against the address's total onchain flow, not just the part of the graph that was expanded. Hits add up, cap at 100, and map to one of four verdicts.</p>
+</div>
+      <ul class="checklist"><li>Default severity weights: critical 1, high 0.8, medium 0.6, low 0.3</li><li>A self-hit overrides the sum with the self-hit score (100 by default): block</li><li>Run the same hits through a different scoring ruleset and the score changes; the hits don't</li></ul>
+<div class="ctas">
+  <a class="btn btn-ghost" href="https://width.info/docs" target="_blank" rel="noopener">Scoring Formula in Detail</a>
+</div>
+
+    </div>
+    <div class="split-visual"><figure class="viz viz-result-card">
+  <header>
+    <div>
+      <p class="mini-label">KYA · Tron · USDT</p>
+      <p class="mono" data-at="0" data-d="1.3">TZCL2K…3ULr</p>
+    </div>
+    <span class="chip chip-review" data-at="6" data-d=".3">Review</span>
+  </header>
+  <div class="result-score">
+    <div class="score-dial"><span class="dial-n"></span><small>/100</small></div>
+    <ol class="bands" aria-label="Disposition bands">
+      <li class="pass">0–19</li><li class="review is-on" data-at="6">20–49</li><li class="edd">50–79</li><li class="block">80–100</li>
+    </ol>
+  </div>
+  <table class="hits">
+    <thead><tr><th>Hit</th><th>Hop</th><th>Share</th><th>Points</th></tr></thead>
+    <tbody>
+      <tr data-at="2" data-d=".3" data-hit="1"><td><span class="dot risk"></span>Sanctions · inbound</td><td>2</td><td>18%</td><td>+30</td></tr>
+      <tr data-at="3" data-d=".2" data-hit="2"><td><span class="dot edd"></span>Mixer · inbound</td><td>1</td><td>6%</td><td>+6</td></tr>
+      <tr class="excluded" data-at="4" data-d=".3" data-hit="3"><td><span class="dot mute"></span>Hacker · backwards in time</td><td>2</td><td>—</td><td>excluded</td></tr>
+      <tr class="excluded exempt" data-at="5" data-d=".3" data-hit="4"><td><span class="dot ex"></span>Exchange counterparty</td><td>1</td><td>—</td><td>exempt</td></tr>
+    </tbody>
+  </table>
+  <footer class="mono" data-at="6" data-d=".6">Snapshot saved · immutable</footer>
+</figure>
+</div>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container faq-wrap">
+    
+<div class="section-head"><p class="eyebrow">FAQ</p><h2>Rulesets and Scoring Questions</h2>
+</div>
+
+    <div class="faq">
+      <details open="">
+        <summary>What is the difference between the path-matching and scoring rulesets?</summary>
+        <div class="faq-a"><p>The path-matching ruleset only answers whether a money trail is a violation and which rule it breaks. It never produces a score. The score comes entirely from the scoring ruleset, so the same hits can score differently under a different scoring ruleset while the hits themselves stay the same.</p>
+</div>
+      </details>
+      <details>
+        <summary>Can I edit the built-in rulesets?</summary>
+        <div class="faq-a"><p>Built-ins are read-only so every customer has a stable baseline. Clone one and you can change anything in your copy; each ruleset is stored separately.</p>
+</div>
+      </details>
+      <details>
+        <summary>What are the verdict bands?</summary>
+        <div class="faq-a"><p>By default 0–19 pass, 20–49 review, 50–79 enhanced due diligence and 80–100 block. You can move the bands to match your risk appetite.</p>
+</div>
+      </details>
+      <details>
+        <summary>Why do further hops need a bigger share?</summary>
+        <div class="faq-a"><p>The further a hop is from the screened address, the more hands the money has passed through and the weaker the link. By default risky funds must reach 5% / 10% / 15% / 20% of the flow at hops 2 / 3 / 4 / 5 before they count, so an address that brushed against a little tainted money isn't treated like the source.</p>
+</div>
+      </details>
+      <details>
+        <summary>Can an AI assistant edit rules for me?</summary>
+        <div class="faq-a"><p>Yes. DART's MCP tools cover reading and writing rulesets and rules, so you can describe a policy in plain language and have your assistant draft or adjust the rules.</p>
+</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-band">
+      <div class="cta-copy"><p class="eyebrow">Free access</p>
+        <h2>Replay Your History <em>Under Your Own Policy</em></h2><div class="lead"><p>We help map your current risk categories, thresholds and actions onto DART rulesets, so your policy stays the same.</p>
+</div>
+      </div>
+      <div class="cta-side"><ol class="cta-points"><li>Old and new rules compared case by case, with reasons for every difference</li><li>Free until <strong>31 December 2028</strong></li></ol>
+<div class="ctas">
+  <a class="btn btn-primary" href="/width-site/contact/">Get Free Access</a>
+  <a class="btn btn-ghost" href="/width-site/products/agents/">AI Agents (MCP)</a>
+</div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <div class="disposition-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="/width-site/"><img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20"><span class="brand-product">DART</span></a>
+      <p>Onchain intelligence for stablecoin compliance. DART screens USDT and USDC flows in time order, so good customers get through and bad funds don&#39;t.</p>
+      <p class="footer-free">Free until 31 Dec 2028</p>
+      <div class="footer-contact">
+        <p class="eyebrow">Contact</p>
+        <a href="mailto:sales@width.com">sales@width.com</a>
+        <a href="tel:+6568162740">+65 6816 2740</a>
+        <span>Singapore · Hong Kong · Beijing</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Products</p>
+      <ul>
+        <li><a href="/width-site/platform/">Platform Overview</a></li>
+        <li><a href="/width-site/products/kya/">Address Screening (KYA)</a></li>
+        <li><a href="/width-site/products/kyt/">Transaction Screening (KYT)</a></li>
+        <li><a href="/width-site/products/sanctions/">Sanctions Screening</a></li>
+        <li><a href="/width-site/products/investigations/">Fund Tracing &amp; Investigations</a></li>
+        <li><a href="/width-site/products/rulesets/">Rulesets &amp; Scoring</a></li>
+        <li><a href="/width-site/products/agents/">AI Agents (MCP)</a></li>
+        <li><a href="/width-site/developers/">Developers &amp; API</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Solutions</p>
+      <ul>
+        <li><a href="/width-site/solutions/exchanges/">Exchanges</a></li>
+        <li><a href="/width-site/solutions/wallets/">Wallets</a></li>
+        <li><a href="/width-site/solutions/payments/">Payments &amp; Card Issuers</a></li>
+        <li><a href="/width-site/solutions/custody/">Custody &amp; WaaS</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Data</p>
+      <ul>
+        <li><a href="/width-site/data/">Data Hub</a></li>
+        <li><a href="/width-site/blog/">Blog &amp; Research</a></li>
+        <li><a href="https://width.info/docs">Product Manual</a></li>
+        <li><a href="https://width.info/api-reference">API Reference</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Partners</p>
+      <ul>
+        <li><a href="/width-site/partners/lea/">Law Enforcement</a></li>
+        <li><a href="/width-site/partners/academic/">Universities &amp; Research</a></li>
+        <li><a href="/width-site/check/">Address Check for Individuals</a></li>
+        <li><a href="/width-site/partners/">All Partner Programmes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">Company</p>
+      <ul>
+        <li><a href="/width-site/about/">About Us</a></li>
+        <li><a href="/width-site/pricing/">Pricing</a></li>
+        <li><a href="/width-site/contact/">Contact</a></li>
+        <li><a href="https://www.width.com/">Width Platform</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2014–2026 WIDTH Pte. Ltd. All rights reserved.</span>
+    <span class="footer-links">
+      <a href="https://www.width.com/privacy">Privacy</a>
+      <a href="https://www.width.com/security">Security</a>
+      <a href="https://x.com/WidthGRC" aria-label="X">X</a>
+      <a href="https://www.linkedin.com/company/widthsg/">LinkedIn</a>
+      <a href="https://www.youtube.com/@WidthCompliance">YouTube</a>
+    </span>
+  </div>
+</footer>
+
+  <script src="/width-site/assets/js/site.js" defer=""></script>
+</body>
+</html>

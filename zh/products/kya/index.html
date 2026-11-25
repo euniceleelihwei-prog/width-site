@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>USDT / USDC 地址风险查询｜DART 地址筛查 KYA · Width</title>
+  <meta name="description" content="DART 地址筛查（KYA）：粘贴一个 USDT / USDC 地址，自动识别所有有流水的链，按资金时间顺序查自身标签、直接往来和多跳暴露，给出 0–100 分和处置建议。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://euniceleelihwei-prog.github.io/width-site/zh/products/kya/">
+  <link rel="alternate" hreflang="zh-CN" href="https://euniceleelihwei-prog.github.io/width-site/zh/products/kya/">
+  <link rel="alternate" hreflang="en" href="https://euniceleelihwei-prog.github.io/width-site/products/kya/">
+  <link rel="alternate" hreflang="x-default" href="https://euniceleelihwei-prog.github.io/width-site/products/kya/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Width DART">
+  <meta property="og:title" content="地址筛查 KYA">
+  <meta property="og:description" content="DART 地址筛查（KYA）：粘贴一个 USDT / USDC 地址，自动识别所有有流水的链，按资金时间顺序查自身标签、直接往来和多跳暴露，给出 0–100 分和处置建议。">
+  <meta property="og:url" content="https://euniceleelihwei-prog.github.io/width-site/zh/products/kya/">
+  <meta property="og:image" content="https://euniceleelihwei-prog.github.io/width-site/assets/img/og-default.png">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@WidthGRC">
+
+  <link rel="icon" href="/width-site/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Width DART" href="/width-site/zh/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/width-site/assets/css/site.css"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://euniceleelihwei-prog.github.io/width-site/#org",
+      "name": "WIDTH Pte. Ltd.",
+      "alternateName": ["Width", "Width DART"],
+      "url": "https://euniceleelihwei-prog.github.io/width-site/",
+      "logo": "https://euniceleelihwei-prog.github.io/width-site/assets/img/width-logo.svg",
+      "email": "sales@width.com",
+      "telephone": "+65 6816 2740",
+      "sameAs": ["https://x.com/WidthGRC", "https://www.linkedin.com/company/widthsg/", "https://www.youtube.com/@WidthCompliance"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://euniceleelihwei-prog.github.io/width-site/zh/" },
+        { "@type": "ListItem", "position": 2, "name": "平台", "item": "https://euniceleelihwei-prog.github.io/width-site/zh/platform/" },
+        { "@type": "ListItem", "position": 3, "name": "地址筛查 KYA" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "地址筛查（KYA）和交易筛查（KYT）有什么区别？", "acceptedAnswer": { "@type": "Answer", "text": "KYA 查的是一个地址整体的风险，适合开户、加白名单、收款前；KYT 查的是一笔具体的充值或提现，看这笔钱从哪来、到哪去。两者用同一套数据和规则引擎，常常一起用。" } },
+        { "@type": "Question", "name": "支持哪些链和币种？", "acceptedAnswer": { "@type": "Answer", "text": "DART 专注 USDT 和 USDC，目前覆盖 11 条链。具体可用的链和币种可以通过 API 实时查询，新链接入后自动可用。" } },
+        { "@type": "Question", "name": "一次筛查要多久？", "acceptedAnswer": { "@type": "Answer", "text": "制裁类检查 1 秒内返回。完整的地址筛查多数在 1 分钟内返回；交易非常活跃的地址追得深时耗时更长，可以改用异步模式，不阻塞业务。" } },
+        { "@type": "Question", "name": "会不会因为对方和交易所有往来就被判高风险？", "acceptedAnswer": { "@type": "Answer", "text": "不会。交易所对手方默认豁免：路径追到交易所就停止，不会因为「这家交易所的其他用户碰过风险地址」牵连到被查地址。强合规场景可以关闭这个开关。" } },
+        { "@type": "Question", "name": "分数的阈值能改吗？", "acceptedAnswer": { "@type": "Answer", "text": "能。四档处置的阈值、每条规则的分值、每一跳的占比门槛都可以按你的风险偏好调整。内置规则集只读，复制一份后随意改。" } },
+        { "@type": "Question", "name": "怎么开始用？", "acceptedAnswer": { "@type": "Answer", "text": "联系我们开通账号，控制台、API、MCP 用同一个账号。接入 DART，免费用到 2028 年 12 月 31 日。" } }
+      ]
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="lang-zh ">
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="site-header" data-header="">
+  <div class="bar">
+    <a class="brand" href="/width-site/zh/" aria-label="Width DART">
+      <img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20">
+      <span class="brand-product">DART</span>
+    </a>
+
+    <nav class="nav" aria-label="Main" data-nav="">
+      <ul class="nav-list">
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">产品<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-2 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">筛查</p>
+                <ul>
+                  <li><a href="/width-site/zh/platform/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l8.500 4.500L12 13 3.500 8.500z"></path><path d="M3.500 12.500L12 17l8.500-4.500M3.500 16.500L12 21l8.500-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">平台总览</span><span class="menu-desc">数据、追踪、规则、评分一套引擎</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/products/kya/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.500"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2.500v3M12 18.500v3M2.500 12h3M18.500 12h3"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">地址筛查 KYA</span><span class="menu-desc">这个地址能不能打交道</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/products/kyt/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h15l-3.500-3.500M20 16H5l3.500 3.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">交易筛查 KYT</span><span class="menu-desc">这笔充值从哪来、提现到哪去</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/products/sanctions/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7.500 3v5.500c0 4.500-3.200 7.800-7.500 9.500-4.300-1.700-7.500-5-7.500-9.500V6z"></path><path d="M8.500 12l2.500 2.500 4.500-5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">制裁筛查</span><span class="menu-desc">官方名单，1 秒内返回</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <div class="menu-group">
+                <p class="menu-title">进阶能力</p>
+                <ul>
+                  <li><a href="/width-site/zh/products/investigations/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"></circle><circle cx="19" cy="12" r="2"></circle><circle cx="7" cy="18" r="2"></circle><path d="M6.900 6.800l10.200 4.400M17.200 12.900L8.800 17.200"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">资金追踪与调查</span><span class="menu-desc">跨跳、跨链追资金去向</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/products/rulesets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">规则集与评分</span><span class="menu-desc">把你的风险偏好写成规则</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/products/agents/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4l1.900 5.100L18 11l-5.100 1.900L11 18l-1.900-5.100L4 11l5.100-1.900z"></path><path d="M18.500 15.500v4M16.500 17.500h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">AI 助手（MCP）</span><span class="menu-desc">19 个工具，AI 直接调用</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/developers/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.500 7.500L4 12l4.500 4.500M15.500 7.500L20 12l-4.500 4.500M13.500 5l-3 14"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">开发者与 API</span><span class="menu-desc">API、MCP、OpenAPI、llms.txt</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/zh/blog/money-does-not-flow-backwards/"><span class="menu-feature-pic"><img src="/width-site/assets/uploads/blog/dart-timing-cover.webp" alt="" loading="lazy"></span>
+                <span class="menu-feature-kicker">最新文章</span>
+                <strong>钱不会倒着流：为什么不看时间顺序的 KYT，会把好地址判成高风险</strong>
+                <span class="menu-feature-go">阅读全文</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">解决方案<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1 has-feature">
+              <div class="menu-group">
+                <p class="menu-title">按行业</p>
+                <ul>
+                  <li><a href="/width-site/zh/solutions/exchanges/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 16V10M12 16V5M17 16v-4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">交易所</span><span class="menu-desc">充提筛查，不误报不误伤</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/solutions/wallets/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8V5H6.500a2.500 2.500 0 0 0 0 5H20v9H6a2 2 0 0 1-2-2V7.500"></path><circle cx="16" cy="14.500" r="1"></circle></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">钱包</span><span class="menu-desc">转账前、收款后提醒用户</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/solutions/payments/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">支付与U卡</span><span class="menu-desc">不让问题资金进法币通道</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/solutions/custody/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.500" width="14" height="9.500" rx="1.500"></rect><path d="M8 10.500V8a4 4 0 0 1 8 0v2.500M12 14.500v2"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">托管与 WaaS</span><span class="menu-desc">下游客户开箱即有 KYT</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+              <a class="menu-feature" href="/width-site/zh/pricing/">
+                <span class="menu-feature-pic is-type"><b>免费</b><i>至 2028 年 12 月 31 日</i></span>
+                <strong>接入 DART，免费用到 2028 年底</strong><small>控制台、API、MCP 全部可用</small>
+                <span class="menu-feature-go">看包含什么</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/zh/data/">数据</a></li>
+        <li class="nav-item has-menu">
+          <button class="nav-link" aria-expanded="false" data-menu-toggle="">合作<span class="caret" aria-hidden="true"></span></button>
+          <div class="menu">
+            <div class="menu-inner cols-1">
+              <div class="menu-group">
+                <p class="menu-title">合作通道</p>
+                <ul>
+                  <li><a href="/width-site/zh/partners/lea/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 2.500v6c0 4.300-2.900 7.400-7 9-4.100-1.600-7-4.700-7-9v-6z"></path><path d="M12 8.200l1.100 2.300 2.500.3-1.800 1.700.5 2.500-2.300-1.200-2.300 1.200.5-2.500-1.800-1.700 2.500-.3z"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">执法机构</span><span class="menu-desc">追踪、案件协助、证据包</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/partners/academic/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.500 9.500L12 5l9.500 4.500L12 14z"></path><path d="M6.500 11.700V16c1.500 1.500 3.400 2.200 5.500 2.200s4-.7 5.500-2.200v-4.300M21.500 9.500v5"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">高校与研究</span><span class="menu-desc">学术 API 额度与数据集</span>
+                    </span>
+                  </a></li>
+                  <li><a href="/width-site/zh/check/"><svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="8" r="3.500"></circle><path d="M3.500 20c.6-3.600 3.200-5.500 6.500-5.500 1.200 0 2.300.250 3.200.7M15 17.500l2.200 2.200 4-4.500"></path></svg>
+                    <span class="menu-text">
+                      <span class="menu-label">个人地址体检</span><span class="menu-desc">收U前先查一下</span>
+                    </span>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/width-site/zh/pricing/">价格</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="/width-site/products/kya/" hreflang="en">English</a>
+        <a class="nav-signin" href="https://width.info/login">登录</a>
+        <a class="btn btn-primary btn-sm" href="/width-site/zh/contact/">免费接入</a>
+      </div>
+    </nav>
+
+    <button class="nav-burger" aria-label="菜单" aria-expanded="false" data-burger=""><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+  <main id="main">
+    
+<nav class="breadcrumb container" aria-label="Breadcrumb">
+  <a href="/width-site/zh/">首页</a>
+  <span aria-hidden="true">/</span><a href="/width-site/zh/platform/">平台</a>
+  <span aria-hidden="true">/</span><span aria-current="page">地址筛查 KYA</span>
+</nav>
+<section class="hero has-visual compact">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy"><p class="eyebrow">KYA · 地址筛查</p>
+      <h1>这个地址，<em>能不能打交道？</em></h1><div class="hero-lead"><p>开户、收款、加白名单之前，先把对方地址查一遍。DART 看它自己是谁、直接和谁来往、钱经过几跳从哪来，再按资金的时间顺序和占比给出 0–100 分和处置建议。</p>
+</div>
+<div class="ctas">
+  <a class="btn btn-primary" href="/width-site/zh/contact/">免费接入</a>
+  <a class="btn btn-ghost" href="https://width.info/docs" target="_blank" rel="noopener">看产品手册</a>
+</div>
+<p class="hero-note">接入 DART，免费用到 2028 年 12 月 31 日</p>
+    </div>
+    <div class="hero-visual"><figure class="viz viz-result-card">
+  <header>
+    <div>
+      <p class="mini-label">KYA · Tron · USDT</p>
+      <p class="mono" data-at="0" data-d="1.3">TZCL2K…3ULr</p>
+    </div>
+    <span class="chip chip-review" data-at="6" data-d=".3">复核</span>
+  </header>
+  <div class="result-score">
+    <div class="score-dial"><span class="dial-n"></span><small>/100</small></div>
+    <ol class="bands" aria-label="处置档位">
+      <li class="pass">0–19</li><li class="review is-on" data-at="6">20–49</li><li class="edd">50–79</li><li class="block">80–100</li>
+    </ol>
+  </div>
+  <table class="hits">
+    <thead><tr><th>命中</th><th>跳数</th><th>占比</th><th>加分</th></tr></thead>
+    <tbody>
+      <tr data-at="2" data-d=".3" data-hit="1"><td><span class="dot risk"></span>制裁实体 · 流入</td><td>2</td><td>18%</td><td>+30</td></tr>
+      <tr data-at="3" data-d=".2" data-hit="2"><td><span class="dot edd"></span>混币器 · 流入</td><td>1</td><td>6%</td><td>+6</td></tr>
+      <tr class="excluded" data-at="4" data-d=".3" data-hit="3"><td><span class="dot mute"></span>黑客 · 时间倒流</td><td>2</td><td>—</td><td>排除</td></tr>
+      <tr class="excluded exempt" data-at="5" data-d=".3" data-hit="4"><td><span class="dot ex"></span>交易所对手方</td><td>1</td><td>—</td><td>豁免</td></tr>
+    </tbody>
+  </table>
+  <footer class="mono" data-at="6" data-d=".6">快照已保存 · 不可篡改</footer>
+</figure>
+</div>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container">
+    
+<div class="section-head"><p class="eyebrow">地址筛查要解决的问题</p><h2>查一个地址，难在哪</h2>
+</div>
+
+    <div class="problems">
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">01</span>
+          <h3>一查就「有关联」，结果没法用</h3><p>只看有没有连上，任何活跃地址往外追几跳都能碰到风险地址。</p>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">DART 怎么解决</p>
+          <div><ul>
+<li>每一跳必须<strong>先到账、后转出</strong>才算关联，时间上倒着流的路径直接排除</li>
+<li>跳数越远门槛越高：默认第 2 / 3 / 4 / 5 跳风险资金占比达 5% / 10% / 15% / 20% 才计入</li>
+<li>交易所对手方默认豁免</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">证据</span>某支付公司实测：同一地址，另一款工具判「中低风险、需复核」，DART 判 0 分通过，逐笔拆开，风险资金在时间上流不过来。</p>
+        </div>
+      </article>
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">02</span>
+          <h3>只查了一条链，别的链上出了事</h3><p>同一个 EVM 地址在每条链上都是同一个钱包，只查 Ethereum 说明不了它在其他链上干净。</p>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">DART 怎么解决</p>
+          <div><ul>
+<li><strong>全链一次筛</strong>：粘贴地址，自动探测它在哪些链、哪些币种上有流水，逐条筛查</li>
+<li>最差的那条结果放在最上面，一眼看到风险在哪条链</li>
+<li>也可以只筛指定链，或同一条链上的 USDT 和 USDC 一起筛</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">证据</span>覆盖 11 条链；没有流水的链不筛、不计费。</p>
+        </div>
+      </article>
+      <article class="problem">
+        <div class="problem-q">
+          <span class="problem-index">03</span>
+          <h3>分数出来了，说不清为什么</h3>
+        </div>
+        <div class="problem-a">
+          <p class="mini-label">DART 怎么解决</p>
+          <div><ul>
+<li>结果里列出每一条命中：规则、方向、第几跳、金额、占比、加了几分</li>
+<li>被排除的路径同样写明原因（时间倒流、占比不够、交易所豁免）</li>
+<li>每次筛查存为不可篡改的快照，随时调出</li>
+</ul>
+</div>
+          <p class="problem-proof"><span class="mini-label">证据</span>合规复核和监管检查时，直接拿快照说明依据。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container">
+    
+<div class="section-head"><p class="eyebrow">怎么查</p><h2>三种命中方式，一次全查</h2><div class="lead"><p>一个地址的风险可能来自它自己，也可能来自和它打过交道的钱。DART 同时看流入（钱从哪来）和流出（钱到哪去），两个方向权重不同。</p>
+</div>
+</div>
+
+    <ol class="steps cols-3">
+      <li class="step">
+        <span class="step-label">自身命中</span>
+        <h3>地址自己带风险标签</h3>
+        <p>例如在制裁名单上、被稳定币发行方冻结、属于黑客或混币服务。命中即按自身命中规则处理，默认直接 100 分、拦截。</p>
+      </li>
+      <li class="step">
+        <span class="step-label">直接暴露</span>
+        <h3>一跳内和风险地址往来</h3>
+        <p>直接从风险地址收过钱，或直接打钱给风险地址，按金额和占比计分。</p>
+      </li>
+      <li class="step">
+        <span class="step-label">分层暴露</span>
+        <h3>多跳后仍有足够比例的风险资金</h3>
+        <p>资金经过中间地址流转，时间顺序成立、占比过了该跳门槛才计入。跳数可按需配置，日常建议流入 3 跳、流出 1 跳。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container split">
+    <div class="split-copy"><p class="eyebrow">API</p><h2>一个请求，查完全部链</h2><div class="split-text"><p>只传地址，DART 会探测这个地址在哪些链、哪些币种上有流水，每一条都筛一遍，最差的结果放在最上面。多数地址在 1 分钟内返回。</p>
+</div>
+      <ul class="checklist"><li>只想查某几条链，传 <code>chains</code></li><li>同一条链上 USDT、USDC 一起查，传 <code>tokens</code></li><li>想异步处理，传 <code>&quot;mode&quot;:&quot;async&quot;</code></li></ul>
+<div class="ctas">
+  <a class="btn btn-ghost" href="https://width.info/api-reference" target="_blank" rel="noopener">看 API 文档</a>
+</div>
+
+    </div>
+    <div class="split-visual"><figure class="viz viz-code">
+  <header><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="mono">POST /api/v3/screen/kya/multi</span></header>
+  <pre><code>curl -X POST https://api.width.live/api/v3/screen/kya/multi &#92;
+  -H &quot;X-Api-Key: $DART_API_KEY&quot; &#92;
+  -H &quot;Content-Type: application/json&quot; &#92;
+  -d &#39;{
+    &quot;address&quot;: &quot;0x8a…c21e&quot;,
+    &quot;tokens&quot;: [&quot;usdt&quot;, &quot;usdc&quot;]
+  }&#39;
+
+# → data.lanes[]：每条链、每个币种一条结果
+# → data.score / data.risk：最差那条放在最上面
+</code></pre>
+</figure>
+</div>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container faq-wrap">
+    
+<div class="section-head"><p class="eyebrow">常见问题</p><h2>关于地址筛查</h2>
+</div>
+
+    <div class="faq">
+      <details open="">
+        <summary>地址筛查（KYA）和交易筛查（KYT）有什么区别？</summary>
+        <div class="faq-a"><p>KYA 查的是一个地址整体的风险，适合开户、加白名单、收款前；KYT 查的是一笔具体的充值或提现，看这笔钱从哪来、到哪去。两者用同一套数据和规则引擎，常常一起用。</p>
+</div>
+      </details>
+      <details>
+        <summary>支持哪些链和币种？</summary>
+        <div class="faq-a"><p>DART 专注 USDT 和 USDC，目前覆盖 11 条链。具体可用的链和币种可以通过 API 实时查询，新链接入后自动可用。</p>
+</div>
+      </details>
+      <details>
+        <summary>一次筛查要多久？</summary>
+        <div class="faq-a"><p>制裁类检查 1 秒内返回。完整的地址筛查多数在 1 分钟内返回；交易非常活跃的地址追得深时耗时更长，可以改用异步模式，不阻塞业务。</p>
+</div>
+      </details>
+      <details>
+        <summary>会不会因为对方和交易所有往来就被判高风险？</summary>
+        <div class="faq-a"><p>不会。交易所对手方默认豁免：路径追到交易所就停止，不会因为「这家交易所的其他用户碰过风险地址」牵连到被查地址。强合规场景可以关闭这个开关。</p>
+</div>
+      </details>
+      <details>
+        <summary>分数的阈值能改吗？</summary>
+        <div class="faq-a"><p>能。四档处置的阈值、每条规则的分值、每一跳的占比门槛都可以按你的风险偏好调整。内置规则集只读，复制一份后随意改。</p>
+</div>
+      </details>
+      <details>
+        <summary>怎么开始用？</summary>
+        <div class="faq-a"><p>联系我们开通账号，控制台、API、MCP 用同一个账号。接入 DART，免费用到 2028 年 12 月 31 日。</p>
+</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-band">
+      <div class="cta-copy"><p class="eyebrow">免费接入</p>
+        <h2>拿一批历史地址，<em>并行跑一次</em></h2><div class="lead"><p>不用停掉现有系统。给我们一批地址，脱敏也可以，我们逐条给出结果和命中路径。</p>
+</div>
+      </div>
+      <div class="cta-side"><ol class="cta-points"><li>附<strong>与现有工具的差异对比</strong>，每条差异说明原因</li><li>接入 DART，免费用到 <strong>2028 年 12 月 31 日</strong></li></ol>
+<div class="ctas">
+  <a class="btn btn-primary" href="/width-site/zh/contact/">免费接入</a>
+  <a class="btn btn-ghost" href="/width-site/zh/products/kyt/">了解交易筛查 KYT</a>
+</div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <div class="disposition-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="/width-site/zh/"><img src="/width-site/assets/img/width-logo.svg" alt="WIDTH" width="96" height="20"><span class="brand-product">DART</span></a>
+      <p>以稳定币为核心的链上情报与合规。DART 按资金的时间顺序筛查 USDT / USDC，正常用户顺利通过，问题资金挡在门外。</p>
+      <p class="footer-free">接入即免费用到 2028 年 12 月 31 日</p>
+      <div class="footer-contact">
+        <p class="eyebrow">联系方式</p>
+        <a href="mailto:sales@width.com">sales@width.com</a>
+        <a href="tel:+6568162740">+65 6816 2740</a>
+        <span>新加坡 · 香港 · 北京</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">产品</p>
+      <ul>
+        <li><a href="/width-site/zh/platform/">平台总览</a></li>
+        <li><a href="/width-site/zh/products/kya/">地址筛查 KYA</a></li>
+        <li><a href="/width-site/zh/products/kyt/">交易筛查 KYT</a></li>
+        <li><a href="/width-site/zh/products/sanctions/">制裁筛查</a></li>
+        <li><a href="/width-site/zh/products/investigations/">资金追踪与调查</a></li>
+        <li><a href="/width-site/zh/products/rulesets/">规则集与评分</a></li>
+        <li><a href="/width-site/zh/products/agents/">AI 助手（MCP）</a></li>
+        <li><a href="/width-site/zh/developers/">开发者与 API</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">解决方案</p>
+      <ul>
+        <li><a href="/width-site/zh/solutions/exchanges/">交易所</a></li>
+        <li><a href="/width-site/zh/solutions/wallets/">钱包</a></li>
+        <li><a href="/width-site/zh/solutions/payments/">支付与U卡</a></li>
+        <li><a href="/width-site/zh/solutions/custody/">托管与 WaaS</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">数据</p>
+      <ul>
+        <li><a href="/width-site/zh/data/">数据中心</a></li>
+        <li><a href="/width-site/zh/blog/">文章与研究</a></li>
+        <li><a href="https://width.info/docs">产品手册</a></li>
+        <li><a href="https://width.info/api-reference">API 文档</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">合作</p>
+      <ul>
+        <li><a href="/width-site/zh/partners/lea/">执法机构</a></li>
+        <li><a href="/width-site/zh/partners/academic/">高校与研究</a></li>
+        <li><a href="/width-site/zh/check/">个人地址体检</a></li>
+        <li><a href="/width-site/zh/partners/">全部合作方式</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow">公司</p>
+      <ul>
+        <li><a href="/width-site/zh/about/">关于我们</a></li>
+        <li><a href="/width-site/zh/pricing/">价格</a></li>
+        <li><a href="/width-site/zh/contact/">联系我们</a></li>
+        <li><a href="https://www.width.com/">Width 合规平台</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2014–2026 WIDTH Pte. Ltd. 版权所有</span>
+    <span class="footer-links">
+      <a href="https://www.width.com/privacy">隐私政策</a>
+      <a href="https://www.width.com/security">安全</a>
+      <a href="https://x.com/WidthGRC" aria-label="X">X</a>
+      <a href="https://www.linkedin.com/company/widthsg/">LinkedIn</a>
+      <a href="https://www.youtube.com/@WidthCompliance">YouTube</a>
+    </span>
+  </div>
+</footer>
+
+  <script src="/width-site/assets/js/site.js" defer=""></script>
+</body>
+</html>

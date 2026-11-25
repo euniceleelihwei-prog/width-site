@@ -1,0 +1,4 @@
+
+# 预览环境，不收录。正式上线时把 ALLOW_INDEX 设为 true。
+User-agent: *
+Disallow: /

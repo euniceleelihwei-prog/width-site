@@ -1,0 +1,66 @@
+# Width 内容后台配置（Sveltia CMS / Decap CMS 通用格式）
+# 部署前把 repo 改成实际的 GitHub 仓库，例如 width-labs/width-site
+backend:
+  name: github
+  repo: npc7/width-site
+  branch: main
+  commit_messages:
+    create: "文章：新建 {{collection}}「{{slug}}」"
+    update: "文章：更新 {{collection}}「{{slug}}」"
+    delete: "文章：删除 {{collection}}「{{slug}}」"
+    uploadMedia: "图片：上传 {{path}}"
+    deleteMedia: "图片：删除 {{path}}"
+
+# 上传的图片放这里，文章里自动写成 /assets/uploads/blog/xxx.webp
+media_folder: src/assets/uploads/blog
+public_folder: /assets/uploads/blog
+
+site_url: https://width.info
+display_url: https://width.info
+
+collections:
+  - name: posts_zh
+    label: 文章（中文）
+    label_singular: 中文文章
+    folder: src/zh/blog/posts
+    extension: md
+    format: frontmatter
+    create: true
+    # 网址用英文短名，例如 money-does-not-flow-backwards → /zh/blog/money-does-not-flow-backwards/
+    slug: "{{fields.slug}}"
+    summary: "{{title}} · {{date}}"
+    sortable_fields: [date, title, category]
+    preview_path: "zh/blog/{{slug}}/"
+    fields: &post_fields
+      - { label: 标题, name: title, widget: string }
+      - { label: 网址短名（英文、数字、连字符）, name: slug, widget: string, pattern: ["^[a-z0-9-]+$", "只能用小写英文、数字和连字符"] }
+      - { label: 摘要（显示在列表和搜索结果里，80–160 字）, name: description, widget: text }
+      - { label: 发布日期, name: date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - label: 分类
+        name: category
+        widget: select
+        options:
+          - { label: 研究 Research, value: research }
+          - { label: 产品 Product, value: product }
+          - { label: 监管动态 Regulation, value: regulation }
+          - { label: 事件复盘 Incident reviews, value: incidents }
+          - { label: 指南 Guides, value: guides }
+      - { label: 标签, name: tags, widget: list, required: false }
+      - { label: 作者, name: author, widget: string, required: false, default: "Width DART" }
+      - { label: 封面图（建议 1600×900）, name: cover, widget: image, required: false }
+      - { label: 封面图说明, name: coverAlt, widget: string, required: false }
+      - { label: 草稿（勾选后不会发布到网站）, name: draft, widget: boolean, required: false, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: posts_en
+    label: Articles (English)
+    label_singular: English article
+    folder: src/blog/posts
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{fields.slug}}"
+    summary: "{{title}} · {{date}}"
+    sortable_fields: [date, title, category]
+    preview_path: "blog/{{slug}}/"
+    fields: *post_fields
